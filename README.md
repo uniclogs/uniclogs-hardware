@@ -1,6 +1,7 @@
 # oresat-ground-station
 OreSat ground station hardware and software for both RF and antenna positioning
 
+![EB Station Block Diagram](https://github.com/oresat/oresat-ground-station/blob/master/doc/GS_3_4.pdf)
 
 ## OreSat Ground Station Infrastructure
 
