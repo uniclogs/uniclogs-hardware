@@ -1,7 +1,7 @@
 # oresat-ground-station
 OreSat ground station hardware and software for both RF and antenna positioning
 
-![EB Station Block Diagram](https://github.com/oresat/oresat-ground-station/blob/master/doc/GS_3_4.png)
+![EB Station Block Diagram](https://github.com/oresat/oresat-ground-station/blob/master/doc/GS_3_5.png)
 
 ## OreSat Ground Station Infrastructure
 
@@ -11,23 +11,23 @@ OreSat will utilize two ground stations for this project, a primary station, and
 
 The ground station infrastructure provides two communications functions between the ground and the spacecraft, (1) up and down communications on UHF for the Telemetry and Command (T&C) subsystem onboard the spacecraft, and (2) downlink communications on S-band for mission payload and camera data.
 
-The UHF component is centered in the 435 to 438 MHz amateur spacecraft band and utilizes both a RHCP and LHCP directional helix antennas mounted on an azimuth/elevation antenna positioner. Coax switches connect one of the antennas to either a Low Noise Amplifier (LNA) for receiving, or a Power Amplifier (PA) for transmitting. The LNA and PA are then connected to a Software Defined Radio (SDR) that provides both UHF RF input and output signals.
+The UHF component is centered in the 435 to 438 MHz amateur spacecraft band and utilizes a circular polarization directional Yagi antenna with a RHCP/LHCP polarization sense switch, all mounted on an azimuth/elevation antenna positioner. Coax switches connect one of the antennas to either a Low Noise Amplifier (LNA) for receiving, or a Power Amplifier (PA) for transmitting. The LNA and PA are then connected to a Software Defined Radio (SDR) that provides both UHF RF input and output signals.
 
-The S-Band component is centered on the 2.4 to 2.43 GHz WiFi channel in the ISM / amateur service spectrum. A 0.5 meter parabolic reflector with a RHCP/LHCP feed is mounted on the same antenna positioner as the UHF antenna. A coax switch is used to select RHCP or LHCP signal from the feed, is then switched to either an LNA or PA. The LNA and PA are connected to a Software Defined Radio (SDR) that provides both S-Band RF input and output signals.
+The S-Band component is centered on the 2.4 to 2.43 GHz WiFi channel in the ISM / amateur service spectrum. A 0.5 meter parabolic reflector with a RHCP/LHCP feed is mounted on the same antenna positioner as the UHF antenna. A coax switch is used to select RHCP or LHCP signal from the feed, is then fed to a bidirectional WiFi PA/LNA. The PA/LNA is connected to a ATH9K WiFi adapter that provides both S-Band RF input and output signals.
 
-The SDR used is the LimeSDR from LimeMicro, which utilizes GnuRadio for modulation and demodulation. The emission type is BPSK at 9600 bps, and was chosen because of the capability of the T&C transceiver radio on the spacecraft, an acceptable performance indicated in the link budget, and is somewhat common in the amateur satellite community.
+The SDR used for UHF is the LimeSDR from LimeMicro, which utilizes GnuRadio for modulation and demodulation. The emission type is BPSK or GFSK at 9600 bps, and was chosen because of the capability of the T&C transceiver radio on the spacecraft, an acceptable performance indicated in the link budget, and is somewhat common in the amateur satellite community.
 
 ## Antenna positioner
 
-An antenna positioner controller is used to aim the antenna array and is interfaced serially using the EasyComm control protocol accessible through the HamLib control library. The positioner controller is based on the Open Source hardware/software project of SatNOGS, and provides the ability for tracking control locally using GPredict, or by the SatNOGS Network software across the Internet.
+An antenna positioner controller is used to aim the antenna array and is interfaced serially using the EasyComm control protocol accessible through the HamLib control library. The positioner controller is based on the Open Source hardware/software project by K3NG, and provides the ability for tracking control through HamLib rotctld both locally using GPredict, or by the SatNOGS Client software which provides interconnectivity to the SatNOGS system over the Internet.
 
 ## GnuRadio 
 
-Data is passed into/out of the ground station radio through GnuRadio ModCod blocks and can provide raw IQ sample files from the payload data. Doppler shift can be compensated for in real time using the tracking software and an interface into GnuRadio.
+Data is passed into/out of the ground station radio through GnuRadio ModCod blocks and can provide raw IQ sample files from the payload data. Doppler shift can be compensated for in real time using the tracking software and an XML/RPC server in GnuRadio.
 
 ## Data
 
-The T&C subsystem provides telemetry data to the ground in two forms, a BPSK modulated data frame in response to a command request, and a very short Morse code modulated telemetry sequence and satellite ID if no activity is present for a given period of time. This Morse code ID allows the satellite to be heard by the general amateur radio community and will help with identifying the satellite once on orbit. There are several satellite housekeeping commands that can be sent up from the ground to control power, attitude and payload functions, and most importantly a command to reliably shut off all RF transmissions if required. All commands up to the satellite are encrypted for security.
+The T&C subsystem provides telemetry data to the ground in two forms, a BPSK or GFSK modulated data frame in response to a command request, and a very short Morse code modulated telemetry sequence and satellite ID if no activity is present for a given period of time. This Morse code ID allows the satellite to be heard by the general amateur radio community and will help with identifying the satellite once on orbit. There are several satellite housekeeping commands that can be sent up from the ground to control power, attitude and payload functions, and most importantly a command to reliably shut off all RF transmissions if required. All commands up to the satellite are encrypted for security.
 
 
 ## Project Team (so far!)
@@ -38,5 +38,4 @@ The T&C subsystem provides telemetry data to the ground in two forms, a BPSK mod
 - [Joe Shields](https://github.com/Joedang)
 - Mark Musil mmusil@pdx.edu
 - [Kenny M](https://github.com/aSmig)
-
 
