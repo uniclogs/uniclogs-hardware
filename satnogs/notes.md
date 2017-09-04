@@ -1,5 +1,14 @@
 ### Notes from SatNOGS development
 
+22-Mar-2017  Mark Musil
+> Test helix on VNA
+> Attached are the results of a VNA test across a large range of frequencies. Frequencies displayed at the
+> bottom of the screen. Central antenna frequency of 434 MHz.
+>
+> * 5-Apr-2017 Glenn LeBrasseur, P.E., Communications Team Lead -- 
+>  Do you have a photo that shows where the marker is? Sadly information about your marker is clipped off at the top.
+>
+
 28-Mar-2017  Mark Musil
 > (From C. Tribe)
 > You might want to make sure that the mast will work before bringing it in just so we don't have to mess around with it.
