@@ -10,8 +10,13 @@
 >
 28-Mar-2017  Mark Musil
 > The base is built
->  The helical antenna with the testing base.
+> * The helical antenna with the testing base.
 >
+28-Mar-2017  Mark Musil
+> I found the center of mass of the antenna and attached a pvc rod for guiding. The piece is not permanent but we have
+> the pvc pipe cement to make it so when we are certain of its integrity.
+> * The positioning arm on the antenna attached at the center of mass.
+
 3-Apr-2017  Mark Musil
 > The testing is completed and the associated graphs are in the attached report. 
 >  * SatNOGS Ground Station Helical Antenna Summary.docx -- 910 KB Download
