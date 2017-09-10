@@ -52,6 +52,10 @@ would describe the extreme structural requirements of this system.
 
 ### References
 
-* [1]  70 cm antenna  http://www.m2inc.com/amateur/436cp42ug-420-440-mhz/
-* [2]  2m antenna     http://www.m2inc.com/amateur/2mcp22-144-148-mhz/
+* [70 cm] antenna  
+* [2 m] antenna
+* 22 foot [cross boom]
 
+[70 cm]: http://www.m2inc.com/amateur/436cp42ug-420-440-mhz/
+[2 m]: http://www.m2inc.com/amateur/2mcp22-144-148-mhz/
+[cross boom]: http://www.m2inc.com/crossboom-hd-fg-11/
