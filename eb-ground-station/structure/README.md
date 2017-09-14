@@ -5,7 +5,7 @@
 ### Introduction
 
 The Portland State University Aerospace Society and Oregon Small Satellite Project (OreSat) propose
-to [augment an existing weather station](Weather_Station.md) on the campus Engineering Building. The weather station is an
+to [augment an existing weather station](weather-station-augmented-design/README.md) on the campus Engineering Building. The weather station is an
 existing structure having been in place for several (maybe 4) years, and is in reasonably good physical
 condition. It was suggested that this structure could be utilized to provide the physical support for the
 proposed satellite ground station antenna on a co-site basis in order to fit within the economic constraints
