@@ -1,6 +1,6 @@
 ## BOM for ground station
 
-[Here is the Bill of Materials so far](https://docs.google.com/spreadsheets/d/1EBKyHZEIYpfHariDGcVJl7H6Yc5BHaDegu6B_IkEdFo/edit#gid=0)
+[Here is the Bill of Materials so far](https://docs.google.com/spreadsheets/d/1EBKyHZEIYpfHariDGcVJl7H6Yc5BHaDegu6B_IkEdFo/edit#gid=687688620)
 
 The BOM is divided into six sections organizing to some degree what's needed in each phase of the construction.
 
