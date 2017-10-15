@@ -1,0 +1,17 @@
+To:    Don
+From:  Andrew Greenberg
+Date:  14-Oct-2017
+Subj:  Proposal for ground station siting
+
+
+We have a new approach to the OreSat Engineering Building Ground Station we would like for consideration.
+
+This approach entails a completely stand-alone approach that gets power from Photo Voltaic Solar, and communicates using wireless communications. It is a non-penetrating mast mount held in place with concrete block. There will be an expected need for the membrane walkway to be extended over to the mast area, and a ground wire. The location is indicated in the Google Earth attachment [1] annotated with a red "X". Also attached is a two page PDF [2] indicating details of the desired location for the station. Finally attached is the mast product datasheet [3] for the Rohn JRM27510 non-penetrating mast.
+
+The number of concrete blocks is determined using the table provided by the manufacturers datasheet for design loads of 100 mph wind speed, and a 7 foot center of pressure which is result of the antenna structure. This requires 1050 lbm or 30 concrete blocks. These will be distributed over the mast frame surface area, stacked two blocks high. Attached is a photo [4] of a similar mast structure located on the Engineering Building at Cal Poly for reference. The manufacturer provides a protective mat that goes under the frame designed for the purpose of protecting a roof with this kind of distributed load.
+
+[1] EB_Station_annotated.jpg
+[2] GS_Structure_1_3.pdf
+[3] Manual_for_JRM27510.pdf
+[4] Friis-Groundstation-10_30_2014.jpg
+
