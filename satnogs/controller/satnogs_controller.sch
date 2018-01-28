@@ -1,0 +1,1582 @@
+EESchema Schematic File Version 2
+LIBS:74xgxx
+LIBS:74xx
+LIBS:ac-dc
+LIBS:actel
+LIBS:adc-dac
+LIBS:Altera
+LIBS:analog_devices
+LIBS:analog_switches
+LIBS:atmel
+LIBS:audio
+LIBS:brooktre
+LIBS:cmos4000
+LIBS:cmos_ieee
+LIBS:conn
+LIBS:contrib
+LIBS:cypress
+LIBS:dc-dc
+LIBS:device
+LIBS:digital-audio
+LIBS:diode
+LIBS:display
+LIBS:dsp
+LIBS:elec-unifil
+LIBS:ESD_Protection
+LIBS:ftdi
+LIBS:gennum
+LIBS:graphic
+LIBS:hc11
+LIBS:intel
+LIBS:interface
+LIBS:ir
+LIBS:Lattice
+LIBS:linear
+LIBS:logo
+LIBS:maxim
+LIBS:memory
+LIBS:microchip
+LIBS:microchip_dspic33dsc
+LIBS:microchip_pic10mcu
+LIBS:microchip_pic12mcu
+LIBS:microchip_pic16mcu
+LIBS:microchip_pic18mcu
+LIBS:microchip_pic32mcu
+LIBS:microcontrollers
+LIBS:motor_drivers
+LIBS:motorola
+LIBS:msp430
+LIBS:nordicsemi
+LIBS:nxp_armmcu
+LIBS:onsemi
+LIBS:opto
+LIBS:Oscillators
+LIBS:philips
+LIBS:power
+LIBS:powerint
+LIBS:Power_Management
+LIBS:pspice
+LIBS:references
+LIBS:regul
+LIBS:relays
+LIBS:rfcom
+LIBS:sensors
+LIBS:silabs
+LIBS:siliconi
+LIBS:stm8
+LIBS:stm32
+LIBS:supertex
+LIBS:switches
+LIBS:texas
+LIBS:transf
+LIBS:transistors
+LIBS:ttl_ieee
+LIBS:valves
+LIBS:video
+LIBS:Xicor
+LIBS:xilinx
+LIBS:Zilog
+LIBS:satnogs
+LIBS:satnogs_controller-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L CONN_01X18 P5
+U 1 1 568A994A
+P 10030 3155
+F 0 "P5" H 10030 4105 50  0000 C CNN
+F 1 "DC Motors Driver" V 10130 3155 50  0000 C CNN
+F 2 "satnogs:pin_socket_18" H 10030 3155 60  0001 C CNN
+F 3 "-" H 10030 3155 60  0001 C CNN
+F 4 "SparkFun PRT-00115" H 10030 3155 60  0001 C CNN "Distributor"
+F 5 "-" H 10030 3155 60  0001 C CNN "Manufacturer"
+F 6 "1x40 female header PTH pitch 2.54" H 10030 3155 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/115" H 10030 3155 60  0001 C CNN "Notes"
+F 8 "1.42€" H 10030 3155 60  0001 C CNN "Price"
+	1    10030 3155
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X04 P1
+U 1 1 568AA2DF
+P 1615 1850
+F 0 "P1" H 1615 2100 50  0000 C CNN
+F 1 "RS485" V 1715 1850 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Angled_1x04" H 1615 1850 60  0001 C CNN
+F 3 "-" H 1615 1850 60  0001 C CNN
+F 4 "SparkFun PRT-00553" H 1615 1850 60  0001 C CNN "Distributor"
+F 5 "-" H 1615 1850 60  0001 C CNN "Manufacturer"
+F 6 "1x40 pin right-angle PTH pitch 2.54" H 1615 1850 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/553" H 1615 1850 60  0001 C CNN "Notes"
+F 8 "1.85€" H 1615 1850 60  0001 C CNN "Price"
+	1    1615 1850
+	-1   0    0    1   
+$EndComp
+NoConn ~ 9830 2305
+$Comp
+L +5V #PWR01
+U 1 1 568AF055
+P 9430 2505
+F 0 "#PWR01" H 9430 2355 50  0001 C CNN
+F 1 "+5V" H 9430 2645 50  0000 C CNN
+F 2 "" H 9430 2505 60  0000 C CNN
+F 3 "" H 9430 2505 60  0000 C CNN
+	1    9430 2505
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 568AF072
+P 9240 2405
+F 0 "#PWR02" H 9240 2155 50  0001 C CNN
+F 1 "GND" H 9240 2255 50  0000 C CNN
+F 2 "" H 9240 2405 60  0000 C CNN
+F 3 "" H 9240 2405 60  0000 C CNN
+	1    9240 2405
+	0    1    1    0   
+$EndComp
+Text Label 9730 2605 2    60   ~ 0
+M1IN2
+Text Label 9730 2705 2    60   ~ 0
+M1IN1
+Text Label 9730 3005 2    60   ~ 0
+SF
+Text Label 9730 3105 2    60   ~ 0
+M1FB
+Text Label 9730 3205 2    60   ~ 0
+EN
+Text Label 9730 3505 2    60   ~ 0
+M2IN2
+Text Label 9730 3605 2    60   ~ 0
+M2IN1
+Text Label 9730 3905 2    60   ~ 0
+SF
+Text Label 9730 4005 2    60   ~ 0
+M2FB
+$Comp
+L +5V #PWR03
+U 1 1 568B1A2F
+P 9430 2805
+F 0 "#PWR03" H 9430 2655 50  0001 C CNN
+F 1 "+5V" H 9430 2945 50  0000 C CNN
+F 2 "" H 9430 2805 60  0000 C CNN
+F 3 "" H 9430 2805 60  0000 C CNN
+	1    9430 2805
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR04
+U 1 1 568B1A70
+P 9240 2905
+F 0 "#PWR04" H 9240 2655 50  0001 C CNN
+F 1 "GND" H 9240 2755 50  0000 C CNN
+F 2 "" H 9240 2905 60  0000 C CNN
+F 3 "" H 9240 2905 60  0000 C CNN
+	1    9240 2905
+	0    1    1    0   
+$EndComp
+$Comp
+L +5V #PWR05
+U 1 1 568B2108
+P 9420 3705
+F 0 "#PWR05" H 9420 3555 50  0001 C CNN
+F 1 "+5V" H 9420 3845 50  0000 C CNN
+F 2 "" H 9420 3705 60  0000 C CNN
+F 3 "" H 9420 3705 60  0000 C CNN
+	1    9420 3705
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR06
+U 1 1 568B256F
+P 9240 3805
+F 0 "#PWR06" H 9240 3555 50  0001 C CNN
+F 1 "GND" H 9240 3655 50  0000 C CNN
+F 2 "" H 9240 3805 60  0000 C CNN
+F 3 "" H 9240 3805 60  0000 C CNN
+	1    9240 3805
+	0    1    1    0   
+$EndComp
+$Comp
+L CONN_02X04 P4
+U 1 1 568B74B0
+P 8000 1685
+F 0 "P4" H 8000 1935 50  0000 C CNN
+F 1 "I2C" H 8000 1435 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x04" H 8000 485 60  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 8000 485 60  0001 C CNN
+F 4 "SparkFun PRT-12791" H 8000 1685 60  0001 C CNN "Distributor"
+F 5 "-" H 8000 1685 60  0001 C CNN "Manufacturer"
+F 6 "2x23 pin male PTH header" H 8000 1685 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 8000 1685 60  0001 C CNN "Notes"
+F 8 "-" H 8000 1685 60  0001 C CNN "Price"
+	1    8000 1685
+	1    0    0    -1  
+$EndComp
+Text Label 7640 1635 2    60   ~ 0
+SCL2
+Text Label 7640 1535 2    60   ~ 0
+SDA2
+Text Label 1945 1900 0    60   ~ 0
+B
+Text Label 1945 1800 0    60   ~ 0
+A
+$Comp
+L +5V #PWR07
+U 1 1 568BA0DB
+P 8380 1535
+F 0 "#PWR07" H 8380 1385 50  0001 C CNN
+F 1 "+5V" H 8380 1675 50  0000 C CNN
+F 2 "" H 8380 1535 60  0000 C CNN
+F 3 "" H 8380 1535 60  0000 C CNN
+	1    8380 1535
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR08
+U 1 1 568BA22A
+P 8510 1835
+F 0 "#PWR08" H 8510 1585 50  0001 C CNN
+F 1 "GND" H 8510 1685 50  0000 C CNN
+F 2 "" H 8510 1835 60  0000 C CNN
+F 3 "" H 8510 1835 60  0000 C CNN
+	1    8510 1835
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR09
+U 1 1 568BBC8F
+P 4900 1635
+F 0 "#PWR09" H 4900 1385 50  0001 C CNN
+F 1 "GND" H 4900 1485 50  0000 C CNN
+F 2 "" H 4900 1635 60  0000 C CNN
+F 3 "" H 4900 1635 60  0000 C CNN
+	1    4900 1635
+	0    -1   -1   0   
+$EndComp
+$Comp
+L +5V #PWR010
+U 1 1 568BBFC2
+P 4750 1535
+F 0 "#PWR010" H 4750 1385 50  0001 C CNN
+F 1 "+5V" H 4750 1675 50  0000 C CNN
+F 2 "" H 4750 1535 60  0000 C CNN
+F 3 "" H 4750 1535 60  0000 C CNN
+	1    4750 1535
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR011
+U 1 1 568BD452
+P 6420 2545
+F 0 "#PWR011" H 6420 2295 50  0001 C CNN
+F 1 "GND" H 6420 2395 50  0000 C CNN
+F 2 "" H 6420 2545 60  0000 C CNN
+F 3 "" H 6420 2545 60  0000 C CNN
+	1    6420 2545
+	0    -1   -1   0   
+$EndComp
+$Comp
+L +5V #PWR012
+U 1 1 568C244E
+P 6630 2745
+F 0 "#PWR012" H 6630 2595 50  0001 C CNN
+F 1 "+5V" H 6630 2885 50  0000 C CNN
+F 2 "" H 6630 2745 60  0000 C CNN
+F 3 "" H 6630 2745 60  0000 C CNN
+	1    6630 2745
+	0    1    1    0   
+$EndComp
+Text Label 6420 3845 0    60   ~ 0
+SDA2
+Text Label 6420 3745 0    60   ~ 0
+SCL2
+Text Label 6420 2945 0    60   ~ 0
+SDA1
+Text Label 6420 2845 0    60   ~ 0
+SCL1
+Text Label 4890 2645 2    60   ~ 0
+TX
+Text Label 4890 2745 2    60   ~ 0
+RX
+$Comp
+L GND #PWR013
+U 1 1 568C711B
+P 4755 2945
+F 0 "#PWR013" H 4755 2695 50  0001 C CNN
+F 1 "GND" H 4755 2795 50  0000 C CNN
+F 2 "" H 4755 2945 60  0000 C CNN
+F 3 "" H 4755 2945 60  0000 C CNN
+	1    4755 2945
+	0    1    1    0   
+$EndComp
+Text Label 6420 3945 0    60   ~ 0
+M2IN1
+Text Label 4890 3745 2    60   ~ 0
+M2IN2
+Text Label 4890 3245 2    60   ~ 0
+SW2
+Text Label 4890 3645 2    60   ~ 0
+EN
+Text Label 4890 3445 2    60   ~ 0
+M1IN1
+Text Label 4890 3345 2    60   ~ 0
+M1IN2
+Text Label 4890 3145 2    60   ~ 0
+SW1
+Text Label 6420 3245 0    60   ~ 0
+M1FB
+Text Label 4890 3545 2    60   ~ 0
+SF
+Text Label 6420 3345 0    60   ~ 0
+M2FB
+Text Label 2615 3070 0    60   ~ 0
+B
+Text Label 2615 3270 0    60   ~ 0
+A
+$Comp
+L GND #PWR014
+U 1 1 568CFD46
+P 2115 3680
+F 0 "#PWR014" H 2115 3430 50  0001 C CNN
+F 1 "GND" H 2115 3530 50  0000 C CNN
+F 2 "" H 2115 3680 60  0000 C CNN
+F 3 "" H 2115 3680 60  0000 C CNN
+	1    2115 3680
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR015
+U 1 1 568D0276
+P 2115 2630
+F 0 "#PWR015" H 2115 2480 50  0001 C CNN
+F 1 "+5V" H 2115 2770 50  0000 C CNN
+F 2 "" H 2115 2630 60  0000 C CNN
+F 3 "" H 2115 2630 60  0000 C CNN
+	1    2115 2630
+	1    0    0    -1  
+$EndComp
+Text Label 1615 3420 2    60   ~ 0
+TX
+$Comp
+L C_Small C1
+U 1 1 568D2DE9
+P 3375 3160
+F 0 "C1" H 3385 3230 50  0000 L CNN
+F 1 "0.1u" H 3385 3080 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 3375 3160 60  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/vjw1bcbascomseries-223529.pdf" H 3375 3160 60  0001 C CNN
+F 4 "Mouser 77-VJ0805Y104KXJCBC " H 3375 3160 60  0001 C CNN "Distributor"
+F 5 "VJ0805Y104KXJCW1BC" H 3375 3160 60  0001 C CNN "Manufacturer"
+F 6 "0805" H 3375 3160 60  0001 C CNN "Package"
+F 7 "16VDC" H 3375 3160 60  0001 C CNN "Notes"
+F 8 "0.118€" H 3375 3160 60  0001 C CNN "Price"
+	1    3375 3160
+	-1   0    0    1   
+$EndComp
+$Comp
+L CP C2
+U 1 1 568DB4B3
+P 2625 1850
+F 0 "C2" H 2650 1950 50  0000 L CNN
+F 1 "10u" H 2650 1750 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D6.3_L11.2_P2.5" H 2663 1700 30  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/315/ABA0000CE12-465472.pdf" H 2625 1850 60  0001 C CNN
+F 4 "Mouser 667-ECA-1EM100B " H 2625 1850 60  0001 C CNN "Distributor"
+F 5 "ECA-1EM100B" H 2625 1850 60  0001 C CNN "Manufacturer"
+F 6 "ThroughHole:C_Radial_D6.3_L11.2_P2.5" H 2625 1850 60  0001 C CNN "Package"
+F 7 "10uF 25VDC 85C" H 2625 1850 60  0001 C CNN "Notes"
+F 8 "0.136€" H 2625 1850 60  0001 C CNN "Price"
+	1    2625 1850
+	1    0    0    -1  
+$EndComp
+Text Label 4890 3045 2    60   ~ 0
+RTS
+$Comp
+L PWR_FLAG #FLG016
+U 1 1 568E938B
+P 1945 2070
+F 0 "#FLG016" H 1945 2165 50  0001 C CNN
+F 1 "PWR_FLAG" H 1940 2255 50  0000 C CNN
+F 2 "" H 1945 2070 60  0000 C CNN
+F 3 "" H 1945 2070 60  0000 C CNN
+	1    1945 2070
+	-1   0    0    1   
+$EndComp
+$Comp
+L PWR_FLAG #FLG017
+U 1 1 568EAC4F
+P 1945 1630
+F 0 "#FLG017" H 1945 1725 50  0001 C CNN
+F 1 "PWR_FLAG" H 1945 1820 50  0000 C CNN
+F 2 "" H 1945 1630 60  0000 C CNN
+F 3 "" H 1945 1630 60  0000 C CNN
+	1    1945 1630
+	1    0    0    -1  
+$EndComp
+Text Label 1615 3020 2    60   ~ 0
+RTS
+Text Label 1615 3320 2    60   ~ 0
+RTS
+Text Label 2625 1700 2    60   ~ 0
+VIN
+$Comp
+L CONN_02X03 P2
+U 1 1 56913B34
+P 6200 1675
+F 0 "P2" H 6200 1875 50  0000 C CNN
+F 1 "End-Stops" H 6200 1475 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x03" H 6200 475 60  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 6200 475 60  0001 C CNN
+F 4 "SparkFun PRT-12791" H 6200 1675 60  0001 C CNN "Distributor"
+F 5 "-" H 6200 1675 60  0001 C CNN "Manufacturer"
+F 6 "2x23 pin male PTH header" H 6200 1675 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 6200 1675 60  0001 C CNN "Notes"
+F 8 "-" H 6200 1675 60  0001 C CNN "Price"
+	1    6200 1675
+	1    0    0    -1  
+$EndComp
+Text Label 5840 1575 2    60   ~ 0
+SW2
+Text Label 6560 1575 0    60   ~ 0
+SW1
+$Comp
+L GND #PWR018
+U 1 1 56915BD8
+P 6800 1695
+F 0 "#PWR018" H 6800 1445 50  0001 C CNN
+F 1 "GND" H 6800 1545 50  0000 C CNN
+F 2 "" H 6800 1695 60  0000 C CNN
+F 3 "" H 6800 1695 60  0000 C CNN
+	1    6800 1695
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR019
+U 1 1 56916577
+P 6520 1775
+F 0 "#PWR019" H 6520 1625 50  0001 C CNN
+F 1 "+5V" H 6520 1915 50  0000 C CNN
+F 2 "" H 6520 1775 60  0000 C CNN
+F 3 "" H 6520 1775 60  0000 C CNN
+	1    6520 1775
+	0    1    1    0   
+$EndComp
+$Comp
+L +5V #PWR020
+U 1 1 5691721C
+P 5890 1775
+F 0 "#PWR020" H 5890 1625 50  0001 C CNN
+F 1 "+5V" H 5890 1915 50  0000 C CNN
+F 2 "" H 5890 1775 60  0000 C CNN
+F 3 "" H 5890 1775 60  0000 C CNN
+	1    5890 1775
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR021
+U 1 1 56915C29
+P 5610 1695
+F 0 "#PWR021" H 5610 1445 50  0001 C CNN
+F 1 "GND" H 5610 1545 50  0000 C CNN
+F 2 "" H 5610 1695 60  0000 C CNN
+F 3 "" H 5610 1695 60  0000 C CNN
+	1    5610 1695
+	1    0    0    -1  
+$EndComp
+$Comp
+L MAX485 U2
+U 1 1 56926E3E
+P 2115 3170
+F 0 "U2" H 1715 3670 60  0000 C CNN
+F 1 "MAX485" H 1765 3570 60  0000 C CNN
+F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 2115 3170 60  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/146/SP483_SP485_100_062711-16528.pdf" H 2115 3170 60  0001 C CNN
+F 4 "Mouser 701-SP485CN-L " H 2115 3170 60  0001 C CNN "Distributor"
+F 5 "SP485CN-L" H 2115 3170 60  0001 C CNN "Manufacturer"
+F 6 "SOIC-8 Narrow" H 2115 3170 60  0001 C CNN "Package"
+F 7 "Operating Supply Voltage: 5 V" H 2115 3170 60  0001 C CNN "Notes"
+F 8 "0.86€" H 2115 3170 60  0001 C CNN "Price"
+	1    2115 3170
+	1    0    0    -1  
+$EndComp
+Text Label 1615 2920 2    60   ~ 0
+RX
+$Comp
+L +5V #PWR022
+U 1 1 569284F6
+P 3375 2970
+F 0 "#PWR022" H 3375 2820 50  0001 C CNN
+F 1 "+5V" H 3375 3110 50  0000 C CNN
+F 2 "" H 3375 2970 60  0000 C CNN
+F 3 "" H 3375 2970 60  0000 C CNN
+	1    3375 2970
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR023
+U 1 1 5692851B
+P 3375 3390
+F 0 "#PWR023" H 3375 3140 50  0001 C CNN
+F 1 "GND" H 3375 3240 50  0000 C CNN
+F 2 "" H 3375 3390 60  0000 C CNN
+F 3 "" H 3375 3390 60  0000 C CNN
+	1    3375 3390
+	1    0    0    -1  
+$EndComp
+Text Label 7640 1735 2    60   ~ 0
+SDA1
+Text Label 7640 1835 2    60   ~ 0
+SCL1
+$Comp
+L POLOLU_A4988 U3
+U 1 1 56BF6E89
+P 4575 5000
+F 0 "U3" H 4575 5450 60  0000 C CNN
+F 1 "POLOLU_A4988" V 4575 5000 50  0000 C CNN
+F 2 "satnogs:SWDIP8_.6W" H 4575 5000 60  0001 C CNN
+F 3 "-" H 4575 5000 60  0001 C CNN
+F 4 "SparkFun PRT-00115" H 4575 5000 60  0001 C CNN "Distributor"
+F 5 "-" H 4575 5000 60  0001 C CNN "Manufacturer"
+F 6 "1x40 female header PTH pitch 2.54" H 4575 5000 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/115" H 4575 5000 60  0001 C CNN "Notes"
+F 8 "1.42€" H 4575 5000 60  0001 C CNN "Price"
+	1    4575 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR024
+U 1 1 56BF7622
+P 3875 4750
+F 0 "#PWR024" H 3875 4600 50  0001 C CNN
+F 1 "+5V" H 3875 4890 50  0000 C CNN
+F 2 "" H 3875 4750 60  0000 C CNN
+F 3 "" H 3875 4750 60  0000 C CNN
+	1    3875 4750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR025
+U 1 1 56BF7D44
+P 3705 4650
+F 0 "#PWR025" H 3705 4400 50  0001 C CNN
+F 1 "GND" H 3705 4500 50  0000 C CNN
+F 2 "" H 3705 4650 60  0000 C CNN
+F 3 "" H 3705 4650 60  0000 C CNN
+	1    3705 4650
+	0    1    1    0   
+$EndComp
+Text Label 3705 4850 2    60   ~ 0
+1BM1
+Text Label 3705 4950 2    60   ~ 0
+1AM1
+Text Label 3705 5050 2    60   ~ 0
+2AM1
+Text Label 3705 5150 2    60   ~ 0
+2BM1
+$Comp
+L GND #PWR026
+U 1 1 56BF8B54
+P 3705 5250
+F 0 "#PWR026" H 3705 5000 50  0001 C CNN
+F 1 "GND" H 3705 5100 50  0000 C CNN
+F 2 "" H 3705 5250 60  0000 C CNN
+F 3 "" H 3705 5250 60  0000 C CNN
+	1    3705 5250
+	0    1    1    0   
+$EndComp
+$Comp
+L CP C3
+U 1 1 56BF91ED
+P 3745 5620
+F 0 "C3" H 3770 5720 50  0000 L CNN
+F 1 "100u" H 3770 5520 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D6.3_L11.2_P2.5" H 3783 5470 30  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/315/ABA0000CE12-465472.pdf" H 3745 5620 60  0001 C CNN
+F 4 "Mouser 667-ECA-1VM101" H 3745 5620 60  0001 C CNN "Distributor"
+F 5 "ECA-1VM101" H 3745 5620 60  0001 C CNN "Manufacturer"
+F 6 "ThroughHole:C_Radial_D6.3_L11.2_P2.5" H 3745 5620 60  0001 C CNN "Package"
+F 7 "100u 35V 85C" H 3745 5620 60  0001 C CNN "Notes"
+F 8 "0.235€" H 3745 5620 60  0001 C CNN "Price"
+	1    3745 5620
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR027
+U 1 1 56BF9813
+P 3745 5860
+F 0 "#PWR027" H 3745 5610 50  0001 C CNN
+F 1 "GND" H 3745 5710 50  0000 C CNN
+F 2 "" H 3745 5860 60  0000 C CNN
+F 3 "" H 3745 5860 60  0000 C CNN
+	1    3745 5860
+	1    0    0    -1  
+$EndComp
+Text Label 3745 5350 0    60   ~ 0
+VMOT
+$Comp
+L Jumper_NO_Small JP1
+U 1 1 56BFB286
+P 5545 5050
+F 0 "JP1" H 5665 5100 50  0000 C CNN
+F 1 "Jumper_NO_Small" H 5555 4990 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 5545 5050 50  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 5545 5050 50  0001 C CNN
+F 4 "SparkFun PRT-12791" H 5545 5050 60  0001 C CNN "Distributor"
+F 5 "-" H 5545 5050 60  0001 C CNN "Manufacturer"
+F 6 "2x23 pin male PTH header" H 5545 5050 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 5545 5050 60  0001 C CNN "Notes"
+F 8 "-" H 5545 5050 60  0001 C CNN "Price"
+	1    5545 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper_NO_Small JP2
+U 1 1 56BFB387
+P 5545 5150
+F 0 "JP2" H 5665 5200 50  0000 C CNN
+F 1 "Jumper_NO_Small" H 5555 5090 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 5545 5150 50  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 5545 5150 50  0001 C CNN
+F 4 "SparkFun PRT-12791" H 5545 5150 60  0001 C CNN "Distributor"
+F 5 "-" H 5545 5150 60  0001 C CNN "Manufacturer"
+F 6 "2x23 pin male PTH header" H 5545 5150 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 5545 5150 60  0001 C CNN "Notes"
+F 8 "-" H 5545 5150 60  0001 C CNN "Price"
+	1    5545 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper_NO_Small JP3
+U 1 1 56BFB3DE
+P 5545 5250
+F 0 "JP3" H 5665 5300 50  0000 C CNN
+F 1 "Jumper_NO_Small" H 5555 5190 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 5545 5250 50  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 5545 5250 50  0001 C CNN
+F 4 "SparkFun PRT-12791" H 5545 5250 60  0001 C CNN "Distributor"
+F 5 "-" H 5545 5250 60  0001 C CNN "Manufacturer"
+F 6 "2x23 pin male PTH header" H 5545 5250 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 5545 5250 60  0001 C CNN "Notes"
+F 8 "-" H 5545 5250 60  0001 C CNN "Price"
+	1    5545 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR028
+U 1 1 56BFC0F7
+P 5805 4920
+F 0 "#PWR028" H 5805 4770 50  0001 C CNN
+F 1 "+5V" H 5805 5060 50  0000 C CNN
+F 2 "" H 5805 4920 60  0000 C CNN
+F 3 "" H 5805 4920 60  0000 C CNN
+	1    5805 4920
+	1    0    0    -1  
+$EndComp
+Text Label 5445 5350 0    60   ~ 0
+EN
+Text Label 5435 5250 2    60   ~ 0
+MS1M1
+$Comp
+L R R4
+U 1 1 56BFCE50
+P 6105 5080
+F 0 "R4" V 6185 5080 50  0000 C CNN
+F 1 "100k" V 6105 5080 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 6035 5080 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 6105 5080 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805J-100K-E3" V 6105 5080 60  0001 C CNN "Distributor"
+F 5 "CRCW0805100KJNEA" V 6105 5080 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 6105 5080 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 6105 5080 60  0001 C CNN "Notes"
+F 8 "0.091€" V 6105 5080 60  0001 C CNN "Price"
+	1    6105 5080
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR029
+U 1 1 56BFD4D7
+P 6105 5390
+F 0 "#PWR029" H 6105 5140 50  0001 C CNN
+F 1 "GND" H 6105 5240 50  0000 C CNN
+F 2 "" H 6105 5390 60  0000 C CNN
+F 3 "" H 6105 5390 60  0000 C CNN
+	1    6105 5390
+	1    0    0    -1  
+$EndComp
+Text Label 6105 4770 0    60   ~ 0
+MS1M1
+Text Label 5445 4650 0    60   ~ 0
+M1IN1
+Text Label 5445 4750 0    60   ~ 0
+M1IN2
+$Comp
+L CONN_01X04 P7
+U 1 1 56BFEE7D
+P 3185 5000
+F 0 "P7" H 3185 5250 50  0000 C CNN
+F 1 "Motor1" V 3285 5000 50  0000 C CNN
+F 2 "Connect:bornier4" H 3185 5000 50  0001 C CNN
+F 3 "https://www.sparkfun.com/datasheets/Prototyping/Screw-Terminal-5mm.pdf" H 3185 5000 50  0001 C CNN
+F 4 "SparkFun PRT-08432" H 3185 5000 60  0001 C CNN "Distributor"
+F 5 "-" H 3185 5000 60  0001 C CNN "Manufacturer"
+F 6 "5mm Pitch 4-Pin" H 3185 5000 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/8432" H 3185 5000 60  0001 C CNN "Notes"
+F 8 "1.8€" H 3185 5000 60  0001 C CNN "Price"
+	1    3185 5000
+	-1   0    0    1   
+$EndComp
+$Comp
+L POLOLU_A4988 U4
+U 1 1 56C0018D
+P 8485 5000
+F 0 "U4" H 8485 5450 60  0000 C CNN
+F 1 "POLOLU_A4988" V 8485 5000 50  0000 C CNN
+F 2 "satnogs:SWDIP8_.6W" H 8485 5000 60  0001 C CNN
+F 3 "-" H 8485 5000 60  0001 C CNN
+F 4 "SparkFun PRT-00115" H 8485 5000 60  0001 C CNN "Distributor"
+F 5 "-" H 8485 5000 60  0001 C CNN "Manufacturer"
+F 6 "1x40 female header PTH pitch 2.54" H 8485 5000 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/115" H 8485 5000 60  0001 C CNN "Notes"
+F 8 "-" H 8485 5000 60  0001 C CNN "Price"
+	1    8485 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR030
+U 1 1 56C00193
+P 7785 4750
+F 0 "#PWR030" H 7785 4600 50  0001 C CNN
+F 1 "+5V" H 7785 4890 50  0000 C CNN
+F 2 "" H 7785 4750 60  0000 C CNN
+F 3 "" H 7785 4750 60  0000 C CNN
+	1    7785 4750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR031
+U 1 1 56C00199
+P 7615 4650
+F 0 "#PWR031" H 7615 4400 50  0001 C CNN
+F 1 "GND" H 7615 4500 50  0000 C CNN
+F 2 "" H 7615 4650 60  0000 C CNN
+F 3 "" H 7615 4650 60  0000 C CNN
+	1    7615 4650
+	0    1    1    0   
+$EndComp
+Text Label 7615 4850 2    60   ~ 0
+1BM2
+Text Label 7615 4950 2    60   ~ 0
+1AM2
+Text Label 7615 5050 2    60   ~ 0
+2AM2
+Text Label 7615 5150 2    60   ~ 0
+2BM2
+$Comp
+L GND #PWR032
+U 1 1 56C001A9
+P 7615 5250
+F 0 "#PWR032" H 7615 5000 50  0001 C CNN
+F 1 "GND" H 7615 5100 50  0000 C CNN
+F 2 "" H 7615 5250 60  0000 C CNN
+F 3 "" H 7615 5250 60  0000 C CNN
+	1    7615 5250
+	0    1    1    0   
+$EndComp
+$Comp
+L CP C4
+U 1 1 56C001B2
+P 7655 5620
+F 0 "C4" H 7680 5720 50  0000 L CNN
+F 1 "100u" H 7680 5520 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D6.3_L11.2_P2.5" H 7693 5470 30  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/315/ABA0000CE12-465472.pdf" H 7655 5620 60  0001 C CNN
+F 4 "Mouser 667-ECA-1VM101" H 7655 5620 60  0001 C CNN "Distributor"
+F 5 "ECA-1VM101" H 7655 5620 60  0001 C CNN "Manufacturer"
+F 6 "ThroughHole:C_Radial_D6.3_L11.2_P2.5" H 7655 5620 60  0001 C CNN "Package"
+F 7 "100u 35V 85C" H 7655 5620 60  0001 C CNN "Notes"
+F 8 "0.235€" H 7655 5620 60  0001 C CNN "Price"
+	1    7655 5620
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR033
+U 1 1 56C001B8
+P 7655 5860
+F 0 "#PWR033" H 7655 5610 50  0001 C CNN
+F 1 "GND" H 7655 5710 50  0000 C CNN
+F 2 "" H 7655 5860 60  0000 C CNN
+F 3 "" H 7655 5860 60  0000 C CNN
+	1    7655 5860
+	1    0    0    -1  
+$EndComp
+Text Label 7655 5350 0    60   ~ 0
+VMOT
+$Comp
+L Jumper_NO_Small JP4
+U 1 1 56C001C9
+P 9455 5050
+F 0 "JP4" H 9575 5100 50  0000 C CNN
+F 1 "Jumper_NO_Small" H 9465 4990 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 9455 5050 50  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 9455 5050 50  0001 C CNN
+F 4 "SparkFun PRT-12791" H 9455 5050 60  0001 C CNN "Distributor"
+F 5 "-" H 9455 5050 60  0001 C CNN "Manufacturer"
+F 6 "2x23 pin male PTH header" H 9455 5050 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 9455 5050 60  0001 C CNN "Notes"
+F 8 "-" H 9455 5050 60  0001 C CNN "Price"
+	1    9455 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper_NO_Small JP5
+U 1 1 56C001CF
+P 9455 5150
+F 0 "JP5" H 9575 5200 50  0000 C CNN
+F 1 "Jumper_NO_Small" H 9465 5090 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 9455 5150 50  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 9455 5150 50  0001 C CNN
+F 4 "SparkFun PRT-12791" H 9455 5150 60  0001 C CNN "Distributor"
+F 5 "-" H 9455 5150 60  0001 C CNN "Manufacturer"
+F 6 "2x23 pin male PTH header" H 9455 5150 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 9455 5150 60  0001 C CNN "Notes"
+F 8 "-" H 9455 5150 60  0001 C CNN "Price"
+	1    9455 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper_NO_Small JP6
+U 1 1 56C001D5
+P 9455 5250
+F 0 "JP6" H 9575 5300 50  0000 C CNN
+F 1 "Jumper_NO_Small" H 9465 5190 50  0001 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02" H 9455 5250 50  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 9455 5250 50  0001 C CNN
+F 4 "SparkFun PRT-12791" H 9455 5250 60  0001 C CNN "Distributor"
+F 5 "-" H 9455 5250 60  0001 C CNN "Manufacturer"
+F 6 "2x23 pin male PTH header" H 9455 5250 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 9455 5250 60  0001 C CNN "Notes"
+F 8 "-" H 9455 5250 60  0001 C CNN "Price"
+	1    9455 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR034
+U 1 1 56C001E3
+P 9715 4920
+F 0 "#PWR034" H 9715 4770 50  0001 C CNN
+F 1 "+5V" H 9715 5060 50  0000 C CNN
+F 2 "" H 9715 4920 60  0000 C CNN
+F 3 "" H 9715 4920 60  0000 C CNN
+	1    9715 4920
+	1    0    0    -1  
+$EndComp
+Text Label 9355 5350 0    60   ~ 0
+EN
+Text Label 9345 5250 2    60   ~ 0
+MS1M2
+$Comp
+L R R7
+U 1 1 56C001EB
+P 10015 5080
+F 0 "R7" V 10095 5080 50  0000 C CNN
+F 1 "100k" V 10015 5080 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 9945 5080 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 10015 5080 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805J-100K-E3 " V 10015 5080 60  0001 C CNN "Distributor"
+F 5 "CRCW0805100KJNEA" V 10015 5080 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 10015 5080 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 10015 5080 60  0001 C CNN "Notes"
+F 8 "0.091€" V 10015 5080 60  0001 C CNN "Price"
+	1    10015 5080
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR035
+U 1 1 56C001F3
+P 10015 5390
+F 0 "#PWR035" H 10015 5140 50  0001 C CNN
+F 1 "GND" H 10015 5240 50  0000 C CNN
+F 2 "" H 10015 5390 60  0000 C CNN
+F 3 "" H 10015 5390 60  0000 C CNN
+	1    10015 5390
+	1    0    0    -1  
+$EndComp
+Text Label 10015 4770 0    60   ~ 0
+MS1M2
+Text Label 9355 4650 0    60   ~ 0
+M2IN1
+Text Label 9355 4750 0    60   ~ 0
+M2IN2
+$Comp
+L CONN_01X04 P8
+U 1 1 56C001FC
+P 7095 5000
+F 0 "P8" H 7095 5250 50  0000 C CNN
+F 1 "Motor2" V 7195 5000 50  0000 C CNN
+F 2 "Connect:bornier4" H 7095 5000 50  0001 C CNN
+F 3 "https://www.sparkfun.com/datasheets/Prototyping/Screw-Terminal-5mm.pdf" H 7095 5000 50  0001 C CNN
+F 4 "SparkFun PRT-08432" H 7095 5000 60  0001 C CNN "Distributor"
+F 5 "-" H 7095 5000 60  0001 C CNN "Manufacturer"
+F 6 "5mm Pitch 4-Pin" H 7095 5000 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/8432" H 7095 5000 60  0001 C CNN "Notes"
+F 8 "1.8€" H 7095 5000 60  0001 C CNN "Price"
+	1    7095 5000
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_01X02 P6
+U 1 1 56C0231A
+P 1545 5030
+F 0 "P6" H 1545 5180 50  0000 C CNN
+F 1 "Power-IN" V 1645 5030 50  0000 C CNN
+F 2 "Connect:bornier2" H 1545 5030 50  0001 C CNN
+F 3 "https://www.sparkfun.com/datasheets/Prototyping/Screw-Terminal-5mm.pdf" H 1545 5030 50  0001 C CNN
+F 4 "SparkFun PRT-08432" H 1545 5030 60  0001 C CNN "Distributor"
+F 5 "-" H 1545 5030 60  0001 C CNN "Manufacturer"
+F 6 "5mm Pitch" H 1545 5030 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/8432" H 1545 5030 60  0001 C CNN "Notes"
+F 8 "0.9€" H 1545 5030 60  0001 C CNN "Price"
+	1    1545 5030
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR036
+U 1 1 56C029F4
+P 1955 5080
+F 0 "#PWR036" H 1955 4830 50  0001 C CNN
+F 1 "GND" H 1955 4930 50  0000 C CNN
+F 2 "" H 1955 5080 60  0000 C CNN
+F 3 "" H 1955 5080 60  0000 C CNN
+	1    1955 5080
+	0    -1   -1   0   
+$EndComp
+Text Label 1955 4980 0    60   ~ 0
+VMOT
+Text Label 6420 2445 0    60   ~ 0
+VIN
+$Comp
+L GND #PWR037
+U 1 1 56BF8632
+P 2625 2120
+F 0 "#PWR037" H 2625 1870 50  0001 C CNN
+F 1 "GND" H 2625 1970 50  0000 C CNN
+F 2 "" H 2625 2120 60  0000 C CNN
+F 3 "" H 2625 2120 60  0000 C CNN
+	1    2625 2120
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 56BFE1A7
+P 3115 3160
+F 0 "R1" V 3195 3160 50  0000 C CNN
+F 1 "120" V 3115 3160 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 3045 3160 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 3115 3160 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805120RJNEA " V 3115 3160 60  0001 C CNN "Distributor"
+F 5 "CRCW0805120RJNEA" V 3115 3160 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 3115 3160 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 3115 3160 60  0001 C CNN "Notes"
+F 8 "0.091€" V 3115 3160 60  0001 C CNN "Price"
+	1    3115 3160
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R3
+U 1 1 56BFFBA2
+P 7420 3220
+F 0 "R3" V 7500 3220 50  0000 C CNN
+F 1 "4.7k" V 7420 3220 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 7350 3220 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 7420 3220 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805J-4.7K-E3" V 7420 3220 60  0001 C CNN "Distributor"
+F 5 "CRCW08054K70JNEA" V 7420 3220 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 7420 3220 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 7420 3220 60  0001 C CNN "Notes"
+F 8 "0.091€" V 7420 3220 60  0001 C CNN "Price"
+	1    7420 3220
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R2
+U 1 1 56BFFDF0
+P 7250 3220
+F 0 "R2" V 7330 3220 50  0000 C CNN
+F 1 "4.7k" V 7250 3220 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 7180 3220 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 7250 3220 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805J-4.7K-E3 " V 7250 3220 60  0001 C CNN "Distributor"
+F 5 "CRCW08054K70JNEA" V 7250 3220 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 7250 3220 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 7250 3220 60  0001 C CNN "Notes"
+F 8 "0.091€" V 7250 3220 60  0001 C CNN "Price"
+	1    7250 3220
+	1    0    0    -1  
+$EndComp
+Text Label 7250 3590 1    60   ~ 0
+SDA1
+Text Label 7420 3590 1    60   ~ 0
+SCL1
+$Comp
+L +5V #PWR038
+U 1 1 56C00417
+P 7340 2810
+F 0 "#PWR038" H 7340 2660 50  0001 C CNN
+F 1 "+5V" H 7340 2950 50  0000 C CNN
+F 2 "" H 7340 2810 60  0000 C CNN
+F 3 "" H 7340 2810 60  0000 C CNN
+	1    7340 2810
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R6
+U 1 1 56C00C2A
+P 7840 3225
+F 0 "R6" V 7920 3225 50  0000 C CNN
+F 1 "4.7k" V 7840 3225 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 7770 3225 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 7840 3225 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805J-4.7K-E3 " V 7840 3225 60  0001 C CNN "Distributor"
+F 5 "CRCW08054K70JNEA" V 7840 3225 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 7840 3225 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 7840 3225 60  0001 C CNN "Notes"
+F 8 "0.091€" V 7840 3225 60  0001 C CNN "Price"
+	1    7840 3225
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R5
+U 1 1 56C00C30
+P 7670 3225
+F 0 "R5" V 7750 3225 50  0000 C CNN
+F 1 "4.7k" V 7670 3225 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 7600 3225 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 7670 3225 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805J-4.7K-E3 " V 7670 3225 60  0001 C CNN "Distributor"
+F 5 "CRCW08054K70JNEA" V 7670 3225 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 7670 3225 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 7670 3225 60  0001 C CNN "Notes"
+F 8 " 0.091€ " V 7670 3225 60  0001 C CNN "Price"
+	1    7670 3225
+	1    0    0    -1  
+$EndComp
+Text Label 7670 3595 1    60   ~ 0
+SDA2
+Text Label 7840 3595 1    60   ~ 0
+SCL2
+$Comp
+L +5V #PWR039
+U 1 1 56C00C3D
+P 7760 2815
+F 0 "#PWR039" H 7760 2665 50  0001 C CNN
+F 1 "+5V" H 7760 2955 50  0000 C CNN
+F 2 "" H 7760 2815 60  0000 C CNN
+F 3 "" H 7760 2815 60  0000 C CNN
+	1    7760 2815
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR040
+U 1 1 56C2583E
+P 9240 3355
+F 0 "#PWR040" H 9240 3105 50  0001 C CNN
+F 1 "GND" H 9240 3205 50  0000 C CNN
+F 2 "" H 9240 3355 60  0000 C CNN
+F 3 "" H 9240 3355 60  0000 C CNN
+	1    9240 3355
+	0    1    1    0   
+$EndComp
+Text Notes 9055 2015 0    60   ~ 0
+M1IN1->DIRM1->D6\nM1IN2->STEPM1->D5\nM2IN1->DIRM2-D10\nM2IN2->STEPM2->D9
+$Comp
+L R R8
+U 1 1 57044B38
+P 2955 2790
+F 0 "R8" V 3035 2790 50  0000 C CNN
+F 1 "4.7k" V 2955 2790 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 2885 2790 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 2955 2790 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805J-4.7K-E3 " V 2955 2790 60  0001 C CNN "Distributor"
+F 5 "CRCW08054K70JNEA" V 2955 2790 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 2955 2790 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 2955 2790 60  0001 C CNN "Notes"
+F 8 "0.091€" V 2955 2790 60  0001 C CNN "Price"
+	1    2955 2790
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R9
+U 1 1 57044C41
+P 2955 3550
+F 0 "R9" V 3035 3550 50  0000 C CNN
+F 1 "4.7k" V 2955 3550 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 2885 3550 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/427/dcrcwe3-109170.pdf" H 2955 3550 50  0001 C CNN
+F 4 "Mouser 71-CRCW0805J-4.7K-E3 " V 2955 3550 60  0001 C CNN "Distributor"
+F 5 "CRCW08054K70JNEA" V 2955 3550 60  0001 C CNN "Manufacturer"
+F 6 "0805" V 2955 3550 60  0001 C CNN "Package"
+F 7 "1/8W 5%" V 2955 3550 60  0001 C CNN "Notes"
+F 8 "0.091€" V 2955 3550 60  0001 C CNN "Price"
+	1    2955 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR041
+U 1 1 5704629C
+P 2955 3830
+F 0 "#PWR041" H 2955 3580 50  0001 C CNN
+F 1 "GND" H 2955 3680 50  0000 C CNN
+F 2 "" H 2955 3830 60  0000 C CNN
+F 3 "" H 2955 3830 60  0000 C CNN
+	1    2955 3830
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR042
+U 1 1 57046967
+P 2955 2510
+F 0 "#PWR042" H 2955 2360 50  0001 C CNN
+F 1 "+5V" H 2955 2650 50  0000 C CNN
+F 2 "" H 2955 2510 60  0000 C CNN
+F 3 "" H 2955 2510 60  0000 C CNN
+	1    2955 2510
+	1    0    0    -1  
+$EndComp
+$Comp
+L Pro_Mini U1
+U 1 1 5704991B
+P 5660 3195
+F 0 "U1" H 5660 3195 60  0000 C CNN
+F 1 "Pro_Mini" H 5670 2255 60  0000 C CNN
+F 2 "satnogs:pro-mini" H 5660 3095 60  0001 C CNN
+F 3 "-" H 5660 3095 60  0001 C CNN
+F 4 "SparkFun PRT-00115" H 5660 3195 60  0001 C CNN "Distributor"
+F 5 "-" H 5660 3195 60  0001 C CNN "Manufacturer"
+F 6 "1x40 female header PTH pitch 2.54" H 5660 3195 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/115" H 5660 3195 60  0001 C CNN "Notes"
+F 8 "1.42€" H 5660 3195 60  0001 C CNN "Price"
+	1    5660 3195
+	1    0    0    -1  
+$EndComp
+NoConn ~ 5030 2845
+NoConn ~ 6290 2645
+Wire Wire Line
+	9830 2505 9430 2505
+Wire Wire Line
+	9830 2605 9730 2605
+Wire Wire Line
+	9830 2705 9730 2705
+Wire Wire Line
+	9830 2805 9430 2805
+Wire Wire Line
+	9830 3005 9730 3005
+Wire Wire Line
+	9830 3105 9730 3105
+Wire Wire Line
+	9830 3205 9730 3205
+Wire Wire Line
+	9830 3505 9730 3505
+Wire Wire Line
+	9830 3605 9730 3605
+Wire Wire Line
+	9830 3705 9420 3705
+Wire Wire Line
+	9830 3905 9730 3905
+Wire Wire Line
+	9830 4005 9730 4005
+Wire Wire Line
+	9830 2405 9240 2405
+Wire Wire Line
+	9830 2905 9240 2905
+Wire Wire Line
+	9830 3805 9240 3805
+Wire Wire Line
+	7750 1535 7640 1535
+Wire Wire Line
+	7750 1635 7640 1635
+Wire Wire Line
+	7750 1735 7640 1735
+Wire Wire Line
+	7750 1835 7640 1835
+Wire Wire Line
+	8510 1835 8250 1835
+Wire Wire Line
+	8250 1735 8380 1735
+Wire Wire Line
+	1815 2000 2625 2000
+Wire Wire Line
+	1815 1700 2625 1700
+Wire Wire Line
+	5030 2645 4890 2645
+Wire Wire Line
+	5030 2745 4890 2745
+Wire Wire Line
+	5030 3245 4890 3245
+Wire Wire Line
+	5030 3345 4890 3345
+Wire Wire Line
+	5030 3445 4890 3445
+Wire Wire Line
+	5030 3545 4890 3545
+Wire Wire Line
+	5030 3645 4890 3645
+Wire Wire Line
+	5030 3745 4890 3745
+Wire Wire Line
+	4755 2945 5030 2945
+Wire Wire Line
+	1715 3020 1615 3020
+Wire Wire Line
+	2115 3620 2115 3680
+Wire Wire Line
+	2115 2720 2115 2630
+Wire Wire Line
+	1715 2920 1615 2920
+Wire Wire Line
+	1615 3320 1715 3320
+Wire Wire Line
+	1945 2000 1945 2070
+Wire Wire Line
+	1945 1630 1945 1700
+Connection ~ 1945 2000
+Wire Wire Line
+	5950 1575 5840 1575
+Wire Wire Line
+	5610 1675 5950 1675
+Wire Wire Line
+	6520 1775 6450 1775
+Wire Wire Line
+	5950 1775 5890 1775
+Wire Wire Line
+	6450 1675 6800 1675
+Wire Wire Line
+	6450 1575 6560 1575
+Wire Wire Line
+	6800 1675 6800 1695
+Wire Wire Line
+	5610 1675 5610 1695
+Wire Wire Line
+	1715 3420 1615 3420
+Wire Wire Line
+	3375 3060 3375 2970
+Wire Wire Line
+	3375 3260 3375 3390
+Wire Wire Line
+	3975 4650 3705 4650
+Wire Wire Line
+	3875 4750 3975 4750
+Wire Wire Line
+	3385 4850 3975 4850
+Wire Wire Line
+	3385 4950 3975 4950
+Wire Wire Line
+	3385 5050 3975 5050
+Wire Wire Line
+	3385 5150 3975 5150
+Wire Wire Line
+	3975 5250 3705 5250
+Wire Wire Line
+	3975 5350 3745 5350
+Wire Wire Line
+	3745 5350 3745 5470
+Wire Wire Line
+	3745 5860 3745 5770
+Wire Wire Line
+	5175 5350 5445 5350
+Wire Wire Line
+	5175 5250 5445 5250
+Wire Wire Line
+	5175 5150 5445 5150
+Wire Wire Line
+	5175 5050 5445 5050
+Wire Wire Line
+	5175 4950 5445 4950
+Wire Wire Line
+	5175 4850 5445 4850
+Wire Wire Line
+	5175 4750 5445 4750
+Wire Wire Line
+	5175 4650 5445 4650
+Wire Wire Line
+	5445 4850 5445 4950
+Wire Wire Line
+	5645 5050 5805 5050
+Wire Wire Line
+	5805 5150 5645 5150
+Wire Wire Line
+	5805 5250 5645 5250
+Wire Wire Line
+	5805 4920 5805 5250
+Connection ~ 5805 5150
+Connection ~ 5805 5050
+Wire Wire Line
+	6105 4930 6105 4770
+Wire Wire Line
+	6105 5230 6105 5390
+Wire Wire Line
+	7885 4650 7615 4650
+Wire Wire Line
+	7785 4750 7885 4750
+Wire Wire Line
+	7295 4850 7885 4850
+Wire Wire Line
+	7295 4950 7885 4950
+Wire Wire Line
+	7295 5050 7885 5050
+Wire Wire Line
+	7295 5150 7885 5150
+Wire Wire Line
+	7885 5250 7615 5250
+Wire Wire Line
+	7885 5350 7655 5350
+Wire Wire Line
+	7655 5350 7655 5470
+Wire Wire Line
+	7655 5860 7655 5770
+Wire Wire Line
+	9085 5350 9355 5350
+Wire Wire Line
+	9085 5250 9355 5250
+Wire Wire Line
+	9085 5150 9355 5150
+Wire Wire Line
+	9085 5050 9355 5050
+Wire Wire Line
+	9085 4950 9355 4950
+Wire Wire Line
+	9085 4850 9355 4850
+Wire Wire Line
+	9085 4750 9355 4750
+Wire Wire Line
+	9085 4650 9355 4650
+Wire Wire Line
+	9355 4850 9355 4950
+Wire Wire Line
+	9555 5050 9715 5050
+Wire Wire Line
+	9715 5150 9555 5150
+Wire Wire Line
+	9715 5250 9555 5250
+Wire Wire Line
+	9715 4920 9715 5250
+Connection ~ 9715 5150
+Connection ~ 9715 5050
+Wire Wire Line
+	10015 4930 10015 4770
+Wire Wire Line
+	10015 5230 10015 5390
+Wire Wire Line
+	1745 4980 1955 4980
+Wire Wire Line
+	1745 5080 1955 5080
+Wire Wire Line
+	6290 2445 6420 2445
+Wire Wire Line
+	7250 3070 7250 2930
+Wire Wire Line
+	7250 2930 7420 2930
+Wire Wire Line
+	7420 2930 7420 3070
+Wire Wire Line
+	7250 3370 7250 3590
+Wire Wire Line
+	7420 3370 7420 3590
+Wire Wire Line
+	7340 2930 7340 2810
+Connection ~ 7340 2930
+Wire Wire Line
+	7670 3075 7670 2935
+Wire Wire Line
+	7670 2935 7840 2935
+Wire Wire Line
+	7840 2935 7840 3075
+Wire Wire Line
+	7670 3375 7670 3595
+Wire Wire Line
+	7840 3375 7840 3595
+Wire Wire Line
+	7760 2935 7760 2815
+Connection ~ 7760 2935
+Wire Wire Line
+	9830 3305 9300 3305
+Wire Wire Line
+	9300 3405 9830 3405
+Wire Wire Line
+	9300 3305 9300 3405
+Wire Wire Line
+	9300 3355 9240 3355
+Connection ~ 9300 3355
+Wire Wire Line
+	2955 2940 2955 3070
+Wire Wire Line
+	2955 3270 2955 3400
+Wire Wire Line
+	2955 2640 2955 2510
+Wire Wire Line
+	2955 3700 2955 3830
+Wire Wire Line
+	6290 3945 6420 3945
+Wire Wire Line
+	6290 3845 6420 3845
+Wire Wire Line
+	6290 3745 6420 3745
+Wire Wire Line
+	6290 3345 6420 3345
+Wire Wire Line
+	6290 3245 6420 3245
+Wire Wire Line
+	6290 3145 6420 3145
+Wire Wire Line
+	6290 2945 6420 2945
+Wire Wire Line
+	6290 2845 6420 2845
+Wire Wire Line
+	6290 2745 6630 2745
+Wire Wire Line
+	6290 2545 6420 2545
+Wire Wire Line
+	2955 3070 2515 3070
+Wire Wire Line
+	2515 3270 2955 3270
+Wire Wire Line
+	3115 3010 3115 2980
+Wire Wire Line
+	3115 2980 2955 2980
+Connection ~ 2955 2980
+Wire Wire Line
+	3115 3310 3115 3340
+Wire Wire Line
+	3115 3340 2955 3340
+Connection ~ 2955 3340
+Wire Wire Line
+	1945 1800 1815 1800
+Wire Wire Line
+	1945 1900 1815 1900
+Text Notes 7410 1310 0    60   ~ 12
+I2C-1,2
+Text Notes 5530 1315 0    61   ~ 12
+EndStops
+Wire Wire Line
+	8250 1635 8510 1635
+$Comp
+L GND #PWR043
+U 1 1 5705B539
+P 8510 1635
+F 0 "#PWR043" H 8510 1385 50  0001 C CNN
+F 1 "GND" H 8510 1485 50  0000 C CNN
+F 2 "" H 8510 1635 60  0000 C CNN
+F 3 "" H 8510 1635 60  0000 C CNN
+	1    8510 1635
+	0    -1   -1   0   
+$EndComp
+$Comp
+L +5V #PWR044
+U 1 1 5705B836
+P 8380 1735
+F 0 "#PWR044" H 8380 1585 50  0001 C CNN
+F 1 "+5V" H 8380 1875 50  0000 C CNN
+F 2 "" H 8380 1735 60  0000 C CNN
+F 3 "" H 8380 1735 60  0000 C CNN
+	1    8380 1735
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8250 1535 8380 1535
+Text Notes 9055 2165 0    61   ~ 12
+DC Motors
+Text Notes 4280 2405 0    61   ~ 12
+Microcontroller
+Text Notes 1395 1300 0    61   ~ 12
+RS485
+Text Notes 1390 4755 0    61   ~ 12
+Power In for stepper motors
+Text Notes 4200 4440 0    61   ~ 12
+Stepper motor 1
+Text Notes 8110 4435 0    61   ~ 12
+Stepper motor 2
+$Comp
+L ZENERsmall D1
+U 1 1 570603CB
+P 2325 1850
+F 0 "D1" H 2325 1950 50  0000 C CNN
+F 1 "ZENERsmall" H 2325 1750 50  0000 C CNN
+F 2 "Diodes_ThroughHole:Diode_DO-41_SOD81_Horizontal_RM10" H 2325 1850 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/149/BZX85C10-888846.pdf" H 2325 1850 50  0001 C CNN
+F 4 "Mouser 512-BZX85C10" H 2325 1850 60  0001 C CNN "Distributor"
+F 5 "BZX85C10" H 2325 1850 60  0001 C CNN "Manufacturer"
+F 6 "DO-41" H 2325 1850 60  0001 C CNN "Package"
+F 7 "10V-1W" H 2325 1850 60  0001 C CNN "Notes"
+F 8 "0.192€" H 2325 1850 60  0001 C CNN "Price"
+	1    2325 1850
+	0    1    1    0   
+$EndComp
+Connection ~ 1945 1700
+Text Notes 4025 1310 0    60   ~ 12
+Dev pins
+Wire Wire Line
+	2325 1950 2325 2000
+Connection ~ 2325 2000
+Wire Wire Line
+	2325 1750 2325 1700
+Connection ~ 2325 1700
+Wire Wire Line
+	2625 2000 2625 2120
+Wire Wire Line
+	4620 1535 4750 1535
+Wire Wire Line
+	4620 1635 4900 1635
+Wire Wire Line
+	4120 1535 3990 1535
+Wire Wire Line
+	4120 1635 3990 1635
+Wire Wire Line
+	5030 3145 4890 3145
+Wire Wire Line
+	5030 3045 4890 3045
+Text Label 6420 3045 0    60   ~ 0
+A3
+Text Label 6420 3145 0    60   ~ 0
+A2
+Wire Wire Line
+	6290 3045 6420 3045
+NoConn ~ 6290 3445
+Text Label 3990 1535 2    60   ~ 0
+A3
+Text Label 3990 1635 2    60   ~ 0
+A2
+Text Notes 6810 2580 0    61   ~ 0
+Regulator in pro-mini, is MIC5205:\n5V@150mA with reverse-current protection
+$Comp
+L CONN_02X02 P9
+U 1 1 5705A45E
+P 4370 1585
+F 0 "P9" H 4370 1735 50  0000 C CNN
+F 1 "Dev-Pins" H 4370 1435 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_2x02" H 4370 385 50  0001 C CNN
+F 3 "https://cdn.sparkfun.com/datasheets/Prototyping/16188.pdf" H 4370 385 50  0001 C CNN
+F 4 "SparkFun PRT-12791" H 4370 1585 60  0001 C CNN "Distributor"
+F 5 "-" H 4370 1585 60  0001 C CNN "Manufacturer"
+F 6 "-" H 4370 1585 60  0001 C CNN "Package"
+F 7 "https://www.sparkfun.com/products/12791" H 4370 1585 60  0001 C CNN "Notes"
+F 8 "-" H 4370 1585 60  0001 C CNN "Price"
+	1    4370 1585
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6290 3545
+NoConn ~ 6290 3645
+Text Notes 1450 4140 0    61   ~ 0
+Failsafe-biasing network for \nlegacy transceivers like SP485CN-L\n
+$EndSCHEMATC
