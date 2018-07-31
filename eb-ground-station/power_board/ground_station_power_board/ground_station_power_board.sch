@@ -9061,6 +9061,48 @@ HEADERS</text>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="104,1,-53.34,300.99,U1,GND,AGND,,,"/>
+<approved hash="104,1,-53.34,328.93,U1,VDD,N$5,,,"/>
+<approved hash="104,1,22.86,275.59,U4,VDD,3.3V,,,"/>
+<approved hash="208,1,-50.8,492.76,3.3V,sup,,,,"/>
+<approved hash="208,1,-85.09,491.49,3.3V,sup,,,,"/>
+<approved hash="208,1,-81.28,411.48,3.3V,sup,,,,"/>
+<approved hash="208,1,-73.66,273.05,3.3V,sup,,,,"/>
+<approved hash="208,1,-21.59,262.89,3.3V,out,,,,"/>
+<approved hash="208,1,-16.51,265.43,3.3V,sup,,,,"/>
+<approved hash="208,1,22.86,278.13,3.3V,sup,,,,"/>
+<approved hash="208,1,314.96,342.9,3.3V,sup,,,,"/>
+<approved hash="208,1,304.8,360.68,3.3V,sup,,,,"/>
+<approved hash="208,1,-39.37,334.01,3.3V,sup,,,,"/>
+<approved hash="208,1,-60.96,297.18,AGND,sup,,,,"/>
+<approved hash="208,1,-68.58,334.01,AGND,sup,,,,"/>
+<approved hash="208,1,-76.2,311.15,AGND,out,,,,"/>
+<approved hash="208,1,-81.28,308.61,AGND,sup,,,,"/>
+<approved hash="208,1,299.72,476.25,AGND,sup,,,,"/>
+<approved hash="113,1,320.675,340.563,J4,,,,,"/>
+<approved hash="113,1,320.675,360.883,J5,,,,,"/>
+<approved hash="113,1,161.29,346.291,D1,,,,,"/>
+<approved hash="113,1,161.29,341.211,D2,,,,,"/>
+<approved hash="113,1,161.29,336.131,D3,,,,,"/>
+<approved hash="113,1,161.29,331.051,D4,,,,,"/>
+<approved hash="113,1,290.83,402.12,D5,,,,,"/>
+<approved hash="113,1,161.29,325.971,D6,,,,,"/>
+<approved hash="113,1,161.29,320.891,D7,,,,,"/>
+<approved hash="113,1,161.29,315.811,D8,,,,,"/>
+<approved hash="113,1,161.29,310.731,D9,,,,,"/>
+<approved hash="113,1,161.29,305.651,D10,,,,,"/>
+<approved hash="113,1,161.29,300.571,D11,,,,,"/>
+<approved hash="113,1,161.29,295.491,D12,,,,,"/>
+<approved hash="113,1,161.29,290.411,D13,,,,,"/>
+<approved hash="113,1,161.29,285.331,D14,,,,,"/>
+<approved hash="113,1,161.29,280.251,D15,,,,,"/>
+<approved hash="113,1,161.29,275.171,D16,,,,,"/>
+<approved hash="113,1,161.29,270.091,D17,,,,,"/>
+<approved hash="113,1,-48.26,334.62,E1,,,,,"/>
+<approved hash="113,1,-46.99,300.38,E2,,,,,"/>
+<approved hash="113,1,121.816,370.736,FRAME1,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>

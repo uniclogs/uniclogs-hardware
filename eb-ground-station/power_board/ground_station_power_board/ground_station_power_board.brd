@@ -2933,6 +2933,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <via x="74" y="60" extent="1-16" drill="0.254"/>
 <via x="108" y="48" extent="1-16" drill="0.254"/>
 <via x="87.5" y="69" extent="1-16" drill="0.254"/>
+<via x="110" y="52.75" extent="1-16" drill="0.254"/>
+<via x="111.125" y="52" extent="1-16" drill="0.254"/>
+<via x="106.5" y="55" extent="1-16" drill="0.254"/>
 </signal>
 <signal name="OUT16">
 <contactref element="R9" pad="1"/>
@@ -4078,7 +4081,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="52.670625" y1="50.170625" x2="49.75" y2="47.25" width="0.2" layer="16"/>
 <wire x1="49.75" y1="47.25" x2="49.75" y2="43" width="0.2" layer="16"/>
 <via x="49.75" y="43" extent="1-16" drill="0.254"/>
-<wire x1="49.7925" y1="43.0425" x2="49.75" y2="43" width="0.2" layer="1"/>
 <contactref element="Q15" pad="6"/>
 <wire x1="81.5874" y1="54.49655" x2="81.43955" y2="54.6444" width="0.2" layer="1"/>
 <wire x1="81.5874" y1="53.1451" x2="81.5874" y2="54.49655" width="0.2" layer="1"/>
@@ -4089,7 +4091,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="76.377975" y1="55.3492" x2="75.302575" y2="56.4246" width="0.2" layer="1"/>
 <wire x1="64.04" y1="50.170625" x2="63.405625" y2="50.805" width="0.2" layer="1"/>
 <wire x1="63.405625" y1="50.805" x2="62.7827" y2="50.805" width="0.2" layer="1"/>
-<wire x1="49.83" y1="43.005" x2="49.7925" y2="43.0425" width="0.2" layer="1"/>
 <contactref element="Q5" pad="G"/>
 <wire x1="49.75" y1="43" x2="49.755" y2="43.005" width="0.2" layer="1"/>
 <wire x1="49.755" y1="43.005" x2="50.725" y2="43.005" width="0.2" layer="1"/>
@@ -4701,6 +4702,12 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
 </mfgpreviewcolors>
+<errors>
+<approved hash="19,1,1f1d1e021e621f7d"/>
+<approved hash="23,1,732550c758957b77"/>
+<approved hash="23,1,0881f1f1ef4f163f"/>
+<approved hash="23,1,03ec371c340500f5"/>
+</errors>
 </board>
 </drawing>
 <compatibility>
