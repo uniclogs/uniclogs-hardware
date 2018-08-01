@@ -7,3 +7,5 @@ DONE ground vias
 DONE labels
 DONE i2c addresses
 DONE CHECK LEDS AGAIN!
+DONEbreak out reset on mcp23017
+DONE put '30A MAX' on input and '10A MAX' on output
