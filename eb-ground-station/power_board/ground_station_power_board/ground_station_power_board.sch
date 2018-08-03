@@ -7412,6 +7412,9 @@ for trimmer refence see : &lt;u&gt;www.electrospec-inc.com/cross_references/trim
 <part name="R14" library="SparkFun-Resistors" deviceset="4.7KOHM" device="-0603-1/10W-1%" value="4.7k"/>
 <part name="SUPPLY15" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 <part name="J2" library="SparkFun-Connectors" deviceset="CONN_01" device="PTH_NO_SILK_KIT"/>
+<part name="C11" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-25V-5%" value="0.1uF"/>
+<part name="SUPPLY27" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
+<part name="GND3" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7919,6 +7922,16 @@ HEADERS</text>
 <attribute name="VALUE" x="-83.82" y="466.598" size="1.27" layer="96" align="bottom-center"/>
 </instance>
 <instance part="J2" gate="G$1" x="-83.82" y="439.42" rot="R90"/>
+<instance part="C11" gate="G$1" x="0" y="278.13" smashed="yes">
+<attribute name="NAME" x="1.524" y="281.051" size="1.27" layer="95" font="vector"/>
+<attribute name="VALUE" x="1.524" y="275.971" size="1.27" layer="96" font="vector"/>
+</instance>
+<instance part="SUPPLY27" gate="G$1" x="0" y="285.75" smashed="yes">
+<attribute name="VALUE" x="0" y="288.544" size="1.27" layer="96" align="bottom-center"/>
+</instance>
+<instance part="GND3" gate="1" x="0" y="270.51" smashed="yes">
+<attribute name="VALUE" x="0" y="270.256" size="1.27" layer="96" align="top-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8565,6 +8578,11 @@ HEADERS</text>
 <wire x1="-78.74" y1="462.28" x2="-73.66" y2="462.28" width="0.1524" layer="91"/>
 <junction x="-73.66" y="462.28"/>
 </segment>
+<segment>
+<pinref part="C11" gate="G$1" pin="2"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+<wire x1="0" y1="275.59" x2="0" y2="273.05" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="12V" class="0">
 <segment>
@@ -8722,6 +8740,11 @@ HEADERS</text>
 <pinref part="SUPPLY15" gate="G$1" pin="3.3V"/>
 <pinref part="R14" gate="G$1" pin="2"/>
 <wire x1="-83.82" y1="463.804" x2="-83.82" y2="462.28" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C11" gate="G$1" pin="1"/>
+<pinref part="SUPPLY27" gate="G$1" pin="3.3V"/>
+<wire x1="0" y1="283.21" x2="0" y2="285.75" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SDA" class="0">
