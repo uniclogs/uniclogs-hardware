@@ -1,0 +1,131 @@
+Design for Station Power Board
+
+
+G.N. LeBrasseur
+  Design start:  3-Jun-2018
+  Final design:  3-Aug-2018
+
+
+
+--------------------------------------------------------------------------------
+
+Software:
+
+   * Code is: stationd
+
+--------------------------------------------------------------------------------
+
+Board functions:
+
+      * DI - none
+
+      * DO - Power control bits:
+         * VHF
+            * Dow-Key
+            * RF PTT
+            * PA Power
+            * LNA
+            * Polarization
+         * UHF
+            * Dow-Key
+            * RF PTT
+            * PA Power
+            * LNA
+            * Polarization
+         * L-Band
+            * RF PTT
+            * PA Power
+         * S-Band
+            * Power
+         * Other control
+            * SDR Rock Power
+            * Lime SDR Power
+            * Rotator Power
+
+      * AI - Power sense analogs (0 to 3v):
+         * A0 - VHF forward power
+         * A1 - UHF forward power
+         * A2 - L-Band forward power
+         * A3 - Enclosure temperature
+
+      * AO - none
+
+--------------------------------------------------------------------------------
+
+Pin and power circuit assignment:
+
+
+GPIO Bit   Station Function           Low (Pull down)    High      High/Power (12 VDC)    High/Power  (5 VDC)   
+0          VHF    - Dow Key                              X
+1                 - RF PTT            X
+2                 - PA Power                                       X
+3                 - LNA                                  X
+4                 - Polarization                         X
+5          UHF    - Dow Key                              X
+6                 - RF PTT            X
+7                 - PA Power                                       X
+8                 - LNA                                  X
+9                 - Polarization                         X
+10         L Band - RF PTT            X
+11                - PA Power                                       X
+12         Other  - SDR Rock Power                                                        X
+13                - Lime SDR Power                                                        X
+14                - Rotator Power     X
+15         S Band - Power                                          X
+
+
+--------------------------------------------------------------------------------
+
+Pins to come over from the Rock64: (RasPi 40 pin connector)
+
+
+Function        Pin number(s)
+3v3             1, 17
+Ground          6, 9, 14, 20, 25, 30, 34, 39
+SDA             3
+SCL             5
+TXD             8
+RXD             10
+
+
+--------------------------------------------------------------------------------
+
+Parts:
+
+
+16-Bit i2c Analog to Digital Converter
+ADS1115
+http://www.ti.com/lit/ds/symlink/ads1115.pdf
+
+
+16-Bit GPIO i2c I/O Expander
+MCP23017
+https://www.microchip.com/wwwproducts/en/MCP23017
+
+
+Dual 1.5A MOSFET Driver
+TC427
+http://ww1.microchip.com/downloads/en/DeviceDoc/21415C.pdf
+
+
+Dual N-Channel MOSFET
+DMN61D8L/LVT
+https://www.diodes.com/assets/Datasheets/DMN61D8L-LVT.pdf
+
+
+P-Channel MOSFET
+SQJ459EP
+http://www.vishay.com/docs/66963/sqj459ep.pdf
+
+
+Temperature Sensor
+MCP9808
+http://ww1.microchip.com/downloads/en/DeviceDoc/25095A.pdf
+
+
+
+Rock64 IO Pinout
+http://files.pine64.org/doc/rock64/ROCK64_Pi-2%20_and_Pi_P5+_Bus.pdf
+
+
+--------------------------------------------------------------------------------
