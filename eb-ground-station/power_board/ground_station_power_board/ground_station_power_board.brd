@@ -290,7 +290,7 @@
 <wire x1="96.5" y1="59" x2="80.5" y2="59" width="0.5" layer="21"/>
 <wire x1="80.5" y1="59" x2="79.5" y2="60" width="0.5" layer="21"/>
 <text x="78.5" y="75" size="1.2" layer="21" ratio="15" rot="SR0">ADC-IN 3.6V MAX</text>
-<text x="85" y="57" size="1.2" layer="21" ratio="15" rot="SR0">GROUND</text>
+<text x="81.75" y="57" size="1.2" layer="21" ratio="15" rot="SR0">ANALOG GROUND</text>
 <wire x1="22.36" y1="63.05" x2="17.36" y2="63.05" width="0.5" layer="21"/>
 <wire x1="17.36" y1="63.05" x2="12.36" y2="63.05" width="0.5" layer="21"/>
 <wire x1="12.36" y1="63.05" x2="12.36" y2="68.05" width="0.5" layer="21"/>
