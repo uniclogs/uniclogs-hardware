@@ -3561,7 +3561,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <via x="79.5" y="35" extent="1-16" drill="0.254"/>
 <via x="93" y="60" extent="1-16" drill="0.254"/>
 <via x="84" y="60" extent="1-16" drill="0.254"/>
-<via x="117.25" y="48.5" extent="1-16" drill="0.254"/>
+<via x="117.25" y="47.5" extent="1-16" drill="0.254"/>
 <via x="97.5" y="69" extent="1-16" drill="0.254"/>
 <via x="119.875" y="52.375" extent="1-16" drill="0.254"/>
 <via x="116.375" y="54.625" extent="1-16" drill="0.254"/>
@@ -5877,8 +5877,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </mfgpreviewcolors>
 <errors>
 <approved hash="23,1,d58a68765057edab"/>
-<approved hash="19,1,1352129472f47332"/>
 <approved hash="19,1,0354029262f26334"/>
+<approved hash="19,1,11d2109470f471b2"/>
 </errors>
 </board>
 </drawing>
