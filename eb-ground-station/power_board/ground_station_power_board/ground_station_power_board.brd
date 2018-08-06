@@ -36,8 +36,8 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
@@ -2338,7 +2338,7 @@ for trimmer refence see : &lt;u&gt;www.electrospec-inc.com/cross_references/trim
 <library name="Oliver_Custom">
 <packages>
 <package name="PSAS_LOGO_15X15">
-<polygon width="0.01" layer="41">
+<polygon width="0.0254" layer="41">
 <vertex x="11.937440625" y="12.695765625"/>
 <vertex x="12.01295625" y="12.4474375"/>
 <vertex x="12.106859375" y="12.110684375"/>
@@ -2365,7 +2365,7 @@ for trimmer refence see : &lt;u&gt;www.electrospec-inc.com/cross_references/trim
 <vertex x="11.374346875" y="14.02431875"/>
 <vertex x="11.67411875" y="13.404821875"/>
 </polygon>
-<polygon width="0.01" layer="41">
+<polygon width="0.0254" layer="41">
 <vertex x="9.92259375" y="16.060578125"/>
 <vertex x="9.6997875" y="16.10261875"/>
 <vertex x="9.406584375" y="16.10261875"/>
@@ -2442,7 +2442,7 @@ for trimmer refence see : &lt;u&gt;www.electrospec-inc.com/cross_references/trim
 <vertex x="9.82683125" y="16.7594625"/>
 <vertex x="9.92259375" y="16.7594625"/>
 </polygon>
-<polygon width="0.01" layer="41">
+<polygon width="0.0254" layer="41">
 <vertex x="9.92259375" y="1.759409375"/>
 <vertex x="10.018359375" y="1.759409375"/>
 <vertex x="10.5935625" y="1.798290625"/>
@@ -3225,7 +3225,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="NAME" x="109.48" y="55.893" size="0.6096" layer="25" font="vector" ratio="20"/>
 <attribute name="VALUE" x="110.23" y="55.984" size="0.6096" layer="27" font="vector" ratio="20" align="top-left"/>
 </element>
-<element name="U$8" library="Oliver_Custom" package="PSAS_LOGO_15X15" value="" x="20.5" y="43" rot="MR0"/>
+<element name="U$8" library="Oliver_Custom" package="PSAS_LOGO_15X15" value="" x="25" y="51.25" rot="MR0"/>
 <element name="C11" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="122.375" y="6">
 <attribute name="PROD_ID" value="CAP-08604" x="122.375" y="6" size="1.778" layer="27" display="off"/>
 </element>
@@ -3796,7 +3796,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <via x="18" y="44" extent="1-16" drill="0.254"/>
 <via x="20" y="46" extent="1-16" drill="0.254"/>
 <via x="20" y="44" extent="1-16" drill="0.254"/>
-<via x="12.375" y="62" extent="1-16" drill="0.254"/>
+<via x="12.375" y="61.5" extent="1-16" drill="0.254"/>
 <via x="77.625" y="52.5" extent="1-16" drill="0.254"/>
 <via x="76" y="50.25" extent="1-16" drill="0.254"/>
 <via x="75.375" y="48.75" extent="1-16" drill="0.254"/>
@@ -3820,10 +3820,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <via x="1" y="68" extent="1-16" drill="0.254"/>
 <via x="1" y="63" extent="1-16" drill="0.254"/>
 <via x="1" y="59" extent="1-16" drill="0.254"/>
-<via x="6" y="63" extent="1-16" drill="0.254"/>
 <via x="6" y="68" extent="1-16" drill="0.254"/>
 <via x="11" y="68" extent="1-16" drill="0.254"/>
-<via x="10" y="63" extent="1-16" drill="0.254"/>
 <via x="10" y="72" extent="1-16" drill="0.254"/>
 <via x="15" y="72" extent="1-16" drill="0.254"/>
 <via x="20" y="72" extent="1-16" drill="0.254"/>
@@ -3858,6 +3856,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <via x="119.75" y="48.5" extent="1-16" drill="0.254"/>
 <via x="124" y="52" extent="1-16" drill="0.254"/>
 <via x="124" y="45" extent="1-16" drill="0.254"/>
+<via x="9.75" y="61.5" extent="1-16" drill="0.254"/>
 </signal>
 <signal name="OUT16">
 <contactref element="R9" pad="1"/>
