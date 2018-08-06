@@ -32,7 +32,7 @@
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
@@ -52,7 +52,7 @@
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
@@ -289,7 +289,7 @@
 <wire x1="97.5" y1="60" x2="96.5" y2="59" width="0.5" layer="21"/>
 <wire x1="96.5" y1="59" x2="80.5" y2="59" width="0.5" layer="21"/>
 <wire x1="80.5" y1="59" x2="79.5" y2="60" width="0.5" layer="21"/>
-<text x="83" y="75" size="1.2" layer="21" ratio="15" rot="SR0">ADC-IN</text>
+<text x="78.5" y="75" size="1.2" layer="21" ratio="15" rot="SR0">ADC-IN 3.6V MAX</text>
 <text x="85" y="57" size="1.2" layer="21" ratio="15" rot="SR0">GROUND</text>
 <wire x1="22.36" y1="63.05" x2="17.36" y2="63.05" width="0.5" layer="21"/>
 <wire x1="17.36" y1="63.05" x2="12.36" y2="63.05" width="0.5" layer="21"/>
@@ -351,7 +351,7 @@
 ADC : 0x48
 GPIO : 0x20
 TEMP : 0x18</text>
-<text x="-8" y="48.125" size="1.778" layer="25" ratio="15">ORESAT
+<text x="3" y="46.125" size="1.778" layer="25" ratio="15">ORESAT
 GROUND STATION
 POWER BOARD
 OLIVER REW
