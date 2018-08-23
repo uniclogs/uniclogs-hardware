@@ -1,10 +1,63 @@
 #include "acs_statemachine.h"
 
 char *state_name[] = {
-    "ST_RDY",
-    "ST_RW",
-    "ST_MTQR",
-    "ST_MAX_POWER"
+// GLobal
+    "KILL,",
+// Main state switcher
+    "PWR_UP",
+    "PWR_ON",
+    "BAND_SWITCH",
+    "UHF_TRANSMIT",
+    "L_TRANSMIT",
+    "S_SYS_ON",
+    "S_SYS_OFF",
+
+// VHF Control
+    "VHF_TRANSMIT",
+    "V_SWITCH",
+    "V_SHUTDOWN",
+    "V_PA_COOL",
+    "V_PA_DOWN",
+    "V_UHF_LHCP",i
+    "V_UHF_RHCP",
+    "VHF_TRANS_ON",
+    "VHF_TRANS_OFF",
+    "VHF_LHCP",
+    "VHF_LHCP_1",
+    "VHF_LHCP_2",
+    "VHF_RHCP",
+    "VHF_RHCP_1",
+    "VHF_RHCP_2",
+
+// UHF Control
+    "UHF_TRANSMIT",
+    "U_SWITCH",
+    "U_SHUTDOWN",
+    "U_PA_COOL",
+    "U_PA_DOWN",
+    "U_UHF_LHCP",
+    "U_UHF_RHCP",
+    "UHF_TRANS_ON",
+    "UHF_TRANS_OFF",
+    "UHF_LHCP",
+    "UHF_LHCP_1",
+    "UHF_LHCP_2",
+    "UHF_RHCP",
+    "UHF_RHCP_1",
+    "UHF_RHCP_2",
+
+//L Band Control
+    "L_TRANSMIT",
+    "L_SWITCH",
+    "L_SHUTDOWN",
+    "L_PA_COOL",
+    "L_PA_DOWN",
+    "L_VHF_LHCP",
+    "L_VHF_RHCP",
+    "L_TRANS_ON",
+    "L_TRANS_OFF",
+    "L_UHF_LHCP",
+    "L_UHF_RHCP"
 };
 
 char *function_name[] = {
@@ -38,24 +91,28 @@ static int printFunctionCall(acs_function function,char *s){
     return function;
 }
 
+// TODO MAX
+// Add functions, the whole bunch of em
+// Maybe have a generic "no output" entry transition?
+
 // ST_RDY state transistion functions
-static int entry_rdy(ACS *acs){
+static int entry_pwr_on(ACS *acs){
     (void)acs;
     return printTransition(ST_RDY,ENTRY_STRING);
 }
 
-static int exit_rdy(ACS *acs){
+static int exit_pwr_on(ACS *acs){
     (void)acs;
     return printTransition(ST_RDY,EXIT_STRING);
 }
 
 // ST_RW state transistion functions
-static int entry_rw(ACS *acs){
+static int entry_band_switch(ACS *acs){
     (void)acs;
     return printTransition(ST_RW,ENTRY_STRING);
 }
 
-static int exit_rw(ACS *acs){
+static int exit_band_switch(ACS *acs){
     (void)acs;
     return printTransition(ST_RW,EXIT_STRING);
 }
@@ -124,7 +181,7 @@ static int callFunction(ACS *acs){
 }
 
 acs_transition_rule trans[] = {
-    {ST_RDY,            ST_RW,              &entry_rw,              &exit_rdy},
+    {PWR_UP,            PWR_ON,              &entry_on,              &exit_on},
     {ST_RDY,            ST_MTQR,            &entry_mtqr,            &exit_rdy},
     {ST_RDY,            ST_MAX_PWR,     &entry_max_pwr,     &exit_rdy},
     {ST_RW,             ST_MAX_PWR,     &entry_max_pwr,     &exit_rw},
