@@ -95,21 +95,28 @@ static int printFunctionCall(acs_function function,char *s){
 // Add functions, the whole bunch of em
 // Maybe have a generic "no output" entry transition?
 
-// ST_RDY state transistion functions
-static int entry_pwr_on(ACS *acs){
+// START Main State Switcher
+// TODO CHange print transition for all of these
+static int kill(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MTQR,ENTRY_STRING);
+}
+
+// Generic, no output transition entrance function
+static int entry_generic(ACS *acs)
+{
+  (void)acs;
+  return 1;
+}
+
+static int exit_pwr_up(ACS *acs){
     (void)acs;
     return printTransition(ST_RDY,ENTRY_STRING);
 }
 
 static int exit_pwr_on(ACS *acs){
     (void)acs;
-    return printTransition(ST_RDY,EXIT_STRING);
-}
-
-// ST_RW state transistion functions
-static int entry_band_switch(ACS *acs){
-    (void)acs;
-    return printTransition(ST_RW,ENTRY_STRING);
+    return printTransition(ST_RDY,ENTRY_STRING);
 }
 
 static int exit_band_switch(ACS *acs){
@@ -117,27 +124,177 @@ static int exit_band_switch(ACS *acs){
     return printTransition(ST_RW,EXIT_STRING);
 }
 
-// ST_MTQR state transistion functions
-static int entry_mtqr(ACS *acs){
-    (void)acs;
-    return printTransition(ST_MTQR,ENTRY_STRING);
-}
 
-static int exit_mtqr(ACS *acs){
+static int exit_S_Sys_On(ACS *acs){
     (void)acs;
     return printTransition(ST_MTQR,EXIT_STRING);
 }
 
-// ST_MAX_POWER state transistion functions
-static int entry_max_pwr(ACS *acs){
+static int exit_S_Sys_Off(ACS *acs){
     (void)acs;
     return printTransition(ST_MAX_PWR,ENTRY_STRING);
 }
 
-static int exit_max_pwr(ACS *acs){
+// START VHF Band States
+
+static int vhf_band_transmit(ACS *acs){
     (void)acs;
     return printTransition(ST_MAX_PWR,EXIT_STRING);
 }
+
+static int vhf_token_switcher(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_shutdown(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_pa_cooldwon(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_pa_down(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_uhf_lhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_uhf_rhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_vhf_trans_on(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_vhf_trans_off(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_lhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_lhcp1(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_lhcp2(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_rhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_rhcp1(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int vhf_rhcp2(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+// START UHF
+//=============================
+static int uhf_band_transmit(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_token_switcher(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_shutdown(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_pa_cooldwon(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_pa_down(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_vhf_lhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_vhf_rhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_uhf_trans_on(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_uhf_trans_off(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_lhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_lhcp1(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_lhcp2(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_rhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_rhcp1(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int uhf_rhcp2(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+//=============================
+
+//START  L Band Control
+//=============================
+
+
+//=============================
 
 // functions
 static int fn_rw_setdc(ACS *acs){
@@ -180,6 +337,9 @@ static int callFunction(ACS *acs){
     return acs->cur_state;
 }
 
+
+// TODO Max
+// This is the big boy to take care of
 acs_transition_rule trans[] = {
     {PWR_UP,            PWR_ON,              &entry_on,              &exit_on},
     {ST_RDY,            ST_MTQR,            &entry_mtqr,            &exit_rdy},
