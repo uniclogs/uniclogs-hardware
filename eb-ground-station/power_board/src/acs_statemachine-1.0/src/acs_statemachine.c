@@ -109,28 +109,28 @@ static int entry_generic(ACS *acs)
   return 1;
 }
 
-static int exit_pwr_up(ACS *acs){
+static int pwr_up(ACS *acs){
     (void)acs;
     return printTransition(ST_RDY,ENTRY_STRING);
 }
 
-static int exit_pwr_on(ACS *acs){
+static int pwr_on(ACS *acs){
     (void)acs;
     return printTransition(ST_RDY,ENTRY_STRING);
 }
 
-static int exit_band_switch(ACS *acs){
+static int band_switch(ACS *acs){
     (void)acs;
     return printTransition(ST_RW,EXIT_STRING);
 }
 
 
-static int exit_S_Sys_On(ACS *acs){
+static int S_Sys_On(ACS *acs){
     (void)acs;
     return printTransition(ST_MTQR,EXIT_STRING);
 }
 
-static int exit_S_Sys_Off(ACS *acs){
+static int S_Sys_Off(ACS *acs){
     (void)acs;
     return printTransition(ST_MAX_PWR,ENTRY_STRING);
 }
@@ -292,6 +292,68 @@ static int uhf_rhcp2(ACS *acs){
 
 //START  L Band Control
 //=============================
+static int L_band_transmit(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int L_token_switcher(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+
+static int L_shutdown(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+
+static int L_pa_cooldown(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+
+static int L_pa_down(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+
+static int L_vhf_lhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+
+static int L_vhf_rhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+
+static int L_trans_on(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+
+static int L_trans_off(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int L_uhf_lhcp(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
+static int L_uhf_rhcp2(ACS *acs){
+    (void)acs;
+    return printTransition(ST_MAX_PWR,EXIT_STRING);
+}
+
 
 
 //=============================
@@ -310,10 +372,10 @@ static int fn_mtqr_setdc(ACS *acs){
 }
 
 acs_function_rule func[] = {
-    {ST_RW,             FN_RW_SETDC,        &fn_rw_setdc},
-    {ST_MTQR,       FN_MTQR_SETDC,  &fn_mtqr_setdc},
-    {ST_MAX_PWR,    FN_RW_SETDC,        &fn_rw_setdc},
-    {ST_MAX_PWR,    FN_MTQR_SETDC,  &fn_mtqr_setdc}
+    //{ST_RW,             FN_RW_SETDC,        &fn_rw_setdc},
+    //{ST_MTQR,       FN_MTQR_SETDC,  &fn_mtqr_setdc},
+    //{ST_MAX_PWR,    FN_RW_SETDC,        &fn_rw_setdc},
+    //{ST_MAX_PWR,    FN_MTQR_SETDC,  &fn_mtqr_setdc}
 };
 
 #define FUNC_COUNT (int)(sizeof(func)/sizeof(acs_function_rule))
@@ -341,16 +403,69 @@ static int callFunction(ACS *acs){
 // TODO Max
 // This is the big boy to take care of
 acs_transition_rule trans[] = {
-    {PWR_UP,            PWR_ON,              &entry_on,              &exit_on},
-    {ST_RDY,            ST_MTQR,            &entry_mtqr,            &exit_rdy},
-    {ST_RDY,            ST_MAX_PWR,     &entry_max_pwr,     &exit_rdy},
-    {ST_RW,             ST_MAX_PWR,     &entry_max_pwr,     &exit_rw},
-    {ST_MTQR,           ST_MAX_PWR,     &entry_max_pwr,     &exit_mtqr},
-    {ST_RW,             ST_RDY,             &entry_rdy,             &exit_rw},
-    {ST_MTQR,           ST_RDY,             &entry_rdy,             &exit_mtqr},
-    {ST_MAX_PWR,    ST_RDY,             &entry_rdy,             &exit_max_pwr},
-    {ST_MAX_PWR,    ST_RW,              &entry_rw,              &exit_max_pwr},
-    {ST_MAX_PWR,    ST_MTQR,            &entry_mtqr,            &exit_max_pwr},
+    // START MAIN
+    // ================================================
+    
+    {PWR_UP, PWR_ON, &entry_generic, &pwr_on},
+    {PWR_ON, BAND_SWITCH, &entry_generic, &band_switch},
+    {BAND_SWITCH, S_SYS_ON, &entry_generic, &s_sys_on},
+    {BAND_SWITCH, S_SYS_OFF, &entry_generic, &s_sys_off},
+    {BAND_SWITCH, VHF_TRANSMIT, &entry_generic, &vhf_band_transmit},
+    {BAND_SWITCH, UHF_TRANSMIT, &entry_generic, &uhf_band_transmit},
+    {BAND_SWITCH, L_TRANSMIT, &entry_generic, &l_band_transmit},
+    {BAND_SWITCH, KILL, &entry_generic, &kill},
+    {PWR_ON, KILL, &entry_generic, &kill},
+
+    // START VHF
+    // ================================================
+    {VHF_TRANSMIT, V_SWITCH, &entry_generic, &vhf_band_transmit},
+    {V_SWITCH, V_UHF_LHCP, &entry_generic, &vhf_uhf_lhcp},
+    {V_SWITCH, V_UHF_RHCP, &entry_generic, &vhf_uhf_rhcp},
+    {V_SWITCH, V_LHCP, &entry_generic, &vhf_lhcp},
+    {V_SWITCH, V_RHCP, &entry_generic, &vhf_rhcp},
+    {V_SWITCH, V_TRANS_ON, &entry_generic, &vhf_trans_on},
+    {V_SWITCH, V_TRANS_OFF, &entry_generic, &vhf_trans_off},
+    {V_SWITCH, V_SHUTDOWN, &entry_generic, &vhf_shutdown},
+    {V_SWITCH, V_PA_COOL, &entry_generic, &vhf_pa_cooldown},
+    {V_SWITCH, V_PA_DOWN, &entry_generic, &vhf_pa_down},
+    {V_SWITCH, KILL, &entry_generic, &kill},
+    {V_PA_COOL, KILL, &entry_generic, &kill},
+    {V_PA_DOWN, BAND_SWITCH, &entry_generic, &band_switch},
+
+    // START UHF
+    // ================================================
+    {UHF_TRANSMIT, U_SWITCH, &entry_generic, &uhf_band_transmit},
+    {U_SWITCH, U_UHF_LHCP, &entry_generic, &uhf_lhcp},
+    {U_SWITCH, U_UHF_RHCP, &entry_generic, &uhf_rhcp},
+    {U_SWITCH, U_LHCP, &entry_generic, &uhf_vhf_lhcp},
+    {U_SWITCH, U_RHCP, &entry_generic, &uhf_vhf_rhcp},
+    {U_SWITCH, U_TRANS_ON, &entry_generic, &uhf_trans_on},
+    {U_SWITCH, U_TRANS_OFF, &entry_generic, &uhf_trans_off},
+    {U_SWITCH, U_SHUTDOWN, &entry_generic, &uhf_shutdown},
+    {U_SWITCH, U_PA_COOL, &entry_generic, &uhf_pa_cooldown},
+    {U_SWITCH, U_PA_DOWN, &entry_generic, &uhf_pa_down},
+    {U_SWITCH, KILL, &entry_generic, &kill},
+    {U_PA_COOL, KILL, &entry_generic, &kill},
+    {U_PA_DOWN, EXIT, &entry_generic, &exit},
+    {U_PA_DOWN, BAND_SWITCH, &entry_generic, &band_switch},
+
+    // START L BAND
+    // ================================================
+    {L_TRANSMIT, L_SWITCH, &entry_generic, &l_band_transmit},
+    {L_SWITCH, L_UHF_LHCP, &entry_generic, &l_uhf_lhcp},
+    {L_SWITCH, L_UHF_RHCP, &entry_generic, &l_uhf_rhcp},
+    {L_SWITCH, L_VHF_LHCP, &entry_generic, &l_vhf_lhcp},
+    {L_SWITCH, L_VHF_RHCP, &entry_generic, &l_vhf_rhcp},
+    {L_SWITCH, L_TRANS_ON, &entry_generic, &l_trans_on},
+    {L_SWITCH, L_TRANS_OFF, &entry_generic, &l_trans_off},
+    {L_SWITCH, L_SHUTDOWN, &entry_generic, &l_shutdown},
+    {L_SWITCH, L_PA_COOL, &entry_generic, &l_pa_cooldown},
+    {L_SWITCH, L_PA_DOWN, &entry_generic, &l_pa_down},
+    {L_SWITCH, KILL, &entry_generic, &kill},
+    {L_PA_COOL, KILL, &entry_generic, &kill},
+    {L_PA_DOWN, BAND_SWITCH, &entry_generic, &band_switch}
+
+
 };
 
 #define TRANS_COUNT (int)(sizeof(trans)/sizeof(acs_transition_rule))
