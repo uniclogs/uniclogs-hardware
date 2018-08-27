@@ -12,7 +12,7 @@ INC = ./inc
 
 PROG_CFLAGS=
 TEST_CFLAGS=
-FLAGS=-I $(INC) -g -Wall -Wextra 
+FLAGS=-I $(INC) -w -g -Wall -Wextra 
 
 # sources
 PROG_SRCS=$(SRC)/main.c \
