@@ -62,42 +62,49 @@ static int get_input()
     char input[10]="\0";
 
     printf("\nrequest input token$ ");
-    scanf(" %s", input);
+    scanf("%s", input);
 
-    if (strcmp("V_TX",input))
+    printf("INPUT %s\n", input);
+    printf("TEST %d\n", strcmp("T_PWR_ON\0", input));
+
+    if (!strcmp("V_TX",input))
           in = V_TX;
-    else if (strcmp("U_TX",input))
+    else if (!strcmp("U_TX",input))
           in = U_TX;
-    else if (strcmp("L_TX",input))
+    else if (!strcmp("L_TX",input))
           in = L_TX;
-    else if (strcmp("T_PWR_ON",input))
+    else if (!strcmp("T_PWR_ON",input))
+    {
           in = T_PWR_ON;
-    else if (strcmp("OPERATE",input))
+          printf("HERE\n");
+    }
+    else if (!strcmp("OPERATE",input))
           in = OPERATE;
-    else if (strcmp("S_ON",input))
+    else if (!strcmp("S_ON",input))
           in = S_ON;
-    else if (strcmp("S_OFF",input))
+    else if (!strcmp("S_OFF",input))
           in = S_OFF;
-    else if (strcmp("T_KILL",input))
+    else if (!strcmp("T_KILL",input))
           in = T_KILL;
-    else if (strcmp("V_LEFT",input))
+    else if (!strcmp("V_LEFT",input))
           in = V_LEFT;
-    else if (strcmp("V_RIGHT",input))
+    else if (!strcmp("V_RIGHT",input))
           in = V_RIGHT;
-    else if (strcmp("V_TX_ON",input))
+    else if (!strcmp("V_TX_ON",input))
           in = V_TX_ON;
-    else if (strcmp("V_TX_OFF",input))
+    else if (!strcmp("V_TX_OFF",input))
           in = V_TX_OFF;
-    else if (strcmp("SHUTDOWN",input))
+    else if (!strcmp("SHUTDOWN",input))
           in = SHUTDOWN;
-    else if (strcmp("U_TX_ON",input))
+    else if (!strcmp("U_TX_ON",input))
           in = U_TX_ON;
-    else if (strcmp("U_TX_OFF",input))
+    else if (!strcmp("U_TX_OFF",input))
           in = U_TX_OFF;
-    else if (strcmp("L_TX_ON",input))
+    else if (!strcmp("L_TX_ON",input))
           in = L_TX_ON;
-    else if (strcmp("L_TX_OFF",input))
+    else if (!strcmp("L_TX_OFF",input))
           in = L_TX_OFF;
+    printf("IN: %d\n", in);
     return in;
 }
 
@@ -129,9 +136,13 @@ static int printFunctionCall(pwr_function function,char *s){
 
 static int rmw_output(int new_out, int mask)
 {
-  gpio_out = gpio_out & !mask;
-  gpio_out = gpio_out & new_out;
-  printf("%04x\n", gpio_out);
+  printf("GPIO_OUT: %04x\n", gpio_out);
+  printf("NEW: %04x\n", new_out);
+  printf("MASK: %04x\n", mask);
+  gpio_out = gpio_out & ~mask;
+  printf("OUT1: %04x\n", gpio_out);
+  gpio_out = gpio_out | new_out;
+  printf("OUT2: %04x\n", gpio_out);
   return 1;
 }
 
@@ -163,7 +174,7 @@ static int pwr_up(PWR *pwr){
 
 static int pwr_on(PWR *pwr){
     (void)pwr;
-    int result = rmw_output(SDR_ROCK || SDR_LIME || ROT_PWR, SDR_ROCK || SDR_LIME || ROT_PWR);
+    int result = rmw_output(SDR_ROCK | SDR_LIME | ROT_PWR, SDR_ROCK | SDR_LIME | ROT_PWR);
     return printTransition(PWR_ON,ENTRY_STRING);
 }
 
@@ -558,8 +569,8 @@ pwr_function requestFunction(PWR *pwr){
 pwr_state requestTransition(PWR *pwr, input_tokens token){
     int i;
     for (i = 0;i < TRANS_COUNT;++i){
-        //printf("(%d,%d),", pwr->cur_state,trans[i].cur_state);
-        //printf("(%d,%d)\n", state,trans[i].req_state);
+        printf("(%d,%d),", pwr->cur_state,trans[i].cur_state);
+        printf("(%d,%d)\n", token, trans[i].trans_token);
         if((pwr->cur_state==trans[i].cur_state)&&(token==trans[i].trans_token)){
             pwr->fn_exit(pwr);
             pwr->fn_exit=trans[i].fn_exit;
@@ -585,7 +596,7 @@ extern int pwr_statemachine(PWR *pwr){
     print_welcome();
 
     printf("Starting state machine!\n\n");
-    pwr->cur_state = pwr_on(pwr);
+    pwr->cur_state = pwr_up(pwr);
     pwr->fn_exit = exit_generic;
     printf("\nIntitializing PWR to state: %s\n\n",state_name[pwr->cur_state]);
     
