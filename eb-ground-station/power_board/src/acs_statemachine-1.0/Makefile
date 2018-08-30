@@ -1,11 +1,11 @@
 # Makefile for the design and test of
-# the OreSat ACS state machine
+# the OreSat PWR state machine
 
 CC = gcc
 
 # binaries
-PROG_BIN = acs_statemachine
-TEST_BIN = acs_test
+PROG_BIN = pwr_statemachine
+TEST_BIN = pwr_test
 
 SRC = ./src
 INC = ./inc
@@ -16,7 +16,7 @@ FLAGS=-I $(INC) -w -g -Wall -Wextra
 
 # sources
 PROG_SRCS=$(SRC)/main.c \
-					$(SRC)/acs_statemachine.c 
+					$(SRC)/pwr_statemachine.c 
 
 TEST_SRCS=$(SRC)/test_main.c \
 					$(SRC)/test.c 

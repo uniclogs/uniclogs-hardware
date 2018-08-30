@@ -1,12 +1,12 @@
-#include "acs_statemachine.h"
+#include "pwr_statemachine.h"
 
 int main(int argc, char *argv[]){
     (void)argc;
     (void)argv;
 
-    ACS acs = {0,0,0};
+    PWR pwr = {0,0,0};
 
-    acs_statemachine(&acs);
+    pwr_statemachine(&pwr);
 
     return 0;
 }
