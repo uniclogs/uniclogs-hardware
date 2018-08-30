@@ -1,4 +1,4 @@
-#include "acs_statemachine.h"
+#include "pwr_statemachine.h"
 
 char *state_name[] = {
 // GLobal
@@ -105,22 +105,22 @@ static void print_name(char *name){
     printf("%s",name);  
 }
 
-static void print_state(acs_state state){
+static void print_state(pwr_state state){
     print_name(state_name[state]);
 }
 
-static void print_function(acs_function function){
+static void print_function(pwr_function function){
     print_name(function_name[function]);
 }
 
-static int printTransition(acs_state state,char *s){
+static int printTransition(pwr_state state,char *s){
     printf("%s ",s);    
     print_state(state);
     printf("\n");
     return state;
 }
 
-static int printFunctionCall(acs_function function,char *s){
+static int printFunctionCall(pwr_function function,char *s){
     printf("%s ",s);    
     print_function(function);
     printf("\n");
@@ -141,105 +141,105 @@ static int rmw_output(int new_out, int mask)
 
 // START Main State Switcher
 // TODO CHange print transition for all of these
-static int kill(ACS *acs){
-    (void)acs;
+static int kill(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(0x0000, 0xFFFF);
     return printTransition(PWR_UP,ENTRY_STRING);
 }
 
 // Generic, no output transition entrance function
-static int exit_generic(ACS *acs)
+static int exit_generic(PWR *pwr)
 {
-  (void)acs;
+  (void)pwr;
   return 1;
 }
 
-static int pwr_up(ACS *acs){
-    (void)acs;
+static int pwr_up(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(0x0000, 0xFFFF);
 
     return printTransition(PWR_UP,ENTRY_STRING);
 }
 
-static int pwr_on(ACS *acs){
-    (void)acs;
+static int pwr_on(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(SDR_ROCK || SDR_LIME || ROT_PWR, SDR_ROCK || SDR_LIME || ROT_PWR);
     return printTransition(PWR_ON,ENTRY_STRING);
 }
 
-static int band_switch(ACS *acs){
-    (void)acs;
+static int band_switch(PWR *pwr){
+    (void)pwr;
     return printTransition(BAND_SWITCH,EXIT_STRING);
 }
 
 
-static int s_sys_on(ACS *acs){
-    (void)acs;
+static int s_sys_on(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(S_PWR, S_PWR);
     return printTransition(BAND_SWITCH, EXIT_STRING);
 }
 
-static int s_sys_off(ACS *acs){
-    (void)acs;
+static int s_sys_off(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!S_PWR, S_PWR);
     return printTransition(BAND_SWITCH,ENTRY_STRING);
 }
 
 // START VHF Band States
 
-static int vhf_band_transmit(ACS *acs){
-    (void)acs;
+static int vhf_band_transmit(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(U_LNA || V_PA || V_KEY, U_LNA || V_PA || V_KEY);
     return printTransition(V_SWITCH,ENTRY_STRING);
 }
 
-static int vhf_token_switcher(ACS *acs){
-    (void)acs;
+static int vhf_token_switcher(PWR *pwr){
+    (void)pwr;
     return printTransition(V_SWITCH,ENTRY_STRING);
 }
 
-static int vhf_shutdown(ACS *acs){
-    (void)acs;
+static int vhf_shutdown(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!V_PTT && !V_POL && !U_POL && !U_LNA, V_PTT || V_POL || U_POL || U_LNA);
     return printTransition(V_PA_COOL,EXIT_STRING);
 }
 
-static int vhf_pa_cooldown(ACS *acs){
-    (void)acs;
+static int vhf_pa_cooldown(PWR *pwr){
+    (void)pwr;
     return printTransition(TODO,EXIT_STRING);
 }
 
-static int vhf_pa_down(ACS *acs){
-    (void)acs;
+static int vhf_pa_down(PWR *pwr){
+    (void)pwr;
     return printTransition(TODO,EXIT_STRING);
 }
 
-static int vhf_uhf_lhcp(ACS *acs){
-    (void)acs;
+static int vhf_uhf_lhcp(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(U_POL, U_POL);
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int vhf_uhf_rhcp(ACS *acs){
-    (void)acs;
+static int vhf_uhf_rhcp(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!U_POL, U_POL);
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int vhf_trans_on(ACS *acs){
-    (void)acs;
+static int vhf_trans_on(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(V_PTT, V_PTT);
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int vhf_trans_off(ACS *acs){
-    (void)acs;
+static int vhf_trans_off(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!V_PTT, V_PTT);
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int vhf_lhcp(ACS *acs){
-    (void)acs;
+static int vhf_lhcp(PWR *pwr){
+    (void)pwr;
     int temp = gpio_out && V_PTT;
     int result = rmw_output(!V_PTT, V_PTT);
     //delay 100ms
@@ -249,8 +249,8 @@ static int vhf_lhcp(ACS *acs){
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int vhf_rhcp(ACS *acs){
-    (void)acs;
+static int vhf_rhcp(PWR *pwr){
+    (void)pwr;
     int temp = gpio_out && V_PTT;
     int result = rmw_output(!V_PTT, V_PTT);
     //delay 100ms
@@ -263,59 +263,59 @@ static int vhf_rhcp(ACS *acs){
 
 // START UHF
 //=============================
-static int uhf_band_transmit(ACS *acs){
-    (void)acs;
+static int uhf_band_transmit(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(V_LNA || U_PA || U_KEY, V_LNA || U_PA || U_KEY);
     return printTransition(U_SWITCH,EXIT_STRING);
 }
 
-static int uhf_token_switcher(ACS *acs){
-    (void)acs;
+static int uhf_token_switcher(PWR *pwr){
+    (void)pwr;
     return printTransition(U_SWITCH,EXIT_STRING);
 }
 
-static int uhf_shutdown(ACS *acs){
-    (void)acs;
+static int uhf_shutdown(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(U_PTT || V_POL || U_POL || V_LNA, U_PTT || V_POL || U_POL || V_LNA);
     return printTransition(U_PA_COOL,EXIT_STRING);
 }
 
-static int uhf_pa_cooldown(ACS *acs){
-    (void)acs;
+static int uhf_pa_cooldown(PWR *pwr){
+    (void)pwr;
     return printTransition(TODO,EXIT_STRING);
 }
 
-static int uhf_pa_down(ACS *acs){
-    (void)acs;
+static int uhf_pa_down(PWR *pwr){
+    (void)pwr;
     return printTransition(TODO,EXIT_STRING);
 }
 
-static int uhf_vhf_lhcp(ACS *acs){
-    (void)acs;
+static int uhf_vhf_lhcp(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(V_POL, V_POL);
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int uhf_vhf_rhcp(ACS *acs){
-    (void)acs;
+static int uhf_vhf_rhcp(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!V_POL, V_POL);
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int uhf_trans_on(ACS *acs){
-    (void)acs;
+static int uhf_trans_on(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(U_PTT, U_PTT);
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int uhf_trans_off(ACS *acs){
-    (void)acs;
+static int uhf_trans_off(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!U_PTT, U_PTT);
     return printTransition(V_SWITCH,EXIT_STRING);
 }
 
-static int uhf_lhcp(ACS *acs){
-    (void)acs;
+static int uhf_lhcp(PWR *pwr){
+    (void)pwr;
     int temp = gpio_out && U_PTT;
     int result = rmw_output(!U_PTT, U_PTT);
     //delay 100ms
@@ -325,8 +325,8 @@ static int uhf_lhcp(ACS *acs){
     return printTransition(U_SWITCH, EXIT_STRING);
 }
 
-static int uhf_rhcp(ACS *acs){
-    (void)acs;
+static int uhf_rhcp(PWR *pwr){
+    (void)pwr;
     int temp = gpio_out && U_PTT;
     int result = rmw_output(!U_PTT, U_PTT);
     //delay 100ms
@@ -340,72 +340,72 @@ static int uhf_rhcp(ACS *acs){
 
 //START  L Band Control
 //=============================
-static int l_band_transmit(ACS *acs){
-    (void)acs;
+static int l_band_transmit(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(V_LNA || U_LNA || L_PA, V_LNA || U_LNA || L_PA);
     return printTransition(L_SWITCH,EXIT_STRING);
 }
 
-static int l_token_switcher(ACS *acs){
-    (void)acs;
+static int l_token_switcher(PWR *pwr){
+    (void)pwr;
     return printTransition(L_SWITCH,EXIT_STRING);
 }
 
 
-static int l_shutdown(ACS *acs){
-    (void)acs;
+static int l_shutdown(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!L_PTT && !V_POL && !U_POL && !V_LNA && !U_LNA, L_PTT || V_POL || U_POL || V_LNA || U_LNA);
     return printTransition(TODO,EXIT_STRING);
 }
 
 
-static int l_pa_cooldown(ACS *acs){
-    (void)acs;
+static int l_pa_cooldown(PWR *pwr){
+    (void)pwr;
     return printTransition(TODO,EXIT_STRING);
 }
 
 
-static int l_pa_down(ACS *acs){
-    (void)acs;
+static int l_pa_down(PWR *pwr){
+    (void)pwr;
     return printTransition(TODO,EXIT_STRING);
 }
 
 
-static int l_vhf_lhcp(ACS *acs){
-    (void)acs;
+static int l_vhf_lhcp(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(V_POL, V_POL);
     return printTransition(L_SWITCH,EXIT_STRING);
 }
 
 
-static int l_vhf_rhcp(ACS *acs){
-    (void)acs;
+static int l_vhf_rhcp(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!V_POL, V_POL);
     return printTransition(L_SWITCH,EXIT_STRING);
 }
 
 
-static int l_trans_on(ACS *acs){
-    (void)acs;
+static int l_trans_on(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(L_PTT, L_PTT);
     return printTransition(L_SWITCH,EXIT_STRING);
 }
 
 
-static int l_trans_off(ACS *acs){
-    (void)acs;
+static int l_trans_off(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!L_PTT, L_PTT);
     return printTransition(L_SWITCH,EXIT_STRING);
 }
 
-static int l_uhf_lhcp(ACS *acs){
-    (void)acs;
+static int l_uhf_lhcp(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(U_POL, U_POL);
     return printTransition(L_SWITCH,EXIT_STRING);
 }
 
-static int l_uhf_rhcp(ACS *acs){
-    (void)acs;
+static int l_uhf_rhcp(PWR *pwr){
+    (void)pwr;
     int result = rmw_output(!U_POL, U_POL);
     return printTransition(L_SWITCH,EXIT_STRING);
 }
@@ -415,35 +415,35 @@ static int l_uhf_rhcp(ACS *acs){
 //=============================
 
 // functions
-static int fn_rw_setdc(ACS *acs){
-    (void)acs;
+static int fn_rw_setdc(PWR *pwr){
+    (void)pwr;
     printFunctionCall(FN_RW_SETDC,FUNC_STRING);
     return EXIT_SUCCESS;
 }
 
-static int fn_mtqr_setdc(ACS *acs){
-    (void)acs;
+static int fn_mtqr_setdc(PWR *pwr){
+    (void)pwr;
     printFunctionCall(FN_MTQR_SETDC,FUNC_STRING);
     return EXIT_SUCCESS;
 }
 
-acs_function_rule func[] = {
+pwr_function_rule func[] = {
     //{ST_RW,             FN_RW_SETDC,        &fn_rw_setdc},
     //{ST_MTQR,       FN_MTQR_SETDC,  &fn_mtqr_setdc},
     //{TODO,    FN_RW_SETDC,        &fn_rw_setdc},
     //{TODO,    FN_MTQR_SETDC,  &fn_mtqr_setdc}
 };
 
-#define FUNC_COUNT (int)(sizeof(func)/sizeof(acs_function_rule))
+#define FUNC_COUNT (int)(sizeof(func)/sizeof(pwr_function_rule))
 
-static int callFunction(ACS *acs){
+static int callFunction(PWR *pwr){
     int i;
-    acs_function function;
+    pwr_function function;
 
     for(i = 0;i < FUNC_COUNT;++i){
-        if(acs->cur_state == func[i].state){
-            if((acs->function == func[i].function)){
-                function = (func[i].fn)(acs);
+        if(pwr->cur_state == func[i].state){
+            if((pwr->function == func[i].function)){
+                function = (func[i].fn)(pwr);
                 if(function){
                     printf("function call error!\n");
                 }
@@ -452,13 +452,13 @@ static int callFunction(ACS *acs){
         }
     }
 
-    return acs->cur_state;
+    return pwr->cur_state;
 }
 
 
 // TODO Max
 // This is the big boy to take care of
-acs_transition_rule trans[] = {
+pwr_transition_rule trans[] = {
     // START MAIN
     // ================================================
     
@@ -523,7 +523,7 @@ acs_transition_rule trans[] = {
 
 };
 
-#define TRANS_COUNT (int)(sizeof(trans)/sizeof(acs_transition_rule))
+#define TRANS_COUNT (int)(sizeof(trans)/sizeof(pwr_transition_rule))
 
 void print_welcome(){
     //printf("state enum: "); 
@@ -537,8 +537,8 @@ void print_welcome(){
     //print_state(TODO); printf("\n");
 }
 
-acs_function requestFunction(ACS *acs){
-    acs_function function;
+pwr_function requestFunction(PWR *pwr){
+    pwr_function function;
     char input[3]="";
 
     printf("\nrequest function call$ ");
@@ -549,21 +549,21 @@ acs_function requestFunction(ACS *acs){
         return EXIT_FAILURE;
     }
     printf("function call request %s received\n", function_name[function]);
-    acs->function = function;
-    callFunction(acs);
+    pwr->function = function;
+    callFunction(pwr);
     return EXIT_SUCCESS;
 }
 
 
-acs_state requestTransition(ACS *acs, input_tokens token){
+pwr_state requestTransition(PWR *pwr, input_tokens token){
     int i;
     for (i = 0;i < TRANS_COUNT;++i){
-        //printf("(%d,%d),", acs->cur_state,trans[i].cur_state);
+        //printf("(%d,%d),", pwr->cur_state,trans[i].cur_state);
         //printf("(%d,%d)\n", state,trans[i].req_state);
-        if((acs->cur_state==trans[i].cur_state)&&(token==trans[i].trans_token)){
-            acs->fn_exit(acs);
-            acs->fn_exit=trans[i].fn_exit;
-            acs->cur_state = (trans[i].fn_entry)(acs);
+        if((pwr->cur_state==trans[i].cur_state)&&(token==trans[i].trans_token)){
+            pwr->fn_exit(pwr);
+            pwr->fn_exit=trans[i].fn_exit;
+            pwr->cur_state = (trans[i].fn_entry)(pwr);
             break;
         }
     }
@@ -572,25 +572,25 @@ acs_state requestTransition(ACS *acs, input_tokens token){
     return EXIT_SUCCESS;
 }
 
-int handleEvents(ACS *acs){
+int handleEvents(PWR *pwr){
     int token;
     char input[3]="\0";
-    printf("current state: %d ",acs->cur_state);
-    print_state(acs->cur_state);
+    printf("current state: %d ",pwr->cur_state);
+    print_state(pwr->cur_state);
     token = get_input();
-    return requestTransition(acs, token);
+    return requestTransition(pwr, token);
 }
 
-extern int acs_statemachine(ACS *acs){
+extern int pwr_statemachine(PWR *pwr){
     print_welcome();
 
     printf("Starting state machine!\n\n");
-    acs->cur_state = pwr_on(acs);
-    acs->fn_exit = exit_generic;
-    printf("\nIntitializing ACS to state: %s\n\n",state_name[acs->cur_state]);
+    pwr->cur_state = pwr_on(pwr);
+    pwr->fn_exit = exit_generic;
+    printf("\nIntitializing PWR to state: %s\n\n",state_name[pwr->cur_state]);
     
     while(1){
-        handleEvents(acs);
+        handleEvents(pwr);
     }
     
     return EXIT_SUCCESS;

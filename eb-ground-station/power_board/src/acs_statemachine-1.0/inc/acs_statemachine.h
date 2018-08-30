@@ -1,5 +1,5 @@
-#ifndef _ACS_STATEMACHINE_H_
-#define _ACS_STATEMACHINE_H_
+#ifndef _PWR_STATEMACHINE_H_
+#define _PWR_STATEMACHINE_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,7 +17,7 @@
 uint16_t gpio_out;
 
 //TODO MAX
-//Strip out ACS systems, as well as CAN references.
+//Strip out PWR systems, as well as CAN references.
 
 typedef uint8_t CAN_STATUS[CAN_BUF_SIZE];
 typedef uint8_t CAN_MESSAGE[CAN_BUF_SIZE];
@@ -139,40 +139,40 @@ typedef enum{
     L_UHF_LHCP,
     L_UHF_RHCP,
     TODO
-}acs_state;
+}pwr_state;
 
-#define MAX_STATES (int)(sizeof(acs_state))
+#define MAX_STATES (int)(sizeof(pwr_state))
 
 typedef enum{
     FN_RW_SETDC,
     FN_MTQR_SETDC//,
-}acs_function;
+}pwr_function;
 
-typedef struct ACS ACS;
+typedef struct PWR PWR;
 
-struct ACS{
-    acs_state cur_state;
-    acs_function function;
-    int (*fn_exit)(ACS *acs);
+struct PWR{
+    pwr_state cur_state;
+    pwr_function function;
+    int (*fn_exit)(PWR *pwr);
 };
 
 typedef struct{
-    acs_state cur_state;
-    acs_state req_state;
-    int (*fn_exit)(ACS *acs);
-    int (*fn_entry)(ACS *acs);
+    pwr_state cur_state;
+    pwr_state req_state;
+    int (*fn_exit)(PWR *pwr);
+    int (*fn_entry)(PWR *pwr);
     input_tokens trans_token;
-}acs_transition_rule;
+}pwr_transition_rule;
 
 typedef struct{
-    acs_state state;
-    acs_function function;
-    int (*fn)(ACS *acs);
-}acs_function_rule;
+    pwr_state state;
+    pwr_function function;
+    int (*fn)(PWR *pwr);
+}pwr_function_rule;
 
-extern acs_transition_rule trans[];
-extern acs_function_rule func[];
+extern pwr_transition_rule trans[];
+extern pwr_function_rule func[];
 
-extern int acs_statemachine(ACS *acs);
+extern int pwr_statemachine(PWR *pwr);
 
 #endif
