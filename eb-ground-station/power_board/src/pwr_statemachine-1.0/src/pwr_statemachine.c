@@ -1,5 +1,15 @@
 #include "pwr_statemachine.h"
 
+/* TODOs Max
+ * Add delays
+ * Integrate Malay's I2C code
+ * Fully unit test state machine
+ * Get Arch on a RasPi
+ * Look at other TODOS
+ */
+
+
+
 char *state_name[] = {
 // GLobal
     "KILL,",
@@ -215,6 +225,9 @@ static int vhf_shutdown(PWR *pwr){
     return printTransition(V_PA_COOL,EXIT_STRING);
 }
 
+
+// TODO MAX
+// Delay
 static int vhf_pa_cooldown(PWR *pwr){
     (void)pwr;
     return printTransition(TODO,EXIT_STRING);
@@ -295,6 +308,8 @@ static int uhf_pa_cooldown(PWR *pwr){
     (void)pwr;
     return printTransition(TODO,EXIT_STRING);
 }
+
+// TODO MAX How to best handle these
 
 static int uhf_pa_down(PWR *pwr){
     (void)pwr;

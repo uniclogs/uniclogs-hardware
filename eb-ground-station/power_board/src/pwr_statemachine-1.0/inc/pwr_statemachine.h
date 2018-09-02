@@ -14,6 +14,10 @@
 
 #define OUT_SIZE 16
 
+// Delays in milliseconds
+#define COOL_DELAY 2 * 60 * 1000
+#define TEMP_DELAY 100
+
 uint16_t gpio_out;
 
 //TODO MAX
