@@ -1,11 +1,12 @@
 #include "pwr_statemachine.h"
 
+
 /* TODOs Max
  * Add delays
  * Integrate Malay's I2C code
+ *  Add init function
  * Fully unit test state machine
  * Get Arch on a RasPi
- * Look at other TODOS
  */
 
 
@@ -146,6 +147,11 @@ static int printFunctionCall(pwr_function function,char *s){
 
 static int rmw_output(int new_out, int mask)
 {
+  int file_i2c;
+  int length;
+  uint8_t buffer[3] = {0};
+
+  // Set up the variable to be output on the bus.
   printf("GPIO_OUT: %04x\n", gpio_out);
   printf("NEW: %04x\n", new_out);
   printf("MASK: %04x\n", mask);
@@ -153,15 +159,25 @@ static int rmw_output(int new_out, int mask)
   printf("OUT1: %04x\n", gpio_out);
   gpio_out = gpio_out | new_out;
   printf("OUT2: %04x\n", gpio_out);
+  
+
+  // BANK = 0, sequential = 0 means alternating A and B banks on data write.
+  // Set to output
+  buffer[3] = 0x40;  // Opcode
+  buffer[2] = 0x12;  // GPIOA reg address
+  buffer[1] = gpio_out && 0x00FF; // A data
+  buffer[0] = gpio_out && 0xFF00; // B data
+  length = 4
+    ;
+  if (write(file_i2c, buffer, length) != length)
+  {
+    printf("Failure!\N");
+  }
+  
   return 1;
+
 }
 
-// TODO MAX
-// Add functions, the whole bunch of em
-// Maybe have a generic "no output" exit transition?
-
-// START Main State Switcher
-// TODO CHange print transition for all of these
 static int kill(PWR *pwr){
     (void)pwr;
     int result = rmw_output(0x0000, 0xFFFF);
@@ -176,10 +192,77 @@ static int exit_generic(PWR *pwr)
 }
 
 static int pwr_up(PWR *pwr){
-    (void)pwr;
-    int result = rmw_output(0x0000, 0xFFFF);
+  (void)pwr;
 
-    return printTransition(PWR_UP,ENTRY_STRING);
+  int file_i2c;
+  int length;
+  uint8_t buffer[3] = {0};
+
+ 
+  //----- OPEN THE I2C BUS -----
+  char *filename = (char*)"/dev/i2c-1";
+  if ((file_i2c = open(filename, O_RDWR)) < 0)
+  {
+    //ERROR HANDLING: you can check errno to see what went wrong
+    printf("Failed to open the i2c bus");
+    return 1;
+  }
+  else
+  {
+    printf("Successfully opened I2C bus \n");
+  }
+
+  int addr = 0x20;          //<<<<<The I2C address of the slave
+  if (ioctl(file_i2c, I2C_SLAVE, addr) < 0)
+  {
+    printf("Failed to acquire bus access and/or talk to slave.\n");
+    //ERROR HANDLING; you can check errno to see what went wrong
+    return 1;
+  }
+  else
+  {
+    printf("Successfully acquired bus. \n");
+  }
+
+  // Set to alternating mode, byte mode and BANK = 0
+  // TODO Is this second write needed, or deos the first put it in alternating mode?
+  // Also, maybe forget this method, and just use the addresses?
+  buffer[2] = 0x40;
+  buffer[1] = 0x0A;
+  buffer[0] = 0x20;
+  length = 3;
+  if (write(file_i2c, buffer, length) != length)
+  {
+    printf("Failure!\N");
+  }
+
+
+  // Set to alternating mode
+  buffer[2] = 0x40;
+  buffer[1] = 0x0B;
+  buffer[0] = 0x20;
+  length = 3;
+  if (write(file_i2c, buffer, length) != length)
+  {
+    printf("Failure!\N");
+  }
+
+  // Should be able to use alternating mode here
+  // Set to IO to output
+  // Write to IODIR A and B
+  buffer[3] = 0x40;
+  buffer[2] = 0x00; // address of A
+  buffer[1] = 0x00; // data A
+  buffer[0] = 0x00;  // data B
+  length = 4;
+  if (write(file_i2c, buffer, length) != length)
+  {
+    printf("Failure!\N");
+  }
+
+  int result = rmw_output(0x0000, 0xFFFF);
+
+  return printTransition(PWR_UP,ENTRY_STRING);
 }
 
 static int pwr_on(PWR *pwr){

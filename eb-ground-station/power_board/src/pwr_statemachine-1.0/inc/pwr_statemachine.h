@@ -6,6 +6,12 @@
 #include <string.h>
 #include <stdint.h>
 
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <linux/i2c-dev.h>
+#include <stdio.h>
+
 #define ENTRY_STRING    "*Entering state: " 
 #define EXIT_STRING     "*Exiting state: " 
 #define FUNC_STRING     "*Calling function: " 
