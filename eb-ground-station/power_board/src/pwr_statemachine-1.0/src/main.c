@@ -1,41 +1,78 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include <getopt.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include "pwr_statemachine.h"
 
+#define PID_FILE "/run/stationd/stationd.pid"
+
 static int daemon_flag = 0;
-static int verbose_flag = 0;
 
-static struct option long_options[] = {
-    {"daemon", no_argument, NULL, 'd'},
-    {"verbose", no_argument, NULL, 'v'},
-    {0, 0, 0, 0}
-    };
+int main(int argc, char *argv[]){
+    FILE *run_fp = NULL;
+    pid_t process_id = 0;
+    pid_t sid = 0;
 
-int main(int argc, char **argv){
     int c;
-    int option_index=0;
 
-    while ((c = getopt_long(argc, argv, "dv", long_options, &option_index)) != -1){
+    //Command line argument processing
+    while ((c = getopt(argc, argv, "dp:")) != -1){
         switch (c){
             case 'd':
                 daemon_flag = 1;
                 break;
-            case 'v':
-                verbose_flag = 1;
+            case 'p':
+                //TODO: Set port override
                 break;
 
-            case 0:
-                break;
+            case '?':
+
             default:
-                abort();
+                fprintf(stderr, "Terminating...\n");
+                exit(1);
         }
     }
 
+    //Run as daemon if needed
+    if (daemon_flag){
+        //Fork
+        process_id = fork();
+        if (process_id < 0){
+            fprintf(stderr, "Error: Failed to fork! Terminating...\n");
+            exit(EXIT_FAILURE);
+        }
+
+        //Parent process, log pid of child and exit
+        if (process_id){
+            run_fp = fopen(PID_FILE, "w+");
+            if (!run_fp){
+                fprintf(stderr, "Error: Unable to open file %s\nTerminating...\n", PID_FILE);
+                exit(EXIT_FAILURE);
+            }
+            fprintf(run_fp, "%d\n", process_id);
+            fflush(run_fp);
+            fclose(run_fp);
+            exit(EXIT_SUCCESS);
+        }
+
+        //Child process, create new session to be process group leader
+        sid = setsid();
+        if (sid < 0){
+            exit(EXIT_FAILURE);
+        }
+
+        //Close std streams
+        fclose(stdin);
+        fclose(stdout);
+        fclose(stderr);
+    }
+
     PWR pwr = {0,0,0};
+    pwr_statemachine(&pwr);
 
-    /*pwr_statemachine(&pwr);*/
-
-    return 0;
+    return EXIT_SUCCESS;
 }
