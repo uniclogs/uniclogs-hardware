@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
-#include <getopt.h>
+#include <pthread.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]){
             case '?':
 
             default:
-                fprintf(stderr, "Terminating...\n");
+                fprintf(stderr, "Usage: %s [-d] [-p portnum]\n", argv[0]);
                 exit(1);
         }
     }
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]){
             exit(EXIT_SUCCESS);
         }
 
-        //Child process, create new session to be process group leader
+        //Child process, create new session for process group leader
         sid = setsid();
         if (sid < 0){
             exit(EXIT_FAILURE);
