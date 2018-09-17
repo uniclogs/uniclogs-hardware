@@ -9,7 +9,8 @@
  * Get Arch on a RasPi
  */
 
-
+int file_i2c;
+int length;
 
 char *state_name[] = {
 // GLobal
@@ -145,36 +146,121 @@ static int printFunctionCall(pwr_function function,char *s){
     return function;
 }
 
+static int read_output_banks()
+{
+  int length = 1;
+  uint8_t buffer[4];
+  buffer[0] = 0x40;
+  write(file_i2c, buffer, length);
+
+  buffer[0] = 0x12;
+  length = 1;
+  write(file_i2c, buffer, length);
+
+  buffer[0] = 0x41;
+  length = 1;
+  if (read(file_i2c, buffer, length) != length)
+  {
+    printf("Failed\n %x\n.", buffer[0]);
+    
+  }
+  else
+  {
+    printf("read: %x\n", buffer[0]);
+  }
+
+// TODO this is bad
+// change it
+  int return_bank = buffer[0];;
+
+//  int length = 1;
+//  uint8_t buffer[4];
+  buffer[0] = 0x40;
+  write(file_i2c, buffer, length);
+
+  buffer[0] = 0x12;
+  length = 1;
+  write(file_i2c, buffer, length);
+
+  buffer[0] = 0x41;
+  length = 1;
+  if (read(file_i2c, buffer, length) != length)
+  {
+    printf("Failed\n %x\n.", buffer[0]);
+    
+  }
+  else
+  {
+    printf("read: %x\n", buffer[0]);
+  }
+
+
+
+  return (return_bank && (buffer[0] << 8));
+}
+
+static int write_register(int out, int address)
+{
+  int return_err = 0;
+  uint8_t buffer[4] = {0};
+  buffer[3] = out && 0x00FF;
+  buffer[2] = (out && 0xFF00) >> 8;
+  buffer[1] = 0x40;
+  buffer[0] = address;
+  length = 4;
+
+  if (write(file_i2c, buffer, length) != length)
+  {
+    printf("Issue: \n");
+    return_err = 1;
+  }
+
+  return return_err;
+}
+
+/*static int write_output_banks(int out, int mask)
+{
+
+}*/
+
+
 static int rmw_output(int new_out, int mask)
 {
-  int file_i2c;
   int length;
-  uint8_t buffer[3] = {0};
+  uint8_t buffer[4] = {0};
 
   // Set up the variable to be output on the bus.
-  printf("GPIO_OUT: %04x\n", gpio_out);
+/*  printf("GPIO_OUT: %04x\n", gpio_out);
   printf("NEW: %04x\n", new_out);
   printf("MASK: %04x\n", mask);
   gpio_out = gpio_out & ~mask;
   printf("OUT1: %04x\n", gpio_out);
   gpio_out = gpio_out | new_out;
   printf("OUT2: %04x\n", gpio_out);
-  
+  */
+
+  gpio_out = read_output_banks();
+  gpio_out = gpio_out & ~mask;
+  gpio_out = gpio_out | new_out;
+
+  int return_err = write_register(gpio_out, 0x12);
+
+
 
   // BANK = 0, sequential = 0 means alternating A and B banks on data write.
   // Set to output
-  buffer[3] = 0x40;  // Opcode
-  buffer[2] = 0x12;  // GPIOA reg address
+  /*buffer[3] = 0x40;  // Opcode
   buffer[1] = gpio_out && 0x00FF; // A data
   buffer[0] = gpio_out && 0xFF00; // B data
+  
   length = 4
     ;
   if (write(file_i2c, buffer, length) != length)
   {
     printf("Failure!\N");
-  }
+  }*/
   
-  return 1;
+  return return_err;
 
 }
 
@@ -194,9 +280,8 @@ static int exit_generic(PWR *pwr)
 static int pwr_up(PWR *pwr){
   (void)pwr;
 
-  int file_i2c;
   int length;
-  uint8_t buffer[3] = {0};
+  uint8_t buffer[4] = {0};
 
  
   //----- OPEN THE I2C BUS -----
@@ -224,7 +309,10 @@ static int pwr_up(PWR *pwr){
     printf("Successfully acquired bus. \n");
   }
 
-  // Set to alternating mode, byte mode and BANK = 0
+  int ret = write_register(0x0000, 0x0000);
+
+
+  /*// Set to alternating mode, byte mode and BANK = 0
   // TODO Is this second write needed, or deos the first put it in alternating mode?
   // Also, maybe forget this method, and just use the addresses?
   buffer[2] = 0x40;
@@ -261,7 +349,7 @@ static int pwr_up(PWR *pwr){
   }
 
   int result = rmw_output(0x0000, 0xFFFF);
-
+  */
   return printTransition(PWR_UP,ENTRY_STRING);
 }
 
