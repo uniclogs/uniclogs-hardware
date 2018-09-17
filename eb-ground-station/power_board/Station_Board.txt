@@ -5,6 +5,9 @@ G.N. LeBrasseur
   Design start:  3-Jun-2018
   Final design:  3-Aug-2018
 
+G.N. LeBrasseur
+  IO point update:  17-Sep-2018
+
 
 
 --------------------------------------------------------------------------------
@@ -70,8 +73,8 @@ GPIO Bit   Station Function           Low (Pull down)    High      High/Power (1
 11                - PA Power                                       X
 12         Other  - SDR Rock Power                                                        X
 13                - Lime SDR Power                                                        X
-14                - Rotator Power     X
-15         S Band - Power                                          X
+14                - Rotator Power                                  X
+15         S Band - Power             X
 
 
 --------------------------------------------------------------------------------
