@@ -1,0 +1,154 @@
+#define V-KEY    0
+#define V-PTT    1
+#define V-PA     2
+#define V-LNA    3
+#define V-POL    4
+#define U-KEY    5
+#define U-PTT    6
+#define U-PA     7
+
+#define U-LNA    8
+#define U-POL    9
+#define L-PTT    10
+#define L-PA     11
+#define S-PWR    12
+#define SDR-ROCK 13
+#define SDR-LIME 14
+#define ROT-PWR  15
+
+
+typedef struct{
+  pwr_state state;
+  secondary_state sec_state;
+  pwr_state next_state;
+  secondary_state next_sec_state;
+  input_tokens token;
+  int errorCode;
+}pwrConfig;
+
+char *state_name[] = {
+// GLobal
+    "KILL,",
+// Main state switcher
+    "PWR_UP",
+    "PWR_ON",
+    "BAND_SWITCH",
+    "S_SYS_ON",
+    "S_SYS_OFF",
+
+// VHF Control
+    "VHF_TRANSMIT",
+    "V_SWITCH",
+    "V_SHUTDOWN",
+    "V_PA_COOL",
+    "V_PA_DOWN",
+    "V_UHF_LHCP",
+    "V_UHF_RHCP",
+    "VHF_TRANS_ON",
+    "VHF_TRANS_OFF",
+    "VHF_LHCP",
+    "VHF_RHCP",
+
+// UHF Control
+    "UHF_TRANSMIT",
+    "U_SWITCH",
+    "U_SHUTDOWN",
+    "U_PA_COOL",
+    "U_PA_DOWN",
+    "U_VHF_LHCP",
+    "U_VHF_RHCP",
+    "UHF_TRANS_ON",
+    "UHF_TRANS_OFF",
+    "UHF_LHCP",
+    "UHF_RHCP",
+
+//L Band Control
+    "L_TRANSMIT",
+    "L_SWITCH",
+    "L_SHUTDOWN",
+    "L_PA_COOL",
+    "L_PA_DOWN",
+    "L_VHF_LHCP",
+    "L_VHF_RHCP",
+    "L_TRANS_ON",
+    "L_TRANS_OFF",
+    "L_UHF_LHCP",
+    "L_UHF_RHCP"
+};
+
+typedef enum{
+  V_TX=0,
+  U_TX,
+  L_TX,
+  T_PWR_ON,
+  OPERATE,
+  S_ON,
+  S_OFF,
+  T_KILL,
+
+  V_LEFT,
+  V_RIGHT,
+  V_TX_ON,
+  V_TX_OFF,
+  SHUTDOWN,
+
+  U_LEFT,
+  U_RIGHT,
+  U_TX_ON,
+  U_TX_OFF,
+
+  L_TX_ON,
+  L_TX_OFF
+}input_tokens;
+
+typedef enum{
+    KILL,
+    
+    PWR_UP,     // low power
+    PWR_ON,
+    BAND_SWITCH,
+    S_SYS_ON,
+    S_SYS_OFF,
+    
+    V_TX,
+    U_TX,
+    L_TX
+}pwr_state;
+
+typedef enum{    
+    VHF_TRANSMIT,
+    V_SWITCH,
+    V_SHUTDOWN,
+    V_PA_COOL,
+    V_PA_DOWN,
+    V_UHF_LHCP,
+    V_UHF_RHCP,
+    V_TRANS_ON,
+    V_TRANS_OFF,
+    V_LHCP,
+    V_RHCP,
+    
+    UHF_TRANSMIT,
+    U_SWITCH,
+    U_SHUTDOWN,
+    U_PA_COOL,
+    U_PA_DOWN,
+    U_VHF_LHCP,
+    U_VHF_RHCP,
+    U_TRANS_ON,
+    U_TRANS_OFF,
+    U_LHCP,
+    U_RHCP,
+    
+    L_TRANSMIT,
+    L_SWITCH,
+    L_SHUTDOWN,
+    L_PA_COOL,
+    L_PA_DOWN,
+    L_VHF_LHCP,
+    L_VHF_RHCP,
+    L_TRANS_ON,
+    L_TRANS_OFF,
+    L_UHF_LHCP,
+    L_UHF_RHCP,
+}secondary_states;
