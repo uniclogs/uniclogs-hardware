@@ -17,6 +17,9 @@
 #define ROT_PWR  15
 
 
+#define NUM_TOKENS 19
+
+
 char *state_name[] = {
 // GLobal
     "KILL,",
@@ -67,6 +70,32 @@ char *state_name[] = {
     "L_UHF_RHCP"
 };
 
+
+char *inputTokens[] = {
+  "V_TX",
+  "U_TX",
+  "L_TX",
+  "T_PWR_ON",
+  "OPERATE",
+  "S_ON",
+  "S_OFF",
+  "T_KILL",
+
+  "V_LEFT",
+  "V_RIGHT",
+  "V_TX_ON",
+  "V_TX_OFF",
+  "SHUTDOWN",
+
+  "U_LEFT",
+  "U_RIGHT",
+  "U_TX_ON",
+  "U_TX_OFF",
+
+  "L_TX_ON",
+  "L_TX_OFF"
+};
+
 typedef enum{
   V_TX,
   U_TX,
@@ -106,7 +135,8 @@ typedef enum{
     L_TRAN
 }pwr_state;
 
-typedef enum{    
+typedef enum{  
+    NONE,  
     VHF_TRANSMIT,
     V_SWITCH,
     V_SHUTDOWN,

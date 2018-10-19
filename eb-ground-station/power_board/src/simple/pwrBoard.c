@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #include "pwrBoard.h"
 
@@ -32,6 +33,9 @@ int initialize(){
   
   uint8_t buffer[3] = {0};
   uint8_t length;
+
+  pwrConfig.state = PWR_UP;
+  pwrConfig.sec_state = NONE;
 
   if ((file_i2c = open(filename, O_RDWR)) < 0)
   {
@@ -91,9 +95,11 @@ int getInput(){
   printf("\nEnter input token: ");
   scanf("%s", input);
   
-  for(i=0;i<sizeof(state_name);i++){
-    if(input == state_name[i]){
+  for(i=0;i<NUM_TOKENS;i++){  
+    if(!strcmp(input,inputTokens[i])){
       pwrConfig.token = i;
+      printf("Token entered %s",inputTokens[i]);
+      break;
     }
   }
   
