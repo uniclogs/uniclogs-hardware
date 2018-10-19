@@ -75,11 +75,11 @@ char *inputTokens[] = {
   "V_TX",
   "U_TX",
   "L_TX",
-  "T_PWR_ON",
+  "PWR_ON",
   "OPERATE",
   "S_ON",
   "S_OFF",
-  "T_KILL",
+  "KILL",
 
   "V_LEFT",
   "V_RIGHT",
@@ -100,11 +100,11 @@ typedef enum{
   V_TX,
   U_TX,
   L_TX,
-  T_PWR_ON,
+  PWR_ON,
   OPERATE,
   S_ON,
   S_OFF,
-  T_KILL,
+  KILL,
 
   V_LEFT,
   V_RIGHT,
@@ -122,10 +122,10 @@ typedef enum{
 }input_tokens;
 
 typedef enum{
-    KILL,
+    SYS_KILL,
     
     PWR_UP,     // low power
-    PWR_ON,
+    SYS_PWR_ON,
     BAND_SWITCH,
     S_SYS_ON,
     S_SYS_OFF,
@@ -193,6 +193,9 @@ int processVHFTokens();
 int processUHFTokens();
 int processLBandTokens();
 int BandSwitchErrorRecovery();
+int VHFErrorRecovery();
+int UHFErrorRecovery();
+int LErrorRecovery();
 int killOrError();
 int VHFErrorRecovery();
 void stateError();
