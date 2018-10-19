@@ -68,7 +68,7 @@ int initialize(){
   buffer[1] = 0x00;   //change GPIOA direction
   buffer[0] = 0x00;   //for now directions of all pins are changed
   length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length)    //write() returns 
+  if (write(file_i2c, buffer, length) != length)    //write() returns 
   //the number of bytes actually written, if it doesn't match then an 
   //error occurred (e.g. no response from the device)
   {
@@ -81,7 +81,7 @@ int initialize(){
   buffer[1] = 0x01;   //change GPIOB direction
   buffer[0] = 0x00;   //for now directions of all pins are changed
   length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length)    //write() returns 
+  if (write(file_i2c, buffer, length) != length)    //write() returns 
   //the number of bytes actually written, if it doesn't match then an 
   //error occurred (e.g. no response from the device)
   {
@@ -301,7 +301,7 @@ int BandSwitchErrorRecovery(){
 
 int killOrError(){
   if(pwrConfig.token == KILL)
-    pwrConfig.next_state = SYS_PWR_ON;
+    pwrConfig.next_state = PWR_UP;
   else
     printf("Incorrect token entered. Please validate. No action taken by code. \n ");
 }
@@ -598,12 +598,12 @@ int MPC23017BitSet(int bit){
   
   //read the register first 
   buffer[0] = 0x40; //Indicate writting address. 
-  length = 1;
-  write(file_i2c, buffer, length);
- 
-  buffer[0] = 0x41; //Indicate reading address. 
   buffer[1] = reg_address;
   length = 2;
+  write(file_i2c, buffer, length);
+ 
+  buffer[0] = 0x41; //Indicate reading . 
+  length = 1;
   write(file_i2c, buffer, length);
 
   length = 1;                   //Number of bytes to read
@@ -651,12 +651,12 @@ int MPC23017BitClear(int bit){
   
   //read the register first 
   buffer[0] = 0x40; //Indicate writting address. 
-  length = 1;
+  buffer[1] = reg_address;
+  length = 2;
   write(file_i2c, buffer, length);
  
   buffer[0] = 0x41; //Indicate reading address. 
-  buffer[1] = reg_address;
-  length = 2;
+  length = 1;
   write(file_i2c, buffer, length);
 
   length = 1;                   //Number of bytes to read
@@ -727,12 +727,12 @@ int MPC23017BitRead(int bit){
   
   //read the register first  
   buffer[0] = 0x40; //Indicate writting address. 
+  buffer[1] = reg_address;
   length = 1;
   write(file_i2c, buffer, length);
 
   buffer[0] = 0x41; //Indicate reading address. 
-  buffer[1] = reg_address;
-  length = 2;
+  length = 1;
   write(file_i2c, buffer, length);
 
   length = 1;                   //Number of bytes to read
