@@ -1,30 +1,21 @@
-#define V-KEY    0
-#define V-PTT    1
-#define V-PA     2
-#define V-LNA    3
-#define V-POL    4
-#define U-KEY    5
-#define U-PTT    6
-#define U-PA     7
+#define V_KEY    0
+#define V_PTT    1
+#define V_PA     2
+#define V_LNA    3
+#define V_POL    4
+#define U_KEY    5
+#define U_PTT    6
+#define U_PA     7
 
-#define U-LNA    8
-#define U-POL    9
-#define L-PTT    10
-#define L-PA     11
-#define S-PWR    12
-#define SDR-ROCK 13
-#define SDR-LIME 14
-#define ROT-PWR  15
+#define U_LNA    8
+#define U_POL    9
+#define L_PTT    10
+#define L_PA     11
+#define S_PWR    12
+#define SDR_ROCK 13
+#define SDR_LIME 14
+#define ROT_PWR  15
 
-
-typedef struct{
-  pwr_state state;
-  secondary_state sec_state;
-  pwr_state next_state;
-  secondary_state next_sec_state;
-  input_tokens token;
-  int errorCode;
-}pwrConfig;
 
 char *state_name[] = {
 // GLobal
@@ -77,7 +68,7 @@ char *state_name[] = {
 };
 
 typedef enum{
-  V_TX=0,
+  V_TX,
   U_TX,
   L_TX,
   T_PWR_ON,
@@ -110,9 +101,9 @@ typedef enum{
     S_SYS_ON,
     S_SYS_OFF,
     
-    V_TX,
-    U_TX,
-    L_TX
+    V_TRAN,
+    U_TRAN,
+    L_TRAN
 }pwr_state;
 
 typedef enum{    
@@ -152,3 +143,17 @@ typedef enum{
     L_UHF_LHCP,
     L_UHF_RHCP,
 }secondary_states;
+
+
+
+struct pwr_Config {
+  pwr_state state;
+  secondary_states sec_state;
+  pwr_state next_state;
+  secondary_states next_sec_state;
+  input_tokens token;
+  int errorCode;
+} pwrConfig;
+
+
+
