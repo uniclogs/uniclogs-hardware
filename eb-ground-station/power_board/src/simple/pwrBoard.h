@@ -156,4 +156,21 @@ struct pwr_Config {
 } pwrConfig;
 
 
+int initialize();
+int getInput();
+int processToken();
+int processVHFTokens();
+int processUHFTokens();
+int processLBandTokens();
+int BandSwitchErrorRecovery();
+int killOrError();
+int VHFErrorRecovery();
+void stateError();
+void stateWarning();
+int changeState();
+int MPC23017BitSet(int bit);
+int MPC23017BitClear(int bit);
+int MPC23017BitReset();
+int MPC23017BitRead(int bit);
+
 

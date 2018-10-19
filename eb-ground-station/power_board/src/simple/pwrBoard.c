@@ -4,6 +4,8 @@
 #include <sys/ioctl.h>                    //Needed for I2C port
 #include <linux/i2c-dev.h>                //Needed for I2C port
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "pwrBoard.h"
 
@@ -89,7 +91,7 @@ int getInput(){
   printf("\nEnter input token: ");
   scanf("%s", input);
   
-  for(i=0;i<size(state_name);i++){
+  for(i=0;i<sizeof(state_name);i++){
     if(input == state_name[i]){
       pwrConfig.token = i;
     }
@@ -107,7 +109,7 @@ int processToken(){
   
   switch(pwrConfig.state){
   case KILL:
-    delay(1);
+    usleep(1);
     
   case PWR_UP:
     if(pwrConfig.token == T_PWR_ON)
@@ -152,15 +154,15 @@ int processToken(){
     BandSwitchErrorRecovery();
     break;        
 
-  case V_TX:
+  case V_TRAN:
     processVHFTokens();
     break;
     
-  case U_TX:
+  case U_TRAN:
     processUHFTokens();
     break;     
     
-  case L_TX:
+  case L_TRAN:
     processLBandTokens();
     break;
     
@@ -174,10 +176,10 @@ int processToken(){
 int processVHFTokens(){
   switch(pwrConfig.sec_state){
     case VHF_TRANSMIT:
-      delay(1);
+      usleep(1);
     case V_SWITCH:
       if(pwrConfig.token == V_LEFT) 
-        pwrConfig.sec_state =  VHF_LHCP;
+        pwrConfig.sec_state =  V_LHCP;
       else if(pwrConfig.token == V_RIGHT)
         pwrConfig.sec_state =  V_RHCP;      
       else if(pwrConfig.token == V_TX_ON)
@@ -212,10 +214,10 @@ int processVHFTokens(){
 int processUHFTokens(){
   switch(pwrConfig.sec_state){
     case VHF_TRANSMIT:
-      delay(1);
+      usleep(1);
     case V_SWITCH:
       if(pwrConfig.token == U_LEFT) 
-        pwrConfig.sec_state =  UHF_LHCP;
+        pwrConfig.sec_state =  U_LHCP;
       else if(pwrConfig.token == U_RIGHT)
         pwrConfig.sec_state =  U_RHCP;      
       else if(pwrConfig.token == U_TX_ON)
@@ -247,6 +249,45 @@ int processUHFTokens(){
 }
 
 
+int processLBandTokens(){
+  switch(pwrConfig.sec_state){
+    case L_TRANSMIT:
+      usleep(1);
+    case L_SWITCH:
+      if(pwrConfig.token == U_LEFT) 
+        pwrConfig.sec_state =  L_UHF_LHCP;
+      else if(pwrConfig.token == U_RIGHT)
+        pwrConfig.sec_state =  L_UHF_RHCP;      
+      else if(pwrConfig.token == L_TX_ON)
+        pwrConfig.sec_state =  L_TRANS_ON;         
+      else if(pwrConfig.token == L_TX_OFF)
+        pwrConfig.sec_state =  L_TRANS_OFF; 
+      else if(pwrConfig.token == V_RIGHT)
+        pwrConfig.sec_state =  L_VHF_RHCP; 
+      else if(pwrConfig.token == V_LEFT)
+        pwrConfig.sec_state =  U_VHF_LHCP; 
+      else if(pwrConfig.token == SHUTDOWN)
+        pwrConfig.sec_state =  U_SHUTDOWN;
+      else
+        killOrError();
+      break;
+    case L_SHUTDOWN:
+      VHFErrorRecovery();   //TODO: where to have the kill
+      break;      
+    case L_PA_COOL:    
+      VHFErrorRecovery();   //TODO: where to have the kill 
+      break;  
+    case L_PA_DOWN:        
+      VHFErrorRecovery();   //TODO: where to have the kill 
+      break;
+    default:
+      killOrError();
+      break;    
+  }               
+}
+
+
+
 int BandSwitchErrorRecovery(){
   printf("The system should not have been in this state. Corrective action taken \n");
   printf("Please reenter your token and manually validate the action. \n");
@@ -267,17 +308,20 @@ int VHFErrorRecovery(){
   pwrConfig.next_state = BAND_SWITCH;
 }
 
-stateError(){
+void stateError(){
   printf("ERROR: There is a program error. Contact coder. \n");
   printf("Results unpredictable. Please Kill and start over. \n");
 }
 
-stateWarning(){
+void stateWarning(){
   printf("WARNING: The system should not have been in this state. Contact coder. \n");
   printf("Recovery action taken. Verify output manually \n");
 }
 
 int changeState(){
+
+  uint8_t temporary;
+
   switch(pwrConfig.state){
     case KILL:
       MPC23017BitReset();
@@ -298,7 +342,7 @@ int changeState(){
       MPC23017BitClear(S_PWR);
       break;
       
-    case V_TX:
+    case V_TRAN:
       switch(pwrConfig.sec_state){
         case VHF_TRANSMIT:
           MPC23017BitSet(U_LNA);
@@ -313,7 +357,7 @@ int changeState(){
           MPC23017BitClear(V_PTT);
           
           pwrConfig.sec_state = V_PA_COOL;
-          delay(120);    // TODO: create a timeout and a user signal.
+          usleep(120);    // TODO: create a timeout and a user signal.
           
           pwrConfig.sec_state = V_PA_DOWN;
           MPC23017BitClear(V_PA);
@@ -336,9 +380,9 @@ int changeState(){
         case V_LHCP:
           temporary = MPC23017BitRead(V_PTT);
           MPC23017BitClear(V_PTT);
-          delay(100);
+          usleep(100);
           MPC23017BitSet(V_POL);
-          delay(100);
+          usleep(100);
           if(temporary)
             MPC23017BitSet(V_PTT);
           else
@@ -348,9 +392,9 @@ int changeState(){
         case V_RHCP:
           temporary = MPC23017BitRead(V_PTT);
           MPC23017BitClear(V_PTT);
-          pause(100);
+          usleep(100);
           MPC23017BitClear(V_POL);
-          pause(100);
+          usleep(100);
           if(temporary)
             MPC23017BitSet(V_PTT);
           else
@@ -361,8 +405,7 @@ int changeState(){
           break;        
       }
       
-    case U_TX:
-      switch(pwrConfig.sec_state){
+    case U_TRAN:
       switch(pwrConfig.sec_state){
         case VHF_TRANSMIT:
           MPC23017BitSet(U_LNA);
@@ -377,7 +420,7 @@ int changeState(){
           MPC23017BitClear(V_PTT);
           
           pwrConfig.sec_state = V_PA_COOL;
-          delay(120);    // TODO: create a timeout and a user signal.
+          usleep(120);    // TODO: create a timeout and a user signal.
           
           pwrConfig.sec_state = V_PA_DOWN;
           MPC23017BitClear(V_PA);
@@ -400,9 +443,9 @@ int changeState(){
         case V_LHCP:
           temporary = MPC23017BitRead(V_PTT);
           MPC23017BitClear(V_PTT);
-          delay(100);
+          usleep(100);
           MPC23017BitSet(V_POL);
-          delay(100);
+          usleep(100);
           if(temporary)
             MPC23017BitSet(V_PTT);
           else
@@ -412,9 +455,9 @@ int changeState(){
         case V_RHCP:
           temporary = MPC23017BitRead(V_PTT);
           MPC23017BitClear(V_PTT);
-          delay(100);
+          usleep(100);
           MPC23017BitClear(V_POL);
-          delay(100);
+          usleep(100);
           if(temporary)
             MPC23017BitSet(V_PTT);
           else
@@ -425,7 +468,7 @@ int changeState(){
           break;                
       }
       
-    case L_TX:
+    case L_TRAN:
       switch(pwrConfig.sec_state){
         case L_TRANSMIT:
           MPC23017BitSet(U_LNA);
@@ -441,7 +484,7 @@ int changeState(){
           MPC23017BitClear(U_LNA);
           
           pwrConfig.sec_state = L_PA_COOL;
-          delay(120);          // TODO: create a timeout and a user signal.
+          usleep(120);          // TODO: create a timeout and a user signal.
           
           pwrConfig.sec_state = L_PA_DOWN;
           MPC23017BitClear(L_PA);         
@@ -503,11 +546,7 @@ int MPC23017BitSet(int bit){
   write(file_i2c, buffer, length);
 
   length = 1;                   //Number of bytes to read
-  if (read(file_i2c, buffer, length) != length)         //read() returns 
-  //the number of bytes actually read, if it doesn't match then an error 
-  //occurred (e.g. no response from the device)
-  {
-    //ERROR HANDLING: i2c transaction failed
+  if (read(file_i2c, buffer, length) != length){
     printf("Failed to read from the i2c bus.\n");
     printf("Data read: %x\n", buffer[0]);
   }
@@ -525,11 +564,7 @@ int MPC23017BitSet(int bit){
   buffer[1] = reg_address;   //address of register
   buffer[0] = reg_value;   //for now directions of all pins are changed
   length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length)    //write() returns 
-  //the number of bytes actually written, if it doesn't match then an 
-  //error occurred (e.g. no response from the device)
-  {
-    // ERROR HANDLING: i2c transaction failed 
+   if (write(file_i2c, buffer, length) != length){
     printf("Failed to write to the i2c bus.\n");
   }  
 }
@@ -560,11 +595,7 @@ int MPC23017BitClear(int bit){
   write(file_i2c, buffer, length);
 
   length = 1;                   //Number of bytes to read
-  if (read(file_i2c, buffer, length) != length)         //read() returns 
-  //the number of bytes actually read, if it doesn't match then an error 
-  //occurred (e.g. no response from the device)
-  {
-    //ERROR HANDLING: i2c transaction failed
+  if (read(file_i2c, buffer, length) != length){
     printf("Failed to read from the i2c bus.\n");
     printf("Data read: %x\n", buffer[0]);
   }
@@ -583,11 +614,7 @@ int MPC23017BitClear(int bit){
   buffer[1] = reg_address;   //address of register
   buffer[0] = reg_value;   //for now directions of all pins are changed
   length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length)    //write() returns 
-  //the number of bytes actually written, if it doesn't match then an 
-  //error occurred (e.g. no response from the device)
-  {
-    // ERROR HANDLING: i2c transaction failed 
+   if (write(file_i2c, buffer, length) != length){
     printf("Failed to write to the i2c bus.\n");
   }   
 }
@@ -601,11 +628,7 @@ int MPC23017BitReset(){
   buffer[1] = 0x12;   //address of register
   buffer[0] = 0x00;   //for now directions of all pins are changed
   length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length)    //write() returns 
-  //the number of bytes actually written, if it doesn't match then an 
-  //error occurred (e.g. no response from the device)
-  {
-    // ERROR HANDLING: i2c transaction failed 
+   if (write(file_i2c, buffer, length) != length){
     printf("Failed to write to the i2c bus.\n");
   } 
   
@@ -614,11 +637,7 @@ int MPC23017BitReset(){
   buffer[1] = 0x12;   //address of register
   buffer[0] = 0x00;   //for now directions of all pins are changed
   length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length)    //write() returns 
-  //the number of bytes actually written, if it doesn't match then an 
-  //error occurred (e.g. no response from the device)
-  {
-    // ERROR HANDLING: i2c transaction failed 
+   if (write(file_i2c, buffer, length) != length){
     printf("Failed to write to the i2c bus.\n");
   } 
 }
@@ -648,19 +667,14 @@ int MPC23017BitRead(int bit){
   write(file_i2c, buffer, length);
 
   length = 1;                   //Number of bytes to read
-  if (read(file_i2c, buffer, length) != length)         //read() returns 
-  //the number of bytes actually read, if it doesn't match then an error 
-  //occurred (e.g. no response from the device)
-  {
-    //ERROR HANDLING: i2c transaction failed
+  if (read(file_i2c, buffer, length) != length){
     printf("Failed to read from the i2c bus.\n");
     printf("Data read: %x\n", buffer[0]);
   }
-  else
-  {
+  else{
     printf("Data read: %x\n", buffer[0]);
     return buffer[0];
-  }
-  
-  return -1;
+  };
+  return (int)(-1);
 }
+
