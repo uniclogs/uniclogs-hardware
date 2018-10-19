@@ -615,7 +615,7 @@ int MPC23017BitSet(int bit){
   
   //new register value
   reg_value = reg_value | (1 << shift_value);
-  
+  printf("Register Value 0x%x \n", reg_value);  
   //write the new value
   buffer[2] = 0x40;   //write command.
   buffer[1] = reg_address;   //address of register
@@ -671,7 +671,7 @@ int MPC23017BitClear(int bit){
   buffer[1] = reg_address;   //address of register
   buffer[0] = reg_value;   //for now directions of all pins are changed
   length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length){
+  if (write(file_i2c, buffer, length) != length){
     printf("Failed to write to the i2c bus.\n");
   }   
 }
