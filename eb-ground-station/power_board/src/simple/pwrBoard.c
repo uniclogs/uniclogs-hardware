@@ -596,7 +596,11 @@ int MPC23017BitSet(int bit){
   }
   
   
-  //read the register first  
+  //read the register first 
+  buffer[0] = 0x40; //Indicate writting address. 
+  length = 1;
+  write(file_i2c, buffer, length);
+ 
   buffer[0] = 0x41; //Indicate reading address. 
   buffer[1] = reg_address;
   length = 2;
@@ -645,7 +649,11 @@ int MPC23017BitClear(int bit){
   }
   
   
-  //read the register first  
+  //read the register first 
+  buffer[0] = 0x40; //Indicate writting address. 
+  length = 1;
+  write(file_i2c, buffer, length);
+ 
   buffer[0] = 0x41; //Indicate reading address. 
   buffer[1] = reg_address;
   length = 2;
@@ -691,7 +699,7 @@ int MPC23017BitReset(){
   
   //reset GPIOB
   buffer[2] = 0x40;   //write command.
-  buffer[1] = 0x12;   //address of register
+  buffer[1] = 0x13;   //address of register
   buffer[0] = 0x00;   //for now directions of all pins are changed
   length = 3;        //Number of bytes to write
    if (write(file_i2c, buffer, length) != length){
@@ -718,6 +726,10 @@ int MPC23017BitRead(int bit){
   
   
   //read the register first  
+  buffer[0] = 0x40; //Indicate writting address. 
+  length = 1;
+  write(file_i2c, buffer, length);
+
   buffer[0] = 0x41; //Indicate reading address. 
   buffer[1] = reg_address;
   length = 2;
