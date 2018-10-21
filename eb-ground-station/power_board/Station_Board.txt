@@ -7,6 +7,7 @@ G.N. LeBrasseur
 
 G.N. LeBrasseur
   IO point update:  17-Sep-2018
+  IO point update:  20-Oct-2018
 
 
 
@@ -72,8 +73,8 @@ GPIO Bit   Station Function           Low (Pull down)    High      High/Power (1
 10         L Band - RF PTT            X
 11                - PA Power                                       X
 12         Other  - SDR Rock Power                                                        X
-13                - Lime SDR Power                                                        X
-14                - Rotator Power                                  X
+13                - Lime SDR Power                                 X
+14                - Rotator Power                                                         X
 15         S Band - Power             X
 
 
