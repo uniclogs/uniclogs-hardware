@@ -125,13 +125,18 @@ int initialize(){
   if (rc < 0)
         printf("ioctl error return code %d \n",rc);
 
-  reg_gpioa_bits = 0x00;
-  reg_gpiob_bits = 0x00;
+  MPC23017BitReset();
+
+
+  //reg_gpioa_bits = 0x00;
+  //reg_gpiob_bits = 0x00;
 }
 
 
 int i2c_exit(){
   int rc;
+
+  MPC23017BitReset();
 
   rc=close(file_i2c);
   printf("closed file with rc %d \n",rc);
@@ -199,15 +204,15 @@ int processToken(){
     else if(pwrConfig.token == S_OFF)
       pwrConfig.next_state = S_SYS_OFF;
     else if(pwrConfig.token == V_TX){
-      pwrConfig.next_state = V_TX;
+      pwrConfig.next_state = V_TRAN;
       pwrConfig.next_sec_state = VHF_TRANSMIT;
     }
     else if(pwrConfig.token == U_TX){
-      pwrConfig.next_state = U_TX;
+      pwrConfig.next_state = U_TRAN;
       pwrConfig.next_sec_state = UHF_TRANSMIT;
     }
     else if(pwrConfig.token == L_TX){
-      pwrConfig.next_state = L_TX;
+      pwrConfig.next_state = L_TRAN;
       pwrConfig.next_sec_state = L_TRANSMIT;
     }
     else
@@ -241,7 +246,7 @@ int processToken(){
 
 
 int processVHFTokens(){
-  switch(pwrConfig.next_sec_state){
+  switch(pwrConfig.sec_state){
     case VHF_TRANSMIT:
       usleep(1);
     case V_SWITCH:
@@ -261,6 +266,7 @@ int processVHFTokens(){
         pwrConfig.next_sec_state =  V_SHUTDOWN;
       else
         killOrError();
+      printf("in v_switch. \n");
       break;
     case V_SHUTDOWN:
       VHFErrorRecovery();   //TODO: where to have the kill
@@ -279,7 +285,7 @@ int processVHFTokens(){
 
 
 int processUHFTokens(){
-  switch(pwrConfig.next_sec_state){
+  switch(pwrConfig.sec_state){
     case VHF_TRANSMIT:
       usleep(1);
     case V_SWITCH:
@@ -317,7 +323,7 @@ int processUHFTokens(){
 
 
 int processLBandTokens(){
-  switch(pwrConfig.next_sec_state){
+  switch(pwrConfig.sec_state){
     case L_TRANSMIT:
       usleep(1);
     case L_SWITCH:
@@ -401,6 +407,13 @@ int changeState(){
 
   uint8_t temporary;
 
+  printf("Pin status: 0x%x 0x%x \n",reg_gpioa_bits,reg_gpiob_bits);
+  printf("State: %d \n", pwrConfig.state);
+  printf("Secondary state: %d \n", pwrConfig.sec_state);
+
+  printf("Next State: %d \n", pwrConfig.next_state);
+  printf("Next Secondary state: %d \n", pwrConfig.next_sec_state);
+
   switch(pwrConfig.next_state){
     case SYS_KILL:
     case PWR_UP:
@@ -432,7 +445,7 @@ int changeState(){
           MPC23017BitSet(U_LNA);
           MPC23017BitSet(V_PA);
           MPC23017BitSet(V_KEY);
-          pwrConfig.sec_state = VHF_TRANSMIT;
+          pwrConfig.sec_state = V_SWITCH;
           break;
         case V_SWITCH:
           break;
@@ -500,7 +513,8 @@ int changeState(){
           stateError();
           break;        
       }
-      
+      break;
+
     case U_TRAN:
       pwrConfig.state = U_TRAN;
       switch(pwrConfig.next_sec_state){
@@ -508,7 +522,7 @@ int changeState(){
           MPC23017BitSet(U_LNA);
           MPC23017BitSet(V_PA);
           MPC23017BitSet(V_KEY);
-          pwrConfig.sec_state = UHF_TRANSMIT;
+          pwrConfig.sec_state = U_SWITCH;
           break;
         case U_SWITCH:
           break;
@@ -575,7 +589,8 @@ int changeState(){
           stateError();
           break;                
       }
-      
+      break;
+
     case L_TRAN:
       pwrConfig.state = L_TRAN;
       switch(pwrConfig.next_sec_state){
@@ -583,7 +598,7 @@ int changeState(){
           MPC23017BitSet(U_LNA);
           MPC23017BitSet(V_LNA);
           MPC23017BitSet(L_PA);
-          pwrConfig.sec_state = L_TRANSMIT;
+          pwrConfig.sec_state = L_SWITCH;
           break;
         case L_SWITCH:
           break;
@@ -633,7 +648,8 @@ int changeState(){
           stateError();
           break;                
       }
-      
+      break;
+
     default:
       stateError();
       break;
