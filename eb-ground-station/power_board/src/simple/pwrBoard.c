@@ -3,6 +3,7 @@
 #include <fcntl.h>                        //Needed for I2C port
 #include <sys/ioctl.h>                    //Needed for I2C port
 #include <linux/i2c-dev.h>                //Needed for I2C port
+#include <linux/i2c.h>                    //Needed for I2C port
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -13,6 +14,9 @@
 //I2C bus
 char *filename = (char*)"/dev/i2c-1";
 int file_i2c;
+uint8_t reg_gpioa_bits;
+uint8_t reg_gpiob_bits;
+int addr = 0x20;          //<<<<<The I2C address of the slave
   
 int main(int argc, char *argv[]){
     (void)argc;
@@ -22,14 +26,33 @@ int main(int argc, char *argv[]){
     initialize();
     while(1){
       getInput();
+
+      if(pwrConfig.token == NO_ACTION){
+        continue;
+      }
+      
+      if(pwrConfig.token == EXIT){
+        i2c_exit();
+        break;
+      }
+
+      if(pwrConfig.token == STATUS){
+        printf("Pin status: 0x%x 0x%x \n", reg_gpioa_bits,reg_gpiob_bits);
+        printf("State: %d \n", pwrConfig.state); 
+        printf("Secondary state: %d \n", pwrConfig.sec_state); 
+        continue;
+      }
+
       processToken();
-      printf("Before Change %d, %d, next, %d, %d \n",pwrConfig.state, pwrConfig.sec_state,pwrConfig.next_state, pwrConfig.next_sec_state);
+      //printf("Before Change %d, %d, next, %d, %d \n",pwrConfig.state, pwrConfig.sec_state,pwrConfig.next_state, pwrConfig.next_sec_state);
       changeState();
-      printf("After Change %d, %d, next, %d, %d \n",pwrConfig.state, pwrConfig.sec_state,pwrConfig.next_state, pwrConfig.next_sec_state);
+      //printf("After Change %d, %d, next, %d, %d \n",pwrConfig.state, pwrConfig.sec_state,pwrConfig.next_state, pwrConfig.next_sec_state);
     }
+    printf("Program successfully exited. \n");
       
     return 0;
 }
+
 
 int initialize(){
   
@@ -62,33 +85,60 @@ int initialize(){
   {
     printf("Successfully acquired bus. \n");
   }  
-  
-   //make GPIOA as output
-  buffer[2] = 0x40;   //written based on datasheet.
-  buffer[1] = 0x00;   //change GPIOA direction
-  buffer[0] = 0x00;   //for now directions of all pins are changed
-  length = 3;        //Number of bytes to write
-  if (write(file_i2c, buffer, length) != length)    //write() returns 
-  //the number of bytes actually written, if it doesn't match then an 
-  //error occurred (e.g. no response from the device)
-  {
-    // ERROR HANDLING: i2c transaction failed 
-    printf("Failed to write to the i2c bus.\n");
-  }  
-  
+
+
+  //make GPIOA as output
+  struct i2c_rdwr_ioctl_data msgset;
+  struct i2c_msg iomsg[2];
+  uint8_t buf[2];
+  int rc;
+
+  buf[0] = 0x00;
+  buf[1] = 0x00;
+
+  iomsg[0].addr = addr;
+  iomsg[0].flags = 0;
+  iomsg[0].buf = buf;
+  iomsg[0].len = 2;
+
+  msgset.msgs = iomsg;
+  msgset.nmsgs = 1;
+
+  rc = ioctl(file_i2c,I2C_RDWR,&msgset);
+  if (rc < 0)
+        printf("ioctl error return code %d \n",rc);
+
+
   //make GPIOB as output
-  buffer[2] = 0x40;   //written based on datasheet.
-  buffer[1] = 0x01;   //change GPIOB direction
-  buffer[0] = 0x00;   //for now directions of all pins are changed
-  length = 3;        //Number of bytes to write
-  if (write(file_i2c, buffer, length) != length)    //write() returns 
-  //the number of bytes actually written, if it doesn't match then an 
-  //error occurred (e.g. no response from the device)
-  {
-    // ERROR HANDLING: i2c transaction failed 
-    printf("Failed to write to the i2c bus.\n");
-  }  
+  buf[0] = 0x01;
+  buf[1] = 0x00;
+
+  iomsg[0].addr = addr;
+  iomsg[0].flags = 0;
+  iomsg[0].buf = buf;
+  iomsg[0].len = 2;
+
+  msgset.msgs = iomsg;
+  msgset.nmsgs = 1;
+
+  rc = ioctl(file_i2c,I2C_RDWR,&msgset);
+  if (rc < 0)
+        printf("ioctl error return code %d \n",rc);
+
+  reg_gpioa_bits = 0x00;
+  reg_gpiob_bits = 0x00;
 }
+
+
+int i2c_exit(){
+  int rc;
+
+  rc=close(file_i2c);
+  printf("closed file with rc %d \n",rc);
+
+  return rc;
+}
+
 
 int getInput(){
   char input[10]="\0";
@@ -96,9 +146,11 @@ int getInput(){
   
   printf("\nEnter input token: ");
   scanf("%s", input);
+
+  upper_string(input);
   
   for(i=0;i<NUM_TOKENS;i++){  
-    if(!strcmp(input,inputTokens[i])){
+    if(!strcmp( input ,inputTokens[i])){
       pwrConfig.token = i;
       printf("Token entered %s \n",inputTokens[i]);
       break;
@@ -107,6 +159,17 @@ int getInput(){
   
 }
 
+
+void upper_string(char s[]) {
+   int c = 0;
+   
+   while (s[c] != '\0') {
+      if (s[c] >= 'a' && s[c] <= 'z') {
+         s[c] = s[c] - 32;
+      }
+      c++;
+   }
+}
 
 /*
 TODO: make a new thread for this. 
@@ -585,49 +648,43 @@ int MPC23017BitSet(int bit){
   uint8_t reg_address = 0;
   uint8_t reg_value = 0;
   uint8_t length;
+
+  struct i2c_rdwr_ioctl_data msgset;
+  struct i2c_msg iomsg[2];
+  uint8_t buf[2];
+  int rc;
   
+  //printf("DEBUGGING BIT: 0x%x \n", bit);
   if (bit<8){
     reg_address = 0x12;
     shift_value = bit;
+    reg_gpioa_bits = reg_gpioa_bits | (1 << shift_value);
+    reg_value = reg_gpioa_bits;
   }
   else{
     reg_address = 0x13;
     shift_value = bit - 8;
+    reg_gpiob_bits = reg_gpiob_bits | (1 << shift_value);
+    reg_value = reg_gpiob_bits;
   }
   
   
-  //read the register first 
-  buffer[0] = 0x40; //Indicate writting address. 
-  buffer[1] = reg_address;
-  length = 2;
-  write(file_i2c, buffer, length);
- 
-  buffer[0] = 0x41; //Indicate reading . 
-  length = 1;
-  write(file_i2c, buffer, length);
+  //update register value 
+  buf[0] = reg_address;
+  buf[1] = reg_value;
 
-  length = 1;                   //Number of bytes to read
-  if (read(file_i2c, buffer, length) != length){
-    printf("Failed to read from the i2c bus.\n");
-    printf("Data read: %x\n", buffer[0]);
-  }
-  else
-  {
-    printf("Data read: %x\n", buffer[0]);
-    reg_value = buffer[0];
-  }
+  iomsg[0].addr = addr;
+  iomsg[0].flags = 0;
+  iomsg[0].buf = buf;
+  iomsg[0].len = 2;
+
+  msgset.msgs = iomsg;
+  msgset.nmsgs = 1;
+
+  rc = ioctl(file_i2c,I2C_RDWR,&msgset);
+  if (rc < 0)
+    printf("return code %d \n",rc);
   
-  //new register value
-  reg_value = reg_value | (1 << shift_value);
-  printf("Register Value 0x%x \n", reg_value);  
-  //write the new value
-  buffer[2] = 0x40;   //write command.
-  buffer[1] = reg_address;   //address of register
-  buffer[0] = reg_value;   //for now directions of all pins are changed
-  length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length){
-    printf("Failed to write to the i2c bus.\n");
-  }  
 }
 
 
@@ -639,81 +696,105 @@ int MPC23017BitClear(int bit){
   uint8_t mask = 0xFF;
   uint8_t length;
 
+  struct i2c_rdwr_ioctl_data msgset;
+  struct i2c_msg iomsg[2];
+  uint8_t buf[2];
+  int rc;
+
   if (bit<8){
     reg_address = 0x12;
     shift_value = bit;
+    mask = 0xFF ^ (1 << shift_value);
+    reg_gpioa_bits = reg_gpioa_bits & mask;
+    reg_value   = reg_gpioa_bits;
   }
   else{
     reg_address = 0x13;
     shift_value = bit - 8;
+    mask = 0xFF ^ (1 << shift_value);
+    reg_gpiob_bits = reg_gpiob_bits & mask;
+    reg_value   = reg_gpiob_bits;
   }
   
-  
-  //read the register first 
-  buffer[0] = 0x40; //Indicate writting address. 
-  buffer[1] = reg_address;
-  length = 2;
-  write(file_i2c, buffer, length);
- 
-  buffer[0] = 0x41; //Indicate reading address. 
-  length = 1;
-  write(file_i2c, buffer, length);
-
-  length = 1;                   //Number of bytes to read
-  if (read(file_i2c, buffer, length) != length){
-    printf("Failed to read from the i2c bus.\n");
-    printf("Data read: %x\n", buffer[0]);
-  }
-  else
-  {
-    printf("Data read: %x\n", buffer[0]);
-    reg_value = buffer[0];
-  }
   
   //new register value
   mask = 0xFF ^ (1 << shift_value);
   reg_value = reg_value & mask;
   
   //write the new value
-  buffer[2] = 0x40;   //write command.
-  buffer[1] = reg_address;   //address of register
-  buffer[0] = reg_value;   //for now directions of all pins are changed
-  length = 3;        //Number of bytes to write
-  if (write(file_i2c, buffer, length) != length){
-    printf("Failed to write to the i2c bus.\n");
-  }   
+  buf[0] = reg_address;
+  buf[1] = reg_value;
+
+  iomsg[0].addr = addr;
+  iomsg[0].flags = 0;
+  iomsg[0].buf = buf;
+  iomsg[0].len = 2;
+
+  msgset.msgs = iomsg;
+  msgset.nmsgs = 1;
+
+  rc = ioctl(file_i2c,I2C_RDWR,&msgset);
+  if (rc < 0)
+    printf("ioctl error return code %d \n",rc);   
 }
 
 
 int MPC23017BitReset(){
-  uint8_t buffer[3] = {0};
-  uint8_t length;
-  //reset GPIOA
-  buffer[2] = 0x40;   //write command.
-  buffer[1] = 0x12;   //address of register
-  buffer[0] = 0x00;   //for now directions of all pins are changed
-  length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length){
-    printf("Failed to write to the i2c bus.\n");
-  } 
-  
+  struct i2c_rdwr_ioctl_data msgset;
+  struct i2c_msg iomsg[2];
+  uint8_t buf[2];
+  int rc;
+
+  buf[0] = 0x12;
+  buf[1] = 0x00;
+
+  iomsg[0].addr = addr;
+  iomsg[0].flags = 0;
+  iomsg[0].buf = buf;
+  iomsg[0].len = 2;
+
+  msgset.msgs = iomsg;
+  msgset.nmsgs = 1;
+
+  rc = ioctl(file_i2c,I2C_RDWR,&msgset);
+  reg_gpioa_bits = 0x00;
+  printf("GPIOA reset %d \n",rc);
+  if (rc < 0)
+        printf("ioctl error return code %d \n",rc);
+
   //reset GPIOB
-  buffer[2] = 0x40;   //write command.
-  buffer[1] = 0x13;   //address of register
-  buffer[0] = 0x00;   //for now directions of all pins are changed
-  length = 3;        //Number of bytes to write
-   if (write(file_i2c, buffer, length) != length){
-    printf("Failed to write to the i2c bus.\n");
-  } 
+  buf[0] = 0x13;
+  buf[1] = 0x00;
+
+  iomsg[0].addr = addr;
+  iomsg[0].flags = 0;
+  iomsg[0].buf = buf;
+  iomsg[0].len = 2;
+
+  msgset.msgs = iomsg;
+  msgset.nmsgs = 1;
+
+  rc = ioctl(file_i2c,I2C_RDWR,&msgset);
+  if (rc < 0)
+        printf("ioctl error return code %d \n",rc);
+  printf("GPIOB reset %d \n",rc);
+
+  reg_gpioa_bits = 0x00;
+  reg_gpiob_bits = 0x00;
+
 }
 
 int MPC23017BitRead(int bit){
-  uint8_t buffer[3] = {0};
   uint8_t shift_value = 0;
   uint8_t reg_address = 0;
   uint8_t reg_value = 0;
   uint8_t mask = 0xFF;
   uint8_t length;
+
+  struct i2c_rdwr_ioctl_data msgset;
+  struct i2c_msg iomsg[2];
+  uint8_t buf[2], rbuf[1], wbuf[1];
+  int rc;
 
   if (bit<8){
     reg_address = 0x12;
@@ -724,26 +805,30 @@ int MPC23017BitRead(int bit){
     shift_value = bit - 8;
   }
   
+
+  wbuf[0] = 0x12;
+
+  iomsg[0].addr = addr;
+  iomsg[0].flags = 0;
+  iomsg[0].buf = wbuf;
+  iomsg[0].len = 1;
+
+  iomsg[1].addr = addr;
+  iomsg[1].flags = I2C_M_RD;
+  iomsg[1].buf = rbuf;
+  iomsg[1].len = 1;
+
+  msgset.msgs = iomsg;
+  msgset.nmsgs = 2;
+
+  rc = ioctl(file_i2c,I2C_RDWR,&msgset);
+  printf("return code %d , value read 0x%x\n",rc,rbuf[0]);
   
-  //read the register first  
-  buffer[0] = 0x40; //Indicate writting address. 
-  buffer[1] = reg_address;
-  length = 1;
-  write(file_i2c, buffer, length);
-
-  buffer[0] = 0x41; //Indicate reading address. 
-  length = 1;
-  write(file_i2c, buffer, length);
-
-  length = 1;                   //Number of bytes to read
-  if (read(file_i2c, buffer, length) != length){
-    printf("Failed to read from the i2c bus.\n");
-    printf("Data read: %x\n", buffer[0]);
+  if (rc > 0){
+    return ((rbuf[0] >> shift_value) & 0x01) ;
   }
   else{
-    printf("Data read: %x\n", buffer[0]);
-    return buffer[0];
-  };
-  return (int)(-1);
+    return (int)(-1);
+  }
 }
 

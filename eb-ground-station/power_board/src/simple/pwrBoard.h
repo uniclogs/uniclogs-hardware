@@ -17,7 +17,7 @@
 #define ROT_PWR  15
 
 
-#define NUM_TOKENS 19
+#define NUM_TOKENS 22
 
 
 char *state_name[] = {
@@ -93,7 +93,11 @@ char *inputTokens[] = {
   "U_TX_OFF",
 
   "L_TX_ON",
-  "L_TX_OFF"
+  "L_TX_OFF",
+
+  "EXIT",
+  "STATUS",
+  "NO_ACTION"
 };
 
 typedef enum{
@@ -118,7 +122,11 @@ typedef enum{
   U_TX_OFF,
 
   L_TX_ON,
-  L_TX_OFF
+  L_TX_OFF,
+  
+  EXIT,
+  STATUS,
+  NO_ACTION
 }input_tokens;
 
 typedef enum{
@@ -187,7 +195,9 @@ struct pwr_Config {
 
 
 int initialize();
+int i2c_exit();
 int getInput();
+void upper_string(char s[]);
 int processToken();
 int processVHFTokens();
 int processUHFTokens();
