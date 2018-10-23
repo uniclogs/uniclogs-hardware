@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <signal.h>
 
 #include "pwrBoard.h"
 
@@ -24,6 +25,11 @@ int main(int argc, char *argv[]){
     
     printf("started powerboard code \n");
     initialize();
+    
+    signal(SIGINT, handle_kill_signal);
+	  signal(SIGUSR1, handle_token_signal);
+    signal(SIGALRM, handle_alarm_signal);
+    
     while(1){
       getInput();
 
@@ -37,20 +43,50 @@ int main(int argc, char *argv[]){
       }
 
       if(pwrConfig.token == STATUS){
-        printf("Pin status: 0x%x 0x%x \n", reg_gpioa_bits,reg_gpiob_bits);
-        printf("State: %d \n", pwrConfig.state); 
-        printf("Secondary state: %d \n", pwrConfig.sec_state); 
+        printf("Pin status: 0x%x 0x%x \n",reg_gpioa_bits,reg_gpiob_bits);
+        printf("State: %d \n", pwrConfig.state);
+        printf("Secondary state: %d \n", pwrConfig.sec_state);
+
+        printf("Next State: %d \n", pwrConfig.next_state);
+        printf("Next Secondary state: %d \n", pwrConfig.next_sec_state);
         continue;
       }
+      
+      // initialize token to NO_ACTION
+      pwrConfig.token = NO_ACTION;
 
       processToken();
       //printf("Before Change %d, %d, next, %d, %d \n",pwrConfig.state, pwrConfig.sec_state,pwrConfig.next_state, pwrConfig.next_sec_state);
-      changeState();
-      //printf("After Change %d, %d, next, %d, %d \n",pwrConfig.state, pwrConfig.sec_state,pwrConfig.next_state, pwrConfig.next_sec_state);
+      
+      if (pwrConfig.token != NO_ACTION)
+        raise(SIGUSR1);
+
     }
     printf("Program successfully exited. \n");
       
     return 0;
+}
+
+
+int handle_kill_signal(){
+  i2c_exit();
+  printf("Program successfully exited. \n");
+  
+  return 0;
+}
+
+
+int handle_token_signal(){
+  printf("Changing state. \n");
+  changeState();
+  
+  return 0;
+}
+
+
+int handle_alarm_signal(){
+  printf("Handling Alarm. \n");
+  return 0;
 }
 
 
@@ -371,8 +407,10 @@ int BandSwitchErrorRecovery(){
 int killOrError(){
   if(pwrConfig.token == KILL)
     pwrConfig.next_state = PWR_UP;
-  else
+  else{
     printf("Incorrect token entered. Please validate. No action taken by code. \n ");
+    pwrConfig.token == NO_ACTION;
+  }
 }
 
 int VHFErrorRecovery(){
