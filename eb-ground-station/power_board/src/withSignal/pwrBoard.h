@@ -72,6 +72,7 @@ char *state_name[] = {
 
 
 char *inputTokens[] = {
+  "NO_ACTION",
   "V_TX",
   "U_TX",
   "L_TX",
@@ -97,10 +98,12 @@ char *inputTokens[] = {
 
   "EXIT",
   "STATUS",
-  "NO_ACTION"
+  "MAX_TOKENS"
 };
 
 typedef enum{
+  NO_ACTION,
+    
   V_TX,
   U_TX,
   L_TX,
@@ -126,7 +129,7 @@ typedef enum{
   
   EXIT,
   STATUS,
-  NO_ACTION
+  MAX_TOKENS
 }input_tokens;
 
 typedef enum{
