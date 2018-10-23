@@ -31,6 +31,9 @@ int main(int argc, char *argv[]){
     signal(SIGALRM, handle_alarm_signal);
     
     while(1){
+      // initialize token to NO_ACTION
+      pwrConfig.token = NO_ACTION;
+
       getInput();
 
       if(pwrConfig.token == NO_ACTION){
@@ -51,16 +54,12 @@ int main(int argc, char *argv[]){
         printf("Next Secondary state: %d \n", pwrConfig.next_sec_state);
         continue;
       }
-      
-      // initialize token to NO_ACTION
-      pwrConfig.token = NO_ACTION;
 
       processToken();
       //printf("Before Change %d, %d, next, %d, %d \n",pwrConfig.state, pwrConfig.sec_state,pwrConfig.next_state, pwrConfig.next_sec_state);
       
       if (pwrConfig.token != NO_ACTION)
         raise(SIGUSR1);
-
     }
     printf("Program successfully exited. \n");
       
@@ -68,25 +67,22 @@ int main(int argc, char *argv[]){
 }
 
 
-int handle_kill_signal(){
+void handle_kill_signal(int sig){
   i2c_exit();
   printf("Program successfully exited. \n");
-  
-  return 0;
+
+  exit(0);
 }
 
 
-int handle_token_signal(){
+void handle_token_signal(int sig){
   printf("Changing state. \n");
   changeState();
-  
-  return 0;
 }
 
 
-int handle_alarm_signal(){
+void handle_alarm_signal(int sig){
   printf("Handling Alarm. \n");
-  return 0;
 }
 
 
@@ -95,8 +91,8 @@ int initialize(){
   uint8_t buffer[3] = {0};
   uint8_t length;
 
-  pwrConfig.next_state = PWR_UP;
-  pwrConfig.next_sec_state = NONE;
+  pwrConfig.state = PWR_UP;
+  pwrConfig.sec_state = NONE;
 
   if ((file_i2c = open(filename, O_RDWR)) < 0)
   {
@@ -197,6 +193,9 @@ int getInput(){
       break;
     }
   }
+
+  if(i == MAX_TOKENS)
+    printf("Not a known token. Please validate and reenter. No action taken. \n");
   
 }
 
@@ -218,7 +217,15 @@ Create user signals, timers in thsi thread as well.
 This would ensure that we can process any tokens even if we are waiting on a state change.
 */
 int processToken(){     
-  
+ 
+  printf("Pin status: 0x%x 0x%x \n",reg_gpioa_bits,reg_gpiob_bits);
+  printf("State: %d \n", pwrConfig.state);
+  printf("Secondary state: %d \n", pwrConfig.sec_state);
+
+  printf("Next State: %d \n", pwrConfig.next_state);
+  printf("Next Secondary state: %d \n", pwrConfig.next_sec_state);
+  printf("Tokens: %d \n", pwrConfig.token);
+
   switch(pwrConfig.state){
   case SYS_KILL:
     usleep(1);   
@@ -409,7 +416,7 @@ int killOrError(){
     pwrConfig.next_state = PWR_UP;
   else{
     printf("Incorrect token entered. Please validate. No action taken by code. \n ");
-    pwrConfig.token == NO_ACTION;
+    pwrConfig.token = NO_ACTION;
   }
 }
 

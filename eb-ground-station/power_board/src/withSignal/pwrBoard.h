@@ -132,18 +132,18 @@ typedef enum{
   MAX_TOKENS
 }input_tokens;
 
-typedef enum{
-    SYS_KILL,
-    
+typedef enum{ 
     PWR_UP,     // low power
     SYS_PWR_ON,
     BAND_SWITCH,
     S_SYS_ON,
     S_SYS_OFF,
-    
+
     V_TRAN,
     U_TRAN,
-    L_TRAN
+    L_TRAN,
+
+    SYS_KILL
 }pwr_state;
 
 typedef enum{  
@@ -196,7 +196,9 @@ struct pwr_Config {
   int errorCode;
 } pwrConfig;
 
-
+void handle_kill_signal(int sig);
+void handle_token_signal(int sig);
+void handle_alarm_signal(int sig);
 int initialize();
 int i2c_exit();
 int getInput();
