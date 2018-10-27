@@ -1,20 +1,19 @@
-#define V_KEY    0
-#define V_PTT    1
+#define ROT_PWR  0
+#define SDR_ROCK 1
 #define V_PA     2
-#define V_LNA    3
-#define V_POL    4
-#define U_KEY    5
+#define SDR_LIME 3
+#define L_PA     4
+#define U_PA     5
 #define U_PTT    6
-#define U_PA     7
-
-#define U_LNA    8
-#define U_POL    9
-#define L_PTT    10
-#define L_PA     11
-#define S_PWR    12
-#define SDR_ROCK 13
-#define SDR_LIME 14
-#define ROT_PWR  15
+#define S_PWR    7
+#define L_PTT    8
+#define V_PTT    9
+#define V_POL    10
+#define U_POL    11
+#define U_KEY    12
+#define V_KEY    13
+#define V_LNA    14
+#define U_LNA    15
 
 
 char *inputTokens[] = {
