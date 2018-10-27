@@ -60,22 +60,22 @@ Pin and power circuit assignment:
 
 
 GPIO Bit   Station Function           Low (Pull down)    High      High/Power (12 VDC)    High/Power  (5 VDC)   
-0          VHF    - Dow Key                              X
-1                 - RF PTT            X
-2                 - PA Power                                       X
-3                 - LNA                                  X
-4                 - Polarization                         X
-5          UHF    - Dow Key                              X
-6                 - RF PTT            X
-7                 - PA Power                                       X
-8                 - LNA                                  X
-9                 - Polarization                         X
-10         L Band - RF PTT            X
-11                - PA Power                                       X
-12         Other  - SDR Rock Power                                                        X
-13                - Lime SDR Power                                 X
-14                - Rotator Power                                                         X
-15         S Band - Power             X
+B5         VHF    - Dow Key                              X
+B1                - RF PTT            X
+A2                - PA Power                                       X
+B6                - LNA                                  X
+B2                - Polarization                         X
+B4         UHF    - Dow Key                              X
+A6                - RF PTT            X
+A5                - PA Power                                       X
+B7                - LNA                                  X
+B3                - Polarization                         X
+B0         L Band - RF PTT            X
+A4                - PA Power                                       X
+A1         Other  - SDR Rock Power                                                        X
+A3                - Lime SDR Power                                 X
+A0                - Rotator Power                                                         X
+A7         S Band - Power             X
 
 
 --------------------------------------------------------------------------------
