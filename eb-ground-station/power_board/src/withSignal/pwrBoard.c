@@ -1,9 +1,9 @@
-#include <unistd.h>                       //Needed for I2C port
+#include <unistd.h>                        //Needed for I2C port
 #include <stdint.h>
-#include <fcntl.h>                        //Needed for I2C port
-#include <sys/ioctl.h>                    //Needed for I2C port
-#include <linux/i2c-dev.h>                //Needed for I2C port
-#include <linux/i2c.h>                    //Needed for I2C port
+#include <fcntl.h>                         //Needed for I2C port
+#include <sys/ioctl.h>                     //Needed for I2C port
+#include <linux/i2c-dev.h>                 //Needed for I2C port
+#include <linux/i2c.h>                     //Needed for I2C port
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -12,13 +12,15 @@
 
 #include "pwrBoard.h"
 
-//I2C bus
-char *filename = (char*)"/dev/i2c-1";
-int file_i2c;
-uint8_t reg_gpioa_bits;
-uint8_t reg_gpiob_bits;
-int addr = 0x20;          //<<<<<The I2C address of the slave
 
+/*
+Overview
+---------
+The code is checks for input token in a loop using getInput().The token is validated in processToken(). 
+If the token is good, approriate nextstate is stored in pwr_Config and SIGUSR1 signal is raised.
+The signal then calls changeState() to change the state based on the details in pwr_Config which were 
+set up based on the token.
+*/
 int main(int argc, char *argv[]){
     (void)argc;
     (void)argv;
@@ -26,10 +28,11 @@ int main(int argc, char *argv[]){
     printf("started powerboard code \n");
     initialize();
 
+    //define signals that will be handled.
     signal(SIGINT, handle_kill_signal);
     signal(SIGABRT, handle_kill_signal);
-    signal(SIGUSR1, handle_token_signal);
-    signal(SIGALRM, handle_alarm_signal);
+    signal(SIGUSR1, handle_token_signal);  //All user tokens creates this signal. 
+    signal(SIGALRM, handle_alarm_signal);  //The 2 minute cooldown counter creates thsi signal.
 
     while(1){
       // initialize token to NO_ACTION
@@ -57,7 +60,6 @@ int main(int argc, char *argv[]){
       }
 
       processToken();
-      //printf("Before Change %d, %d, next, %d, %d \n",pwrConfig.state, pwrConfig.sec_state,pwrConfig.next_state, pwrConfig.next_sec_state);
 
       if (pwrConfig.token != NO_ACTION)
         raise(SIGUSR1);
@@ -159,7 +161,7 @@ int initialize(){
 
   rc = ioctl(file_i2c,I2C_RDWR,&msgset);
   if (rc < 0)
-        printf("ioctl error return code %d \n",rc);
+    printf("ioctl error return code %d \n",rc);
 
 
   //make GPIOB as output
@@ -180,12 +182,10 @@ int initialize(){
 
   MPC23017BitReset();
 
-
-  //reg_gpioa_bits = 0x00;
-  //reg_gpiob_bits = 0x00;
 }
 
 
+//Handles proper exit after a crash or user EXIT token
 int i2c_exit(){
   int rc;
 
@@ -198,6 +198,8 @@ int i2c_exit(){
 }
 
 
+
+//Get user token and validate with list of input tokens.
 int getInput(){
   char input[50]="\0";
   int i;
@@ -436,7 +438,6 @@ int BandSwitchErrorRecovery(){
 int tokenError(){
     printf("Token not valid for the state. Please refer to state diagram. No action taken. \n ");
     pwrConfig.token = NO_ACTION;
-
 }
 
 int VHFErrorRecovery(){
@@ -472,6 +473,7 @@ int CoolDown_Wait(){
   printf("Waiting for cooldown. Force exit via KILL or EXIT tokens. \n");
   pwrConfig.token = NO_ACTION;
 }
+
 
 int changeState(){
 
@@ -606,11 +608,11 @@ int changeState(){
           pwrConfig.sec_state = U_SWITCH;
           break;
         case U_TRANS_ON:
-          MPC23017BitSet(V_PTT);
+          MPC23017BitSet(U_PTT);
           pwrConfig.sec_state = U_SWITCH;
           break;        
         case U_TRANS_OFF:
-          MPC23017BitClear(V_PTT);
+          MPC23017BitClear(U_PTT);
           pwrConfig.sec_state = U_SWITCH;
           break;        
         case U_LHCP:
@@ -706,6 +708,8 @@ int changeState(){
 }
 
 
+//All GPIO bit values are stored in program variable.
+//Set a bit value using ioctl in one of GPIOs and update the program variable.
 int MPC23017BitSet(int bit){
   
   uint8_t buffer[3] = {0};
@@ -719,7 +723,6 @@ int MPC23017BitSet(int bit){
   uint8_t buf[2];
   int rc;
   
-  //printf("DEBUGGING BIT: 0x%x \n", bit);
   if (bit<8){
     reg_address = 0x12;
     shift_value = bit;
@@ -732,8 +735,7 @@ int MPC23017BitSet(int bit){
     reg_gpiob_bits = reg_gpiob_bits | (1 << shift_value);
     reg_value = reg_gpiob_bits;
   }
-  
-  
+    
   //update register value 
   buf[0] = reg_address;
   buf[1] = reg_value;
@@ -810,6 +812,7 @@ int MPC23017BitReset(){
   uint8_t buf[2];
   int rc;
 
+  //reset GPIOA
   buf[0] = 0x12;
   buf[1] = 0x00;
 
@@ -840,61 +843,33 @@ int MPC23017BitReset(){
   msgset.nmsgs = 1;
 
   rc = ioctl(file_i2c,I2C_RDWR,&msgset);
-  if (rc < 0)
-    printf("ioctl gpiob return code %d \n",rc);
   printf("GPIOB reset %d \n",rc);
+  if (rc < 0)
+    printf("ioctl gpiob reset return code %d \n",rc);
 
   reg_gpioa_bits = 0x00;
   reg_gpiob_bits = 0x00;
 
 }
 
+//This does not read the actual value. It reads the data from program variables
 int MPC23017BitRead(int bit){
   uint8_t shift_value = 0;
-  uint8_t reg_address = 0;
-  uint8_t reg_value = 0;
-  uint8_t mask = 0xFF;
-  uint8_t length;
-
-  struct i2c_rdwr_ioctl_data msgset;
-  struct i2c_msg iomsg[2];
-  uint8_t buf[2], rbuf[1], wbuf[1];
-  int rc;
+  uint8_t gpio_bits=0;
 
   if (bit<8){
-    reg_address = 0x12;
     shift_value = bit;
+    gpio_bits = reg_gpioa_bits & (1 << shift_value);
   }
   else{
-    reg_address = 0x13;
     shift_value = bit - 8;
+    gpio_bits = reg_gpiob_bits & (1 << shift_value);
   }
   
+  if (gpio_bits == 0 )
+    return 0;
+  else
+    return 1;
 
-  wbuf[0] = 0x12;
-
-  iomsg[0].addr = addr;
-  iomsg[0].flags = 0;
-  iomsg[0].buf = wbuf;
-  iomsg[0].len = 1;
-
-  iomsg[1].addr = addr;
-  iomsg[1].flags = I2C_M_RD;
-  iomsg[1].buf = rbuf;
-  iomsg[1].len = 1;
-
-  msgset.msgs = iomsg;
-  msgset.nmsgs = 2;
-
-  rc = ioctl(file_i2c,I2C_RDWR,&msgset);
-  printf("ioctl read return code %d , value read 0x%x\n",rc,rbuf[0]);
-  
-  if (rc > 0){
-    return ((rbuf[0] >> shift_value) & 0x01) ;
-  }
-  else{
-    printf("ioctl read return code %d , value read 0x%x\n",rc,rbuf[0]);
-    return (int)(-1);
-  }
 }
 

@@ -141,6 +141,16 @@ struct pwr_Config {
   int errorCode;
 } pwrConfig;
 
+
+//I2C bus
+char *filename = (char*)"/dev/i2c-1";
+int file_i2c;
+uint8_t reg_gpioa_bits;
+uint8_t reg_gpiob_bits;
+int addr = 0x20;                           //The I2C address of the slave
+
+
+
 void handle_kill_signal(int sig);
 void handle_token_signal(int sig);
 void handle_alarm_signal(int sig);
