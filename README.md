@@ -1,4 +1,6 @@
 # oresat-ground-station
+
+[![Join the chat at https://gitter.im/oresat/oresat-ground-station](https://badges.gitter.im/oresat/oresat-ground-station.svg)](https://gitter.im/oresat/oresat-ground-station?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 OreSat ground station hardware and software for both RF and antenna positioning
 
 ![EB Station Block Diagram](https://github.com/oresat/oresat-ground-station/blob/master/doc/GS_3_5.png)
