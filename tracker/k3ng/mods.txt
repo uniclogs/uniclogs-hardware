@@ -1,0 +1,21 @@
+Modifications to k3ng_rotator_controller.ino
+
+G.N. LeBrasseur
+27-Mar-2019
+
+---
+
+To get the thing to work correectly with HAMLIB:
+   At line 12229:
+      Swap the comment-out part between "+" and "AZ"
+
+   At line 12262:
+      Swap the comment-out part between "+" and "EL"
+
+---
+
+There is a OPTION_HAMLIB_EASYCOM_AZ_EL_COMMAND_HACK compile switch in rotator_features.h however it does not
+fix the issue we found with HAMLIB. It's implemented very close to the above fixes but only provides a new combined
+AZ / EL query command called "Z". Totally unrelated.
+
+---
