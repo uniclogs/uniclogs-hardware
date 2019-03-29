@@ -1,4 +1,6 @@
-# K3NG Rotator Controller used with UniClOGS
+## Tracker used with UniClOGS
+
+### This is based on the K3NG Rotator Controller
 
 The ground station uses an Arduino and simple interface shield to convert the serial
 "Easycom protocol" that _rotctld_ speaks, into the relay output and potentiometer
