@@ -8,6 +8,7 @@ Major component sections
 * Structure
 * RF systems
 * Network
+* Power Board
 * Tracker
 
 ## BOM for ground station
