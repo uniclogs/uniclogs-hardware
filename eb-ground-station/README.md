@@ -1,14 +1,14 @@
-## EB ground station stuff
+## EB ground station subsystems
 
-Stuff pertaining to the Engineering Building "University Class" ground station
+Subsystems pertaining to the Engineering Building "University Class" Open Ground Station (UniClOGS)
 
 
-Major component sections
+Major components
 
 * Structure
 * RF systems
 * Network
-* Power Board
+* Power system
 * Tracker
 
 ## BOM for ground station

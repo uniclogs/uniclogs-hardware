@@ -1,8 +1,7 @@
 ## RF Components
 
 * Antennas
-* Rotator
 * Feedlines
-* LNA & PA
-* Power
-* SDR
+* Low Noise Amplifier
+* Power Amplifier
+* Software Defined Radio (SDR)
