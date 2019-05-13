@@ -3,7 +3,7 @@ UniClOGS ground station hardware for both RF and antenna positioning
 
 ![EB Station Block Diagram](https://github.com/oresat/oresat-ground-station/blob/master/doc/GS_3_7.pdf)
 
-![EB Station Block Diagram]("https://github.com/oresat/oresat-ground-station/blob/master/doc/FO-29_Pass_Screenshot from 2019-04-28 17-00-28.png")
+![EB Station Block Diagram](https://github.com/oresat/oresat-ground-station/blob/master/doc/FO-29_Pass_Screenshot_from_2019-04-28_17-00-28.png)
 
 
 ## OreSat Ground Station Infrastructure
