@@ -1,0 +1,25 @@
+GPIO Bit   Station Function           Low (Pull down)    High      High/Power (12 VDC)    High/Power  (5 VDC)   
+
+lsb
+A0                - Rotator Power                                                         X
+A1                - SDR Rock Power                                                        X
+A2         VHF    - PA Power                                       X
+A3                - Lime SDR Power                                 X
+A4         L Band - PA Power                                       X
+A5         UHF    - PA Power                                       X
+A6         UHF    - RF PTT            X
+A7         U/V    - Rx swap           X
+msb
+
+---
+
+lsb
+B0         L Band - RF PTT            X
+B1         VHF    - RF PTT            X
+B2         VHF    - Polarization                         X
+B3         UHF    - Polarization                         X
+B4         UHF    - Dow Key                              X
+B5         VHF    - Dow Key                              X
+B6         VHF    - LNA                                  X
+B7         UHF    - LNA                                  X
+msb
