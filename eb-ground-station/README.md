@@ -6,10 +6,12 @@ Subsystems pertaining to the Engineering Building "University Class" Open Ground
 Major components
 
 * Structure
+* Antennas
 * RF systems
 * Network
 * Power system
 * Tracker
+* Lightning protection
 
 ## BOM for ground station
 
