@@ -15,7 +15,8 @@ Major components
 
 ## BOM for ground station
 
-[Here is the Bill of Materials so far](https://docs.google.com/spreadsheets/d/1EBKyHZEIYpfHariDGcVJl7H6Yc5BHaDegu6B_IkEdFo/edit#gid=687688620)
+<!-- [Here is the Bill of Materials so far](https://docs.google.com/spreadsheets/d/1EBKyHZEIYpfHariDGcVJl7H6Yc5BHaDegu6B_IkEdFo/edit#gid=687688620) --->
+[Here is the Bill of Materials](https://docs.google.com/spreadsheets/d/1g-H72wh_L9K5FMgDF-K87dqiwulbmqTZjYWP18Jh5gg/edit#gid=1275452567)
 
 The BOM is divided into six sections organizing to some degree what's needed in each phase of the construction.
 
