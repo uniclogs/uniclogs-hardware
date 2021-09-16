@@ -24,13 +24,14 @@ The connector pin order is:
       5 - Relay coil #2
 
 The KiCAD files are in the repo:
-https://github.com/oresat/uniclogs-hardware/tree/master/eb-ground-station/rf-systems/components/rf-relay
-called uniclogs-latching-relay-driver.
+   https://github.com/oresat/uniclogs-hardware/tree/master/eb-ground-station/rf-systems/components/rf-relay
+   called uniclogs-latching-relay-driver.
 
 
 OshPark
-Latching Relay Driver v1.0
-Driver board to interface totem pole digital signal to Latching RF Relay such as Ducommun 2SE1T11JA
+   Latching Relay Driver v1.0
+   Driver board to interface totem pole digital signal to Latching RF Relay such as Ducommun 2SE1T11JA
+   Need to send them the zipped Gerber files
 
 
 RF Relay
