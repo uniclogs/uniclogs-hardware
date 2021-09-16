@@ -3,13 +3,16 @@ Latching_Relay_Driver.txt
 Latching Relay Driver Design Notes
 G.N. LeBrasseur  15-Sep-2021
 
-The essential concept of the design using a capacitor and a totem pole driver is inspired by
-Rick Fogle, WA5TNY, Latching Relay Driver Circuit, found in The ARRL UHF and Microwave Projects Manual, 1994, Pg. 4-6.
+The essential concept of the design using a capacitor and a totem pole driver is inspired by Rick Fogle, WA5TNY, Latching Relay Driver Circuit.
+ * ARRL UHF/Microwave Projects Manual, Volume 1, pg. 4-6
+ * Microwave Update Proceedings 1991
+
 Whereas the circuit described was for only a single coil relay, the addition of the two current routing diodes provides
 the needed current paths required to operate a dual coil relay.
 
 The back-EMF supression function provided by the two back-to-back zener diodes is replaced by use of a MOV.
 
+KJ7SU OreSat notes, Vol. 16, Pg 11
 
 The connector pin order is:
    Input:
