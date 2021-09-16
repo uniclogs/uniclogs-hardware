@@ -1,0 +1,36 @@
+Latching_Relay_Driver.txt
+
+Latching Relay Driver Design Notes
+G.N. LeBrasseur  15-Sep-2021
+
+The essential concept of the design using a capacitor and a totem pole driver is inspired by
+Rick Fogle, WA5TNY, Latching Relay Driver Circuit, found in The ARRL UHF and Microwave Projects Manual, 1994, Pg. 4-6.
+Whereas the circuit described was for only a single coil relay, the addition of the two current routing diodes provides
+the needed current paths required to operate a dual coil relay.
+
+The back-EMF supression function provided by the two back-to-back zener diodes is replaced by use of a MOV.
+
+
+The connector pin order is:
+   Input:
+      1 - GND
+      2 - Totem Pole 12V On/Off signal
+   Output:
+      3 - Relay coil #1
+      4 - Relay common
+      5 - Relay coil #2
+
+The KiCAD files are in the repo:
+https://github.com/oresat/uniclogs-hardware/tree/master/eb-ground-station/rf-systems/components/rf-relay
+called uniclogs-latching-relay-driver.
+
+
+OshPark
+Latching Relay Driver v1.0
+Driver board to interface totem pole digital signal to Latching RF Relay such as Ducommun 2SE1T11JA
+
+
+RF Relay
+Ducommun 2SE1T11JA
+
+
