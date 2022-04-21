@@ -1,0 +1,54 @@
+EB_UniClOGS_RF_Path.txt
+
+20-Apr-2022
+
+Here is the current UniClOGS RF interconnects to the Lime:
+
+UniClOGS Tx/Rx Switching to Lime
+-------------------------------------------------------
+
+Withinn flowgraph:
+
+Lime SDR Source (Rx)
+Signal      VHF     UHF
+Channel     B       A
+LNA Path    L       L
+
+Lime SDR Sink (Tx)
+Signal    VHF    UHF    L
+Channel   A      B      A  
+Band      1      1      2
+
+-------------------------------------------------------
+
+Ports on PCB to RF Hardware
+All Rx ports reference to transfer switch de-energized
+
+RX1_L    UHF Rx
+RX1_H    NC
+RX1_W    NC
+RX2_L    VHF Rx
+RX2_H    NC
+RX2_W    NC
+
+TX1_1    VHF Tx
+TX1_2    L-Band Tx
+TX2_1    UHF Tx
+TX2_2    NC
+
+The "Rx Swap" transfer switch changes the Rx path as such"
+De-Energized     RX1_L  <-  UHF
+                 RX2_L  <-  VHF
+
+Energized        RX1_l  <-  VHF
+                 RX2_L  <-  UHF
+
+
+This permits the following modes: (UP/down)
+De-Energized:   L/u (which is what we use) 
+                V/u
+                U/v
+
+Energized:      L/v
+                U/u
+                V/v
