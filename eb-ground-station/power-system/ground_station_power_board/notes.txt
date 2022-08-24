@@ -38,6 +38,8 @@ Configuration of the Outputs
 Populate and leave some components unpopulated to configure the output current modes.
 Only the dual mosfet or the mosfet driver may be populated, never both for the same channel pair
 If the dual mosfets are populated, the rest of the circuit may be configred independently for the two channels 
+If you populate the dual mosfet, also populate the 1k resistors on its gate.
+If you populate the P channel MOSFETs, populate the 10k pullup resistors
 
 Possible current modes: (+ is current out, - is current in)
 ±1.5A
@@ -47,16 +49,17 @@ Possible current modes: (+ is current out, - is current in)
 The channel pair may be configured for EITHER {±1.5A} or {-500mA or +15A}
 
 To configure for:
-+--------+-------------+-------------+----------+-----+-------------+
-| Mode   | Dual Driver | Dual MOSFET | P MOSFET | R   | 2pad jumper |
-+--------+-------------+-------------+----------+-----+-------------+
-| -500mA | no          | yes         | no       | no  | jumped      |
-| +15A   | no          | yes         | yes      | yes | open        |
-| ±1.5A  | yes         | no          | no       | no  | any         |
-+--------+-------------+-------------+----------+-----+-------------+
++---------+-------------+-------------+----------+-------+-----+-------------+
+| Mode    | Dual Driver | Dual MOSFET | P MOSFET | Rgate | C   | 2pad jumper |
++---------+-------------+-------------+----------+-------+-----+-------------+
+| -500mA  | no          | yes         | no       | no    | no  | jumped      |
+| +15A    | no          | yes         | yes      | 1k    | no  | open        |
+| 15Asoft | no          | yes         | yes      | 680k  | yes | open        |
+| ±1.5A   | yes         | no          | no       | no    | no  | any         |
++---------+-------------+-------------+----------+-------+-----+-------------+
 
 Use the 3pad jumper to select 5 or 12v for the +15A mode
-
+In soft start mode, adjust Rgate to adjust soft start time
 
 RasPI pins:
 +------------+----+----+------------+
