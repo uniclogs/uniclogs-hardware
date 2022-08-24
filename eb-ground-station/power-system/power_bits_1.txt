@@ -1,0 +1,25 @@
+GPIO Bit   Station Function                Low (Pull down)    High      High/Power (12 VDC)    High/Power  (5 VDC)     High/Power (5 VDC Soft-Start)    Diagram ID      stationd symbol (state diagram)
+
+lsb
+A0                - Rotator Power                                                              X                                                        Pwr(l)          Rot-Pwr
+A1                - Radio SBC Power                                                            X                                                        Pwr(a)          SDR-Rock (name should change)
+A2         VHF    - PA Power                                            X                                                                               Pwr(d)          V-PA
+A3                - SDR Power                                                                                          X                                Pwr(b)          SDR-Lime (name should change)
+A4         L Band - PA Power                                            X                                                                               Pwr(j)          L-PA
+A5         UHF    - PA Power                                            X                                                                               Pwr(g)          U-PA
+A6         UHF    - RF PTT                 X                                                                                                            Pwr(h)          U-PTT
+A7         U/V    - Rx swap                X                                                                                                            Pwr(c)          (not yet designated in state diagram)
+msb
+
+---
+
+lsb
+B0         L Band - RF PTT                 X                                                                                                            Pwr(k)          L-PTT
+B1         VHF    - RF PTT                 X                                                                                                            Pwr(e)          V-PTT
+B2         VHF    - Polarization                              X                                                                                         Pwr(o)          V-Pol
+B3         UHF    - Polarization                              X                                                                                         Pwr(m)          U-Pol
+B4         UHF    - Dow Key (RF T/R SW)                       X                                                                                         Pwr(i)          U-Key
+B5         VHF    - Dow Key (RF T/R SW)                       X                                                                                         Pwr(f)          V-Key
+B6         VHF    - LNA                                       X                                                                                         Pwr(p)          V-LNA
+B7         UHF    - LNA                                       X                                                                                         Pwr(n)          U-LNA
+msb
