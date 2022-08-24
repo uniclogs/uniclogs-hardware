@@ -102,7 +102,7 @@ ADS1115
 http://www.ti.com/lit/ds/symlink/ads1115.pdf
 
 
-16-Bit GPIO i2c I/O Expander
+16-Bit GPIO i2c I/O Expander (THIS HAS BEEN CHANGED)
 MCP23017
 https://www.microchip.com/wwwproducts/en/MCP23017
 
@@ -113,11 +113,11 @@ http://ww1.microchip.com/downloads/en/DeviceDoc/21415C.pdf
 
 
 Dual N-Channel MOSFET
-DMN61D8L/LVT
+DMN61D8L-LVT
 https://www.diodes.com/assets/Datasheets/DMN61D8L-LVT.pdf
 
 
-P-Channel MOSFET
+P-Channel MOSFET (OUT OF STOCK, CHANGED)
 SQJ459EP
 http://www.vishay.com/docs/66963/sqj459ep.pdf
 

@@ -1,1 +1,84 @@
-what pad is being described on sheet 1?
+
+New Design Requirements:
+* Use MAX7310ATE 8 bit GPIO expander
+* 24 control bits, exact setup TBD
+* Switches:
+  - Low side
+  - High side
+  - High side, high current
+  - High side, high current, soft start
+* Designed in KiCad
+* Use the correct I2C RasPi pins
+* Connectors; all seperable, push-lock lever or spring type:
+  - Power in: 3pos 1row 12AWG
+  - GPIO x3 : 8pos 1row 12-26AWG
+  - ADC     : 4pos 2row 22AWG
+* All 4 UARTs on the pi need to be broken out to their own ports to be passed on to other stuff
+* Current ranges should be configurable in hardware after the PCB has been fabbed
+
+Parts:
++-------------------------------+------------------+-----------------+
+| Name                          | MFR              | MPN             |
++-------------------------------+------------------+-----------------+
+| 8 pos wire  connector (screw) | Phoenix Connect  | 1110635         |
+| 8 pos board connector (screw) | Phoenix Connect  | 1809131         |
+| 8 pos wire  connector (lever) | Phoenix Connect  | 1110613         | 
+| 8 pos board connector (lever) | Phoenix Connect  | 1792685         |
+| GPIO expander                 | Maxim Integrated | MAX7310ATE      |
+| I2C ADC                       | TI               | ADS1115         |
+| I2C temperature sensor        | Microchip        | MCP9808         |
+| Dual N-Channel MOSFET         | Diodes Inc       | DMN61D8L-LVT    |
+| P-Channel MOSFET              | Vishay Siliconix | SUD50P08-25L-E3 |
+| Dual 1.5A MOSFET Driver       | Microchip        | TC427           |
++-------------------------------+------------------+-----------------+
+
+
+Configuration of the Outputs
+
+Populate and leave some components unpopulated to configure the output current modes.
+Only the dual mosfet or the mosfet driver may be populated, never both for the same channel pair
+If the dual mosfets are populated, the rest of the circuit may be configred independently for the two channels 
+
+Possible current modes: (+ is current out, - is current in)
+±1.5A
+-500mA
++15A
+
+The channel pair may be configured for EITHER {±1.5A} or {-500mA or +15A}
+
+To configure for:
++--------+-------------+-------------+----------+-----+-------------+
+| Mode   | Dual Driver | Dual MOSFET | P MOSFET | R   | 2pad jumper |
++--------+-------------+-------------+----------+-----+-------------+
+| -500mA | no          | yes         | no       | no  | jumped      |
+| +15A   | no          | yes         | yes      | yes | open        |
+| ±1.5A  | yes         | no          | no       | no  | any         |
++--------+-------------+-------------+----------+-----+-------------+
+
+Use the 3pad jumper to select 5 or 12v for the +15A mode
+
+
+RasPI pins:
++------------+----+----+------------+
+| 3v3        | 01 | 02 | 5V         |
+| SDA        | 03 | 04 | 5V         |
+| SCL        | 05 | 06 | GND        |
+| TX3        | 07 | 08 | TX0        |
+| GND        | 09 | 10 | RX0        |
+|            | 11 | 12 |            |
+|            | 13 | 14 | GND        |
+|            | 15 | 16 |            |
+| 3v3        | 17 | 18 |            |
+|            | 19 | 20 | GND        |
+| RX4        | 21 | 22 |            |
+|            | 23 | 24 | TX4        |
+| GND        | 25 | 26 |            |
+| TX2        | 27 | 28 | RX2        |
+| RX3        | 29 | 30 | GND        |
+|            | 31 | 32 | TX5        |
+| RX5        | 33 | 34 | GND        |
+|            | 35 | 36 |            |
+|            | 37 | 38 |            |
+| GND        | 39 | 40 |            |
++------------+----+----+------------+
+* UART1 shares pins with UART0
