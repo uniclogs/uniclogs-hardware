@@ -24,6 +24,8 @@ Parts:
 | 8 pos board connector (screw) | Phoenix Connect  | 1809131         |
 | 8 pos wire  connector (lever) | Phoenix Connect  | 1110613         | 
 | 8 pos board connector (lever) | Phoenix Connect  | 1792685         |
+| 8 pos board connector 45°     | Phoenix Connect  | 1827486         |
+| 8 pos wire  connector 45°     | Phoenix Connect  | 1851290 1966156 |
 | GPIO expander                 | Maxim Integrated | MAX7310ATE      |
 | I2C ADC                       | TI               | ADS1115         |
 | I2C temperature sensor        | Microchip        | MCP9808         |
