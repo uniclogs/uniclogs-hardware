@@ -37,7 +37,7 @@
           "height": 0.95,
           "width": 0.9
         },
-        "silk_line_width": 0.15,
+        "silk_line_width": 0.125,
         "silk_text_italic": false,
         "silk_text_size_h": 1.0,
         "silk_text_size_v": 1.0,
