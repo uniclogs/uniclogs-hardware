@@ -6483,7 +6483,7 @@
     (uuid 70be2267-34be-40e9-aef3-2acfb73f4b41)
     (property "Reference" "FB2" (id 0) (at 146.685 73.025 90))
     (property "Value" "FerriteBead" (id 1) (at 145.415 77.47 90))
-    (property "Footprint" "Capacitor_SMD:C_1206_3216Metric" (id 2) (at 149.225 76.073 90)
+    (property "Footprint" "oresat-footprints:1206-or-0805" (id 2) (at 149.225 76.073 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 149.225 74.295 0)
@@ -8143,7 +8143,7 @@
     (uuid fb76027d-7de7-4547-9f04-dd609d7e0ba6)
     (property "Reference" "FB1" (id 0) (at 146.685 50.165 90))
     (property "Value" "FerriteBead" (id 1) (at 149.225 54.61 90))
-    (property "Footprint" "Capacitor_SMD:C_1206_3216Metric" (id 2) (at 149.225 53.213 90)
+    (property "Footprint" "oresat-footprints:1206-or-0805" (id 2) (at 149.225 53.213 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 149.225 51.435 0)
@@ -8658,10 +8658,10 @@
       (reference "D26") (unit 1) (value "LED") (footprint "LED_SMD:LED_0603_1608Metric")
     )
     (path "/fb76027d-7de7-4547-9f04-dd609d7e0ba6"
-      (reference "FB1") (unit 1) (value "FerriteBead") (footprint "Capacitor_SMD:C_1206_3216Metric")
+      (reference "FB1") (unit 1) (value "FerriteBead") (footprint "oresat-footprints:1206-or-0805")
     )
     (path "/70be2267-34be-40e9-aef3-2acfb73f4b41"
-      (reference "FB2") (unit 1) (value "FerriteBead") (footprint "Capacitor_SMD:C_1206_3216Metric")
+      (reference "FB2") (unit 1) (value "FerriteBead") (footprint "oresat-footprints:1206-or-0805")
     )
     (path "/8ae10509-281c-4962-a6b9-e66ad947c9fb"
       (reference "H1") (unit 1) (value "MountingHole") (footprint "oresat-footprints:H-MCMASTER-94100A150")
