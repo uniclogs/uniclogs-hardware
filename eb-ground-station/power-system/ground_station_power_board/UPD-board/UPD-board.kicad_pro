@@ -55,7 +55,16 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "clearance|136829800|113614200|71c8475f-a983-4ccb-84df-8f0b01fd1f72|f0fc04c1-0117-4524-9566-44a69ed459c9",
+        "clearance|136829800|113858200|48a0662d-5c61-4aaf-953c-4f615d726fb8|f0fc04c1-0117-4524-9566-44a69ed459c9",
+        "clearance|143941800|113614200|3cc09022-6633-4bd0-bc73-e1f71da2af66|f6b25e99-857c-4d50-808b-dfb292cd6a20",
+        "clearance|143941800|113858200|c0861cc6-af34-4111-b056-78ca57561627|f6b25e99-857c-4d50-808b-dfb292cd6a20",
+        "clearance|151053800|113624200|0c5324c8-637a-4133-8209-0208afb2f8a8|9cfeeab8-fa9f-45d7-a985-b3d805a7f74b",
+        "clearance|151053800|113868200|58fab306-312e-4c40-a74e-becc4c8ef3be|9cfeeab8-fa9f-45d7-a985-b3d805a7f74b",
+        "clearance|158165800|113614200|e29cb728-8695-4124-a802-a43fbe082c3a|fde3bbb7-25dd-4baf-bd43-ce6148433126",
+        "clearance|158165800|113858200|c38f307f-798c-4143-8436-2e4db131143f|fde3bbb7-25dd-4baf-bd43-ce6148433126"
+      ],
       "meta": {
         "version": 2
       },
@@ -350,7 +359,9 @@
     }
   },
   "libraries": {
-    "pinned_footprint_libs": [],
+    "pinned_footprint_libs": [
+      "oresat-footprints"
+    ],
     "pinned_symbol_libs": []
   },
   "meta": {
@@ -438,7 +449,7 @@
       },
       {
         "bus_width": 12.0,
-        "clearance": 0.254,
+        "clearance": 0.2032,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,

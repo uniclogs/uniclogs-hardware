@@ -17,22 +17,21 @@ New Design Requirements:
 * Current ranges should be configurable in hardware after the PCB has been fabbed
 
 Parts:
-+-------------------------------+------------------+-----------------+
-| Name                          | MFR              | MPN             |
-+-------------------------------+------------------+-----------------+
-| 8 pos wire  connector (screw) | Phoenix Connect  | 1110635         |
-| 8 pos board connector (screw) | Phoenix Connect  | 1809131         |
-| 8 pos wire  connector (lever) | Phoenix Connect  | 1110613         | 
-| 8 pos board connector (lever) | Phoenix Connect  | 1792685         |
-| 8 pos board connector 45°     | Phoenix Connect  | 1827486         |
-| 8 pos wire  connector 45°     | Phoenix Connect  | 1851290 1966156 |
-| GPIO expander                 | Maxim Integrated | MAX7310ATE      |
-| I2C ADC                       | TI               | ADS1115         |
-| I2C temperature sensor        | Microchip        | MCP9808         |
-| Dual N-Channel MOSFET         | Diodes Inc       | DMN61D8L-LVT    |
-| P-Channel MOSFET              | Vishay Siliconix | SUD50P08-25L-E3 |
-| Dual 1.5A MOSFET Driver       | Microchip        | TC427           |
-+-------------------------------+------------------+-----------------+
++---------------------------------+------------------+-----------------+
+| Name                            | MFR              | MPN             |
++---------------------------------+------------------+-----------------+
+| 8 pos wire  connector large     | Phoenix Connect  | 1110635         |
+| 8 pos wire  connector small     | Phoenix Connect  | 1851290 1966156 |
+| 8 pos board connector large     | Phoenix Connect  | 1809131         |
+| 8 pos board connector 45° small | Phoenix Connect  | 1827486         |
+| 8 pos board connector small     | Phoenix Connect  | 1827923         |
+| GPIO expander                   | Maxim Integrated | MAX7310ATE      |
+| I2C ADC                         | TI               | ADS1115         |
+| I2C temperature sensor          | Microchip        | MCP9808         |
+| Dual N-Channel MOSFET           | Diodes Inc       | DMN61D8L-LVT    |
+| P-Channel MOSFET                | Vishay Siliconix | SUD50P08-25L-E3 |
+| Dual 1.5A MOSFET Driver         | Microchip        | TC427           |
++---------------------------------+------------------+-----------------+
 
 
 Configuration of the Outputs
