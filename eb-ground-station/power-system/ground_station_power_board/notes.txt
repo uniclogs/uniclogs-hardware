@@ -20,9 +20,9 @@ Parts:
 +---------------------------------+------------------+-----------------+
 | Name                            | MFR              | MPN             |
 +---------------------------------+------------------+-----------------+
-| 8 pos wire  connector large     | Phoenix Connect  | 1110635         |
+| 8 pos wire  connector large     | Phoenix Connect  | 1942549         |
 | 8 pos wire  connector small     | Phoenix Connect  | 1851290 1966156 |
-| 8 pos board connector large     | Phoenix Connect  | 1809131         |
+| 8 pos board connector large     | Phoenix Connect  | 1924143         |
 | 8 pos board connector 45° small | Phoenix Connect  | 1827486         |
 | 8 pos board connector small     | Phoenix Connect  | 1827923         |
 | GPIO expander                   | Maxim Integrated | MAX7310ATE      |
@@ -33,6 +33,19 @@ Parts:
 | Dual 1.5A MOSFET Driver         | Microchip        | TC427           |
 +---------------------------------+------------------+-----------------+
 
+Connectors (Phoenix Connect):
++---------------------------------+---------+------+----+--------+-----+-------------+
+| Name                            | Number  | Pins | A  | Pitch  | Ang | Connector   |
++---------------------------------+---------+------+----+--------+-----+-------------+
+| 3 pos wire  connector huge      | 1996139 | 3    | 41 | 7.62mm | 0°  | PC 5        |
+| 8 pos wire  connector large     | 1942549 | 8    | 16 | 5.08mm | 0°  | MSTB 2,5 HC |
+| 8 pos wire  connector small     | 1748419 | 8    | 8  | 3.81mm | 0°  | MC 1,5      |
++---------------------------------+---------+------+----+--------+-----+-------------+
+| 3 pos board connector huge      | 1720806 | 3    | 41 | 7.62mm | 0°  | PC 5        |
+| 8 pos board connector large     | 1924143 | 8    | 16 | 5.08mm | 0°  | MSTB 2,5 HC |
+| 8 pos board connector small     | 1827923 | 8    | 8  | 3.81mm | 0°  | MC 1,5      |
+| 8 pos board connector 45° small | 1827486 | 8    | 8  | 3.81mm | 45° | MC 1,5      |
++---------------------------------+---------+------+----+--------+-----+-------------+
 
 Configuration of the Outputs
 
@@ -86,3 +99,16 @@ RasPI pins:
 | GND        | 39 | 40 |            |
 +------------+----+----+------------+
 * UART1 shares pins with UART0
+
+
+-12.25
+-2.5
+
+-12.25
+27.73
+
+27.49
+-2.5
+
+27.49
+27.73
