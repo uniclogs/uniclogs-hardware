@@ -16,6 +16,9 @@ New Design Requirements:
 * All 4 UARTs on the pi need to be broken out to their own ports to be passed on to other stuff
 * Current ranges should be configurable in hardware after the PCB has been fabbed
 
+Some notes on the new design:
+Up to 2 of these boards can be put in paralell simply by connecting the 40pin connectors in paralell and jumping different address jumpers on each board.
+
 Parts:
 +---------------------------------+------------------+-----------------+
 | Name                            | MFR              | MPN             |
@@ -99,16 +102,3 @@ RasPI pins:
 | GND        | 39 | 40 |            |
 +------------+----+----+------------+
 * UART1 shares pins with UART0
-
-
--12.25
--2.5
-
--12.25
-27.73
-
-27.49
--2.5
-
-27.49
-27.73
