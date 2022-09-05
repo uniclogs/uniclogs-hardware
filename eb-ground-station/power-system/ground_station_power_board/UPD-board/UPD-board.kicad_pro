@@ -443,9 +443,6 @@
         "nets": [
           "Net-(JP1-Pad2)",
           "Net-(JP10-Pad2)",
-          "Net-(JP11-Pad2)",
-          "Net-(JP12-Pad2)",
-          "Net-(JP13-Pad2)",
           "RX0",
           "RX2",
           "RX3",

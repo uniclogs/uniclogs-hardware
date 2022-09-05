@@ -69,10 +69,10 @@ To configure for:
 +---------+-------------+-------------+----------+-------+-----+-------------+
 | Mode    | Dual Driver | Dual MOSFET | P MOSFET | Rgate | C   | 2pad jumper |
 +---------+-------------+-------------+----------+-------+-----+-------------+
-| -500mA  | no          | yes         | no       | no    | no  | jumped      |
-| +15A    | no          | yes         | yes      | 1k    | no  | open        |
-| 15Asoft | no          | yes         | yes      | 680k  | yes | open        |
-| ±1.5A   | yes         | no          | no       | no    | no  | any         |
+| -500mA  |             | yes         |          |       |     | jumped      |
+| +16A    |             | yes         | yes      | 1k    |     | open        |
+| 16Asoft |             | yes         | yes      | 680k  | yes | open        |
+| ±1.5A   | yes         |             |          |       |     | any         |
 +---------+-------------+-------------+----------+-------+-----+-------------+
 
 Use the 3pad jumper to select 5 or 12v for the +15A mode
@@ -102,3 +102,18 @@ RasPI pins:
 | GND        | 39 | 40 |            |
 +------------+----+----+------------+
 * UART1 shares pins with UART0
+
+---------------------------------------------------------------------------------------
+Deisgn Review Notes:
+(probably not me) Part numbers on block diagram on GH readme
+(future stuff) clarify where everything (power/data etc) go
+
+X Maybe start with a block diagram where each one goes to the schematic that is that part]
+X no 12v top 5v bottom put next to eachother
+X 100u on 3.3v out
+X change resistors to squiggly ones
+X move pullups to where they are used
+X add another ferrite bead to 12v input to the 3.3v regulators (may have to be larger)
+X To populate: FB1 is bead. FB2 is link. FB3 is link (by 3.3v regulators)
+X Seperate dual MOSFETS - QnA and QnB
+X Move IO pulldowns to the power page

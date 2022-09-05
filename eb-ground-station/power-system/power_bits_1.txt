@@ -2,13 +2,13 @@ GPIO Bit   Station Function                Low (Pull down)    High      High/Pow
 
 lsb
 A0                - Rotator Power                                                              X                                                        Pwr(l)          Rot-Pwr
-A1                - Radio SBC Power                                                            X                                                        Pwr(a)          SDR-Rock (name should change)
+A1                - Radio SBC Power                                                            X                                                        Pwr(a)          SDR-RasPi (name should change)
 A2         VHF    - PA Power                                            X                                                                               Pwr(d)          V-PA
 A3                - SDR Power                                                                                          X                                Pwr(b)          SDR-Lime (name should change)
 A4         L Band - PA Power                                            X                                                                               Pwr(j)          L-PA
 A5         UHF    - PA Power                                            X                                                                               Pwr(g)          U-PA
 A6         UHF    - RF PTT                 X                                                                                                            Pwr(h)          U-PTT
-A7         U/V    - Rx swap                X                                                                                                            Pwr(c)          (not yet designated in state diagram)
+A7         U/V    - Rx swap                X                                                                                                                 Pwr(c)          (not yet designated in state diagram)
 msb
 
 ---
