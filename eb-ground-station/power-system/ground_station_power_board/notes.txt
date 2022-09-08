@@ -50,7 +50,7 @@ Connectors (Phoenix Connect):
 | 8 pos board connector 45° small | 1827486 | 8    | 8  | 3.81mm | 45° | MC 1,5      |
 +---------------------------------+---------+------+----+--------+-----+-------------+
 
-Configuration of the Outputs
+Configuration of the Outputs:
 
 Populate and leave some components unpopulated to configure the output current modes.
 Only the dual mosfet or the mosfet driver may be populated, never both for the same channel pair
@@ -117,3 +117,24 @@ X add another ferrite bead to 12v input to the 3.3v regulators (may have to be l
 X To populate: FB1 is bead. FB2 is link. FB3 is link (by 3.3v regulators)
 X Seperate dual MOSFETS - QnA and QnB
 X Move IO pulldowns to the power page
+
+Design Review Part 2 Notes:
+UniClOGS stands for Uiversity Class Open Ground Station
+Glen will go in sometime to check the board size
+add nuts to render and check clearance, add keepout zone to to holes, remember to include space for nut driver or spacers on the back
+add OreSat logo at the very end since it takes a bunch of time to fill
+Add 12,5,3.3,gnd .1in header in lower left corner
+Assumme we are purcahsing every possible component for the bill of materials
+Check connectors for stock
+Move vias outside of small passives when possible
+Final silkscreen check
+Move all siklscreen to match orentation of part
+Change all ferrite beads to 0805 size
+Ground loop warning note
+Change 3.3v to 500mA
+
+ToDo Wed:
+Add 12,5,3.3,gnd .1in header in lower left corner
+Assumme we are purcahsing every possible component for the bill of materials
+Check connectors for stock
+Change all ferrite beads to 0805 size
