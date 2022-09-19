@@ -6,4 +6,6 @@
   (lib (name "OreSat-q-mosfet-DMN61D8L-LVT")(type "KiCad")(uri "${ORESAT_LIBRARIES}/oresat-symbols/OreSat-q-mosfet-DMN61D8L-LVT.kicad_sym")(options "")(descr ""))
   (lib (name "OreSat-q-mosfet-driver-TC4427")(type "KiCad")(uri "${ORESAT_LIBRARIES}/oresat-symbols/OreSat-q-mosfet-driver-TC4427.kicad_sym")(options "")(descr ""))
   (lib (name "graphics")(type "KiCad")(uri "${ORESAT_LIBRARIES}/oresat-symbols/graphics.kicad_sym")(options "")(descr ""))
+  (lib (name "ADT7410TRZ")(type "KiCad")(uri "${ORESAT_LIBRARIES}/oresat-symbols/ADT7410TRZ.kicad_sym")(options "")(descr ""))
+  (lib (name "OreSat-U-ADT7410TRZ-i2c-temperature")(type "KiCad")(uri "${ORESAT_LIBRARIES}/oresat-symbols/OreSat-U-ADT7410TRZ-i2c-temperature.kicad_sym")(options "")(descr ""))
 )
