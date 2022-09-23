@@ -1,0 +1,21 @@
+Circuit: * Z:\home\benjamin\school\PSAS\OreSat\git\uniclogs-hardware\eb-ground-station\power-system\slow-start-circuit-1fet.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Sun Sep 04 14:47:37 2022
+Total elapsed time: 0.046 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2796
+traniter = 2786
+tranpoints = 1216
+accept = 1170
+rejected = 46
+matrix size = 15
+fillins = 3
+solver = Normal
+Matrix Compiler1: 972 bytes object code size  0.2/0.1/[0.1]
+Matrix Compiler2: off  [0.1]/0.1/0.1
+
