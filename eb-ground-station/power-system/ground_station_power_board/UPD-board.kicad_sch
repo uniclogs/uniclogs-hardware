@@ -2358,7 +2358,6 @@
     )
   )
 
-
   (junction (at 104.14 100.33) (diameter 0) (color 0 0 0 0)
     (uuid 01313e82-0e74-4be0-abe1-4c08c8297e8b)
   )
@@ -4531,10 +4530,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "SDA" (shape input) (at 184.15 68.58 180) (fields_autoplaced)
+  (global_label "SDA" (shape input) (at 184.15 71.12 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 014a7ab9-9e91-4ffa-9c9a-afdcdebcc662)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 178.1688 68.5006 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 178.1688 71.0406 0)
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
@@ -4874,10 +4873,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "SDA" (shape input) (at 187.96 26.67 180) (fields_autoplaced)
+  (global_label "SDA" (shape input) (at 187.96 29.21 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 5dea8c76-3e85-425b-9c8e-609fa741ca8f)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 181.9788 26.5906 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 181.9788 29.1306 0)
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
@@ -5259,10 +5258,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "SDA" (shape input) (at 39.37 135.89 180) (fields_autoplaced)
+  (global_label "SDA" (shape input) (at 39.37 133.35 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid c0a0e790-6f83-477b-8a14-692f9d922051)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 33.3888 135.8106 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 33.3888 133.2706 0)
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
@@ -5308,10 +5307,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "SCL" (shape input) (at 39.37 133.35 180) (fields_autoplaced)
+  (global_label "SCL" (shape input) (at 39.37 135.89 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid c5139de4-b268-4f4b-8de7-e9ecdc40a0cf)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 33.4493 133.2706 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 33.4493 135.8106 0)
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
@@ -5385,10 +5384,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "SCL" (shape input) (at 187.96 29.21 180) (fields_autoplaced)
+  (global_label "SCL" (shape input) (at 187.96 26.67 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid d837913d-f916-4ea0-9b22-e85588faea61)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 182.0393 29.1306 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 182.0393 26.5906 0)
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
@@ -5497,10 +5496,10 @@
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
-  (global_label "SCL" (shape input) (at 184.15 71.12 180) (fields_autoplaced)
+  (global_label "SCL" (shape input) (at 184.15 68.58 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid fad00121-920f-4cca-8021-0e767726bc8b)
-    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 178.2293 71.0406 0)
+    (property "Intersheet References" "${INTERSHEET_REFS}" (id 0) (at 178.2293 68.5006 0)
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
@@ -10432,10 +10431,10 @@
     (path "/fd8cf496-8078-42c7-846c-0a70693744f4"
       (reference "LOGO1") (unit 1) (value "OreSat Logo") (footprint "oresat-footprints:logo-small")
     )
-    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/6f338c88-571d-40d4-a656-bab0f745db42"
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/9b268302-c8f9-4880-a801-2f518477b68a"
       (reference "Q1") (unit 1) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
     )
-    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/9b268302-c8f9-4880-a801-2f518477b68a"
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/6f338c88-571d-40d4-a656-bab0f745db42"
       (reference "Q1") (unit 2) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
     )
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/b991b349-9e33-47bb-a347-44e31d23ee65"
@@ -10444,10 +10443,10 @@
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/d24340a0-d19e-474c-bf9a-d30903aff355"
       (reference "Q3") (unit 1) (value "SUD50P08-25L-E3") (footprint "oresat-footprints:TO-252-3_TabIsPin2")
     )
-    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/94011d84-c031-4181-9a68-89df89d536a3"
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/deaca104-2c5f-455a-9001-3371e3306116"
       (reference "Q4") (unit 1) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
     )
-    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/deaca104-2c5f-455a-9001-3371e3306116"
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/94011d84-c031-4181-9a68-89df89d536a3"
       (reference "Q4") (unit 2) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
     )
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/a32afde8-8d34-43d1-b456-4f4df1d05d87"
@@ -10456,10 +10455,10 @@
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/da28d957-7930-4284-8043-d5c7eff3723a"
       (reference "Q6") (unit 1) (value "SUD50P08-25L-E3") (footprint "oresat-footprints:TO-252-3_TabIsPin2")
     )
-    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/11b9c0f2-a612-4d52-85f4-d7fb97bd55bd"
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/12ff1775-db0b-4f93-8454-17de940e4617"
       (reference "Q7") (unit 1) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
     )
-    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/12ff1775-db0b-4f93-8454-17de940e4617"
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/11b9c0f2-a612-4d52-85f4-d7fb97bd55bd"
       (reference "Q7") (unit 2) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
     )
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/97b69c4a-f25f-4943-ae2a-8463e82da448"
@@ -10468,10 +10467,10 @@
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/4b8d34fd-af5e-44ba-8be5-eb25a9fab5e4"
       (reference "Q9") (unit 1) (value "SUD50P08-25L-E3") (footprint "oresat-footprints:TO-252-3_TabIsPin2")
     )
-    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/777a7611-3f95-4b63-882e-22837a921249"
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/7846e60b-2e16-4833-b5a0-71b3e5a6fdb8"
       (reference "Q10") (unit 1) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
     )
-    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/7846e60b-2e16-4833-b5a0-71b3e5a6fdb8"
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/777a7611-3f95-4b63-882e-22837a921249"
       (reference "Q10") (unit 2) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
     )
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/96ee87bc-3eda-4907-9cf4-93a41fd4876b"
