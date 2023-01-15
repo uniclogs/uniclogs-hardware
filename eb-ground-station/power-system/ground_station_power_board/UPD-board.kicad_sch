@@ -2358,6 +2358,7 @@
     )
   )
 
+
   (junction (at 104.14 100.33) (diameter 0) (color 0 0 0 0)
     (uuid 01313e82-0e74-4be0-abe1-4c08c8297e8b)
   )
@@ -9527,7 +9528,7 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "OreSat Logo" (id 1) (at 410.21 259.08 0))
-    (property "Footprint" "oresat-footprints:logo-small" (id 2) (at 402.59 259.08 0)
+    (property "Footprint" "oresat-graphics:logo-small" (id 2) (at 402.59 259.08 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (id 3) (at 402.59 259.08 0)
@@ -9875,6 +9876,9 @@
     )
     (path "/d5a3a6f9-2ee9-4bcb-b545-e0c83ae3c111"
       (reference "#PWR0109") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/8455e93e-0497-4a1b-98ad-a5ed8aa30439"
+      (reference "#PWR0110") (unit 1) (value "+3V3") (footprint "")
     )
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/84c28457-6e31-4c65-8539-377808b3bd60"
       (reference "#PWR0111") (unit 1) (value "GND") (footprint "")
@@ -10429,7 +10433,7 @@
       (reference "JP29") (unit 1) (value "SolderJumper-HP") (footprint "oresat-footprints:JP-SOLDER-2way-HP")
     )
     (path "/fd8cf496-8078-42c7-846c-0a70693744f4"
-      (reference "LOGO1") (unit 1) (value "OreSat Logo") (footprint "oresat-footprints:logo-small")
+      (reference "LOGO1") (unit 1) (value "OreSat Logo") (footprint "oresat-graphics:logo-small")
     )
     (path "/3a1c5476-bb6a-4918-80d3-82e1846e9dbb/9b268302-c8f9-4880-a801-2f518477b68a"
       (reference "Q1") (unit 1) (value "DMN61D8L-LVT") (footprint "oresat-footprints:TSOT26-6")
