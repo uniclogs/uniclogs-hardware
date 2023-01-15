@@ -1028,7 +1028,6 @@
     )
   )
 
-
   (junction (at 381 48.26) (diameter 0) (color 0 0 0 0)
     (uuid 01e9097a-27c6-4c80-aeb6-4f7deb2b3bb7)
   )
@@ -3199,6 +3198,10 @@
   (text "Ranges: -500mA\n         ±1.5A" (at 59.69 121.92 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid a5ad09e5-3e46-4ec3-8b58-689a3da8e3ed)
+  )
+  (text "CHx0 will turn on\nduring boot" (at 379.73 121.92 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid af5e14b1-d0e6-46cf-9c23-2c05c0cfecf1)
   )
   (text "See design notes on how to populate this area\nof the circuit to configre output behavior"
     (at 20.32 -222.885 0)
