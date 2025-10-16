@@ -25,17 +25,7 @@ Testing data is included in the spreadsheet, including characteristics of the po
 
 
 
-Additionally, the output of the LimeSDR is a little too low to fully drive the power amplifires, so inline MMIC
-amplifiers are placed in between.
+Additionally, the output of most SDR transmitter sections is a little too low to fully drive the power amplifiers, so inline MMIC Pre-Drivers are placed in front of the PA.
 
-* 2m: MiniCircuits GALI-49 (packed in their development test board TB-409-49+)
-   https://www.minicircuits.com/WebStore/dashboard.html?model=GALI-49%2B
-   https://www.minicircuits.com/pcb/WTB-409-49+_P02.pdf
-    
-* 70cm: MiniCircuits GALI-49 (a second one)
-
-
-* 23cm:  MiniCircuits ZRL-1150LN
-   https://www.minicircuits.com/WebStore/dashboard.html?model=ZRL-1150LN%2B
-
-
+We use the GALI-84 Driver from MiniKits.Com.Au to drive all three power amplifiers. One for each power amplifier.
+   https://www.minikits.com.au/index.php?route=product/search&search=GALI-84%20driver
