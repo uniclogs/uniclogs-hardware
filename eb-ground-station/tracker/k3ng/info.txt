@@ -1,0 +1,52 @@
+info.txt
+
+G.N. LeBrasseur
+17-Oct-2027
+
+Here is all of the K3NG stuff on [ThinkPad T470s]. There are duplicates that should be cleared out.
+
+The authoritative copy should be from the K3NG repo, and special things from the UniClOGS repo.
+
+
+==============================================================
+
+glennl@glennl-ThinkPad-T470s:~$ sudo find / -name *k3ng*
+[sudo] password for glennl: 
+
+/home_2/glennl/OreSat-repo-OLD/uniclogs-hardware/eb-ground-station/tracker/k3ng/k3ng_rotator_controller
+/home_2/glennl/OreSat-repo-OLD/uniclogs-hardware/eb-ground-station/tracker/k3ng/k3ng_rotator_controller/k3ng_rotator_controller
+
+/home_2/glennl/k3ng/k3ng_rotator_controller
+/home_2/glennl/k3ng/k3ng_rotator_controller/k3ng_rotator_controller
+
+/home_2/glennl/UniClOGS-repo/uniclogs-hardware/eb-ground-station/tracker/k3ng/k3ng_rotator_controller
+/home_3/glennl/UniClOGS-repo/uniclogs-hardware/eb-ground-station/tracker/k3ng/k3ng_rotator_controller
+
+find: ‘/run/user/1000/gvfs’: Permission denied
+find: ‘/run/user/1000/doc’: Permission denied
+find: ‘/proc/38614/task/38614/net’: Invalid argument
+find: ‘/proc/38614/net’: Invalid argument
+
+/home/glennl/Desktop/Desktop_Apr-2025/Hold_ThinkPad_T470s_30-Mar-2023/All_Desktop_13-Oct-2022/Hold_Desktop_24-Oct-2020/OreSat_root/PSU_2-Apr-2017/PSU/Ground_Station/Tracker/K3NG_Tracker/k3ng_rotator_controller-master/k3ng_rotator_controller
+/home/glennl/Desktop/Desktop_Apr-2025/Hold_ThinkPad_T470s_30-Mar-2023/All_Desktop_13-Oct-2022/Hold_Desktop_24-Oct-2020/OreSat_root/Tracker/k3ng/k3ng_rotator_controller
+/home/glennl/Desktop/Desktop_Apr-2025/Hold_ThinkPad_T470s_30-Mar-2023/All_Desktop_13-Oct-2022/Hold_Desktop_24-Oct-2020/OreSat_root/Tracker/k3ng/k3ng_rotator_controller/k3ng_rotator_controller
+/home/glennl/Desktop/Desktop_Apr-2025/From_Surface/Surface_4/PSU_16-Apr-2017/PSU/Ground_Station/Tracker/K3NG_Tracker/k3ng_rotator_controller-master/k3ng_rotator_controller
+
+/home/glennl/k3ng_rotator_controller
+/home/glennl/k3ng_rotator_controller/k3ng_rotator_controller
+
+/home/glennl/UniClOGS-repo/uniclogs-hardware/eb-ground-station/tracker/k3ng/k3ng_rotator_controller
+
+
+==============================================================
+
+glennl@glennl-ThinkPad-T470s:~$ cd ~/UniClOGS-repo/uniclogs-hardware/eb-ground-station/tracker/k3ng
+glennl@glennl-ThinkPad-T470s:~/UniClOGS-repo/uniclogs-hardware/eb-ground-station/tracker/k3ng$ ls
+
+Current_K3NG_files       mods.txt                    Old_K3NG_files_17-Oct-2025  update.sh
+k3ng_rotator_controller  Old_K3NG_files_10-Mar-2018  Old_K3NG_files_26-Mar-2019
+
+glennl@glennl-ThinkPad-T470s:~/UniClOGS-repo/uniclogs-hardware/eb-ground-station/tracker/k3ng$ 
+
+
+==============================================================
